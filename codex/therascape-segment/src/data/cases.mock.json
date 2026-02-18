@@ -1,0 +1,71 @@
+[
+  {
+    "caseId": "case-1",
+    "title": "Case A - Rising A1C with cardiorenal risk",
+    "steps": [
+      { "title": "Step 1", "content": "A1C 9.1 with persistent hyperglycemia" },
+      { "title": "Step 2", "content": "ASCVD history and reduced eGFR" },
+      { "title": "Step 3", "content": "High cost sensitivity and moderate BMI elevation" }
+    ],
+    "patient": {
+      "a1c": 9.1,
+      "comorbidities": ["ASCVD", "CKD"],
+      "egfr": 48,
+      "hf": false,
+      "ascvd": true,
+      "bmi": 33,
+      "hypoglycemiaRisk": "medium",
+      "costSensitivity": "high"
+    },
+    "reasoningNodeOptions": [
+      "A1C Gap Reduction",
+      "Cardiovascular Risk Priority",
+      "Renal Preservation",
+      "Weight/BMI Consideration",
+      "Hypoglycemia Avoidance",
+      "Cost/Access Feasibility"
+    ],
+    "expectedReasoningNodes": [
+      "A1C Gap Reduction",
+      "Cardiovascular Risk Priority",
+      "Renal Preservation",
+      "Cost/Access Feasibility"
+    ],
+    "recommendedMeds": ["glp1", "sglt2"],
+    "exclusions": ["sulfonylurea"]
+  },
+  {
+    "caseId": "case-2",
+    "title": "Case B - Cost-limited regimen refinement",
+    "steps": [
+      { "title": "Step 1", "content": "A1C 8.4 on current dual therapy" },
+      { "title": "Step 2", "content": "No ASCVD, preserved renal function" },
+      { "title": "Step 3", "content": "Strong concern about hypoglycemia and monthly spend" }
+    ],
+    "patient": {
+      "a1c": 8.4,
+      "comorbidities": ["Dyslipidemia"],
+      "egfr": 84,
+      "hf": false,
+      "ascvd": false,
+      "bmi": 29,
+      "hypoglycemiaRisk": "high",
+      "costSensitivity": "high"
+    },
+    "reasoningNodeOptions": [
+      "A1C Gap Reduction",
+      "Cardiovascular Risk Priority",
+      "Renal Preservation",
+      "Weight/BMI Consideration",
+      "Hypoglycemia Avoidance",
+      "Cost/Access Feasibility"
+    ],
+    "expectedReasoningNodes": [
+      "A1C Gap Reduction",
+      "Hypoglycemia Avoidance",
+      "Cost/Access Feasibility"
+    ],
+    "recommendedMeds": ["dpp4", "metformin"],
+    "exclusions": ["insulin"]
+  }
+]
