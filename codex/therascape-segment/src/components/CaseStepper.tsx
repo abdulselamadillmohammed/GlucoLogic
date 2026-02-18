@@ -1,30 +1,23 @@
-import type { CaseData } from "../logic/types";
+import type { CaseEntry } from "../logic/types";
 
 type CaseStepperProps = {
-  cases: CaseData[];
+  cases: CaseEntry[];
   activeCaseId: string;
-  stepIndex: number;
   onCaseChange: (caseId: string) => void;
-  onStepChange: (next: number) => void;
   onReset: () => void;
+  onRandomizeCases: () => void;
 };
 
 export function CaseStepper({
   cases,
   activeCaseId,
-  stepIndex,
   onCaseChange,
-  onStepChange,
-  onReset
+  onReset,
+  onRandomizeCases
 }: CaseStepperProps) {
   if (cases.length === 0) {
     return null;
   }
-
-  const activeCase = cases.find((item) => item.caseId === activeCaseId) ?? cases[0];
-
-  const canPrev = stepIndex > 0;
-  const canNext = stepIndex < activeCase.steps.length - 1;
 
   return (
     <section className="case-stepper">
@@ -42,19 +35,14 @@ export function CaseStepper({
           ))}
         </select>
 
-        <button type="button" onClick={() => canPrev && onStepChange(stepIndex - 1)} disabled={!canPrev}>
-          Previous
-        </button>
-        <button type="button" onClick={() => canNext && onStepChange(stepIndex + 1)} disabled={!canNext}>
-          Next
+        <button type="button" onClick={onRandomizeCases}>
+          Randomize order
         </button>
         <button type="button" onClick={onReset}>
           Reset
         </button>
       </div>
-      <p>
-        Step {stepIndex + 1} / {activeCase.steps.length}: {activeCase.steps[stepIndex]?.title}
-      </p>
+      <p>{cases.length} training cases loaded.</p>
     </section>
   );
 }

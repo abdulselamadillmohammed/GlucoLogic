@@ -1,0 +1,543 @@
+{
+  "meta": {
+    "appModule": "GlucoLogic",
+    "version": "0.3",
+    "sourceNotes": [
+      {
+        "id": "AACE-2023-principles",
+        "summary": "Therapy choice reflects glycemic targets, ASCVD/HF/CKD, overweight/obesity, NAFLD, and access/cost; prefer low hypoglycemia risk agents when hypoglycemia risk is high.",
+        "citations": [
+          "PIIS1530891X23000344.pdf:L32-L45",
+          "PIIS1530891X23000344.pdf:L14-L35"
+        ]
+      }
+    ]
+  },
+  "uiTaxonomy": {
+    "groups": [
+      {
+        "groupId": "glycemia",
+        "label": "Glycemia",
+        "icon": "droplet",
+        "subfactors": [
+          {
+            "subfactorId": "a1c_gap",
+            "label": "A1C gap",
+            "explainTemplate": {
+              "title": "A1C gap",
+              "whyItMatters": "Helps decide whether you need higher glucose-lowering efficacy or combination therapy.",
+              "suggestionPrompt": "How large is the gap from target, and does it justify adding a higher-efficacy class?",
+              "hints": [
+                "Hint 1: Larger A1C gaps often need higher efficacy or combination therapy.",
+                "Hint 2: Consider whether the patient can safely intensify without increasing hypoglycemia risk.",
+                "Hint 3: If severe symptomatic hyperglycemia is present, consider therapy that reduces glucose promptly."
+              ]
+            }
+          },
+          {
+            "subfactorId": "symptomatic_hyperglycemia",
+            "label": "Symptomatic hyperglycemia",
+            "explainTemplate": {
+              "title": "Symptoms of hyperglycemia",
+              "whyItMatters": "Symptoms can signal need for faster glucose reduction strategies.",
+              "suggestionPrompt": "Are symptoms present, and would a titration-based option delay control?",
+              "hints": [
+                "Hint 1: Ask whether the patient has polyuria/polydipsia or unintentional weight loss.",
+                "Hint 2: If rapid control is needed, avoid plans that delay glucose reduction.",
+                "Hint 3: Consider whether insulin initiation is warranted in severe cases."
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "groupId": "cardiorenal",
+        "label": "Cardiorenal Health",
+        "icon": "heart",
+        "subfactors": [
+          {
+            "subfactorId": "ascvd",
+            "label": "ASCVD/MACE",
+            "explainTemplate": {
+              "title": "ASCVD/MACE risk",
+              "whyItMatters": "Some classes have outcome benefits beyond glucose control.",
+              "suggestionPrompt": "Does this patient have established ASCVD or high risk, and does that shift first-line choice?",
+              "hints": [
+                "Hint 1: Identify ASCVD history or high-risk features.",
+                "Hint 2: Prioritize classes with proven CV outcome benefits when ASCVD risk is high.",
+                "Hint 3: Separate glycemic efficacy from outcome benefits when reasoning."
+              ]
+            }
+          },
+          {
+            "subfactorId": "hf",
+            "label": "Heart failure (HF/CHF)",
+            "explainTemplate": {
+              "title": "Heart failure risk",
+              "whyItMatters": "Some therapies have stronger HF outcome profiles; others may worsen fluid status.",
+              "suggestionPrompt": "Is HF present, and do any options increase fluid retention or worsen HF?",
+              "hints": [
+                "Hint 1: Check HF history, symptoms, or reduced EF documentation.",
+                "Hint 2: Avoid options associated with fluid retention in HF-prone patients.",
+                "Hint 3: Prefer options with HF outcome benefits when HF is present."
+              ]
+            }
+          },
+          {
+            "subfactorId": "ckd",
+            "label": "CKD / kidney outcomes",
+            "explainTemplate": {
+              "title": "Kidney disease",
+              "whyItMatters": "Kidney function changes medication selection, dosing, and expected benefits.",
+              "suggestionPrompt": "What is the eGFR stage, and which options retain benefit or require adjustment?",
+              "hints": [
+                "Hint 1: Determine eGFR and CKD stage.",
+                "Hint 2: Some therapies have kidney outcome benefits even when glucose lowering is reduced.",
+                "Hint 3: Watch for renal dosing limits and contraindications."
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "groupId": "weight",
+        "label": "Weight",
+        "icon": "scale",
+        "subfactors": [
+          {
+            "subfactorId": "weight_loss_goal",
+            "label": "Weight loss priority",
+            "explainTemplate": {
+              "title": "Weight goals",
+              "whyItMatters": "Weight effects can influence long-term adherence and cardiometabolic outcomes.",
+              "suggestionPrompt": "Is weight loss a priority, and do any options cause weight gain?",
+              "hints": [
+                "Hint 1: Compare classes by weight effect categories (loss/neutral/gain).",
+                "Hint 2: Consider the patient’s ability to sustain the plan.",
+                "Hint 3: Balance weight benefit against cost and tolerability."
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "groupId": "hypoglycemia",
+        "label": "Hypoglycemia",
+        "icon": "alert",
+        "subfactors": [
+          {
+            "subfactorId": "hypo_risk",
+            "label": "Hypoglycemia risk",
+            "explainTemplate": {
+              "title": "Hypoglycemia risk",
+              "whyItMatters": "Prefer lower hypoglycemia risk agents when baseline risk is high.",
+              "suggestionPrompt": "Is the patient high-risk for hypoglycemia, and does your choice increase that risk?",
+              "hints": [
+                "Hint 1: Identify history of severe hypo or hypoglycemia unawareness.",
+                "Hint 2: Secretagogues and insulin increase hypoglycemia risk more than many other classes.",
+                "Hint 3: Prefer low-risk options when possible."
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "groupId": "access",
+        "label": "Access/Cost",
+        "icon": "dollar",
+        "subfactors": [
+          {
+            "subfactorId": "affordability",
+            "label": "Affordability/coverage",
+            "explainTemplate": {
+              "title": "Cost and access",
+              "whyItMatters": "Cost and formulary access affect whether the plan is realistic.",
+              "suggestionPrompt": "Is the recommended option feasible for this patient’s coverage and budget?",
+              "hints": [
+                "Hint 1: Ask if the patient has coverage limitations.",
+                "Hint 2: If cost blocks preferred agents, consider economical alternatives while managing risks.",
+                "Hint 3: Document tradeoffs explicitly in reasoning."
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "groupId": "safety",
+        "label": "Safety/Tolerability",
+        "icon": "shield",
+        "subfactors": [
+          {
+            "subfactorId": "renal_adjustment",
+            "label": "Renal adjustment/limits",
+            "explainTemplate": {
+              "title": "Renal adjustment",
+              "whyItMatters": "Some therapies require renal dose adjustment or have efficacy limits at low eGFR.",
+              "suggestionPrompt": "Does kidney function change dosing or whether the option is appropriate?",
+              "hints": [
+                "Hint 1: Identify the eGFR threshold zones used in your dataset.",
+                "Hint 2: Separate reduced glucose efficacy from contraindication.",
+                "Hint 3: Look for dosing notes tied to kidney function."
+              ]
+            }
+          },
+          {
+            "subfactorId": "gi_tolerability",
+            "label": "GI tolerability",
+            "explainTemplate": {
+              "title": "GI tolerability",
+              "whyItMatters": "GI effects are common reasons for discontinuation in some classes.",
+              "suggestionPrompt": "Is the patient likely to tolerate this option, and can titration reduce issues?",
+              "hints": [
+                "Hint 1: Consider prior GI intolerance or gastroparesis flags.",
+                "Hint 2: Titration strategies can reduce nausea in some classes.",
+                "Hint 3: If severe GI risk exists, select alternatives."
+              ]
+            }
+          },
+          {
+            "subfactorId": "infection_risk",
+            "label": "Infection risk",
+            "explainTemplate": {
+              "title": "Infection risk considerations",
+              "whyItMatters": "Certain options increase genital infection risk; counsel and weigh tradeoffs.",
+              "suggestionPrompt": "Is this patient high-risk for infections and does that change your choice?",
+              "hints": [
+                "Hint 1: Identify risk factors in history.",
+                "Hint 2: Consider whether alternative classes meet the main goal without increasing this risk.",
+                "Hint 3: If chosen, include mitigation counseling in reasoning."
+              ]
+            }
+          },
+          {
+            "subfactorId": "fluid_status",
+            "label": "Fluid/volume status",
+            "explainTemplate": {
+              "title": "Volume and fluid status",
+              "whyItMatters": "Some therapies affect volume status or fluid retention which matters in HF/CKD.",
+              "suggestionPrompt": "Does this patient have HF/low BP/dehydration risk that affects safety?",
+              "hints": [
+                "Hint 1: Check HF and blood pressure patterns.",
+                "Hint 2: Identify therapies associated with dehydration or fluid retention.",
+                "Hint 3: Plan monitoring and sick-day holds when relevant."
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "drugLibrary": {
+    "classes": [
+      {
+        "classId": "metformin",
+        "label": "Metformin",
+        "drugs": [{ "drugId": "metformin", "label": "Metformin" }]
+      },
+      {
+        "classId": "sglt2",
+        "label": "SGLT2 inhibitors",
+        "drugs": [
+          { "drugId": "empagliflozin", "label": "Empagliflozin" },
+          { "drugId": "dapagliflozin", "label": "Dapagliflozin" },
+          { "drugId": "canagliflozin", "label": "Canagliflozin" }
+        ]
+      },
+      {
+        "classId": "glp1",
+        "label": "GLP-1 RA",
+        "drugs": [
+          { "drugId": "semaglutide", "label": "Semaglutide" },
+          { "drugId": "liraglutide", "label": "Liraglutide" },
+          { "drugId": "dulaglutide", "label": "Dulaglutide" }
+        ]
+      },
+      {
+        "classId": "gip_glp1",
+        "label": "Dual GIP/GLP-1 RA",
+        "drugs": [{ "drugId": "tirzepatide", "label": "Tirzepatide" }]
+      },
+      {
+        "classId": "dpp4",
+        "label": "DPP-4 inhibitors",
+        "drugs": [
+          { "drugId": "sitagliptin", "label": "Sitagliptin" },
+          { "drugId": "linagliptin", "label": "Linagliptin" }
+        ]
+      },
+      {
+        "classId": "su",
+        "label": "Sulfonylureas",
+        "drugs": [
+          { "drugId": "glimepiride", "label": "Glimepiride" },
+          { "drugId": "glipizide", "label": "Glipizide" }
+        ]
+      },
+      {
+        "classId": "tzd",
+        "label": "TZD",
+        "drugs": [{ "drugId": "pioglitazone", "label": "Pioglitazone" }]
+      },
+      {
+        "classId": "insulin",
+        "label": "Insulin",
+        "drugs": [{ "drugId": "basal_insulin", "label": "Basal insulin" }]
+      }
+    ]
+  },
+  "impactGrid": {
+    "parameters": [
+      "glucose_efficacy",
+      "ascvd_mace",
+      "hf_chf",
+      "stroke",
+      "ckd",
+      "renal_adjustment",
+      "hypoglycemia",
+      "weight",
+      "nafld_mash",
+      "gi_adverse",
+      "other_considerations",
+      "access_cost"
+    ],
+    "ratings": ["avoid", "caution", "neutral", "benefit", "strong_benefit"],
+    "classProfiles": [
+      {
+        "classId": "metformin",
+        "profile": {
+          "glucose_efficacy": "benefit",
+          "ascvd_mace": "neutral",
+          "hf_chf": "neutral",
+          "stroke": "neutral",
+          "ckd": "neutral",
+          "renal_adjustment": "caution",
+          "hypoglycemia": "benefit",
+          "weight": "neutral",
+          "nafld_mash": "neutral",
+          "gi_adverse": "caution",
+          "other_considerations": "neutral",
+          "access_cost": "benefit"
+        },
+        "flags": [
+          {
+            "id": "metformin_egfr_low",
+            "trigger": { "patient": { "egfrLt": 30 } },
+            "severity": "red",
+            "subfactorId": "renal_adjustment",
+            "message": "Contraindicated at very low eGFR per typical labeling thresholds.",
+            "teachingNote": "Always check renal function thresholds before choosing."
+          }
+        ]
+      },
+      {
+        "classId": "sglt2",
+        "profile": {
+          "glucose_efficacy": "benefit",
+          "ascvd_mace": "benefit",
+          "hf_chf": "strong_benefit",
+          "stroke": "neutral",
+          "ckd": "strong_benefit",
+          "renal_adjustment": "caution",
+          "hypoglycemia": "benefit",
+          "weight": "benefit",
+          "nafld_mash": "neutral",
+          "gi_adverse": "neutral",
+          "other_considerations": "caution",
+          "access_cost": "caution"
+        },
+        "flags": [
+          {
+            "id": "sglt2_infection_risk",
+            "trigger": { "patient": { "recurrentGenitalInfections": true } },
+            "severity": "yellow",
+            "subfactorId": "infection_risk",
+            "message": "Higher risk of genital infections. Consider mitigation or alternatives.",
+            "teachingNote": "Document counseling and risk mitigation if chosen."
+          }
+        ]
+      },
+      {
+        "classId": "glp1",
+        "profile": {
+          "glucose_efficacy": "strong_benefit",
+          "ascvd_mace": "benefit",
+          "hf_chf": "neutral",
+          "stroke": "benefit",
+          "ckd": "benefit",
+          "renal_adjustment": "neutral",
+          "hypoglycemia": "benefit",
+          "weight": "strong_benefit",
+          "nafld_mash": "benefit",
+          "gi_adverse": "caution",
+          "other_considerations": "caution",
+          "access_cost": "caution"
+        },
+        "flags": [
+          {
+            "id": "glp1_gastroparesis",
+            "trigger": { "patient": { "gastroparesis": true } },
+            "severity": "red",
+            "subfactorId": "gi_tolerability",
+            "message": "Avoid or use extreme caution in gastroparesis.",
+            "teachingNote": "GI motility issues can make tolerability unacceptable."
+          }
+        ]
+      },
+      {
+        "classId": "gip_glp1",
+        "profile": {
+          "glucose_efficacy": "strong_benefit",
+          "ascvd_mace": "benefit",
+          "hf_chf": "neutral",
+          "stroke": "neutral",
+          "ckd": "benefit",
+          "renal_adjustment": "neutral",
+          "hypoglycemia": "benefit",
+          "weight": "strong_benefit",
+          "nafld_mash": "benefit",
+          "gi_adverse": "caution",
+          "other_considerations": "caution",
+          "access_cost": "caution"
+        }
+      },
+      {
+        "classId": "dpp4",
+        "profile": {
+          "glucose_efficacy": "neutral",
+          "ascvd_mace": "neutral",
+          "hf_chf": "caution",
+          "stroke": "neutral",
+          "ckd": "neutral",
+          "renal_adjustment": "caution",
+          "hypoglycemia": "benefit",
+          "weight": "neutral",
+          "nafld_mash": "neutral",
+          "gi_adverse": "neutral",
+          "other_considerations": "neutral",
+          "access_cost": "caution"
+        }
+      },
+      {
+        "classId": "su",
+        "profile": {
+          "glucose_efficacy": "benefit",
+          "ascvd_mace": "neutral",
+          "hf_chf": "neutral",
+          "stroke": "neutral",
+          "ckd": "neutral",
+          "renal_adjustment": "caution",
+          "hypoglycemia": "avoid",
+          "weight": "caution",
+          "nafld_mash": "neutral",
+          "gi_adverse": "neutral",
+          "other_considerations": "neutral",
+          "access_cost": "strong_benefit"
+        }
+      },
+      {
+        "classId": "tzd",
+        "profile": {
+          "glucose_efficacy": "benefit",
+          "ascvd_mace": "neutral",
+          "hf_chf": "avoid",
+          "stroke": "neutral",
+          "ckd": "neutral",
+          "renal_adjustment": "neutral",
+          "hypoglycemia": "benefit",
+          "weight": "caution",
+          "nafld_mash": "benefit",
+          "gi_adverse": "neutral",
+          "other_considerations": "caution",
+          "access_cost": "benefit"
+        },
+        "flags": [
+          {
+            "id": "tzd_hf",
+            "trigger": { "patient": { "heartFailure": true } },
+            "severity": "red",
+            "subfactorId": "hf",
+            "message": "Avoid in heart failure due to fluid retention risk.",
+            "teachingNote": "Always check HF status before TZD selection."
+          }
+        ]
+      },
+      {
+        "classId": "insulin",
+        "profile": {
+          "glucose_efficacy": "strong_benefit",
+          "ascvd_mace": "neutral",
+          "hf_chf": "neutral",
+          "stroke": "neutral",
+          "ckd": "neutral",
+          "renal_adjustment": "neutral",
+          "hypoglycemia": "avoid",
+          "weight": "caution",
+          "nafld_mash": "neutral",
+          "gi_adverse": "neutral",
+          "other_considerations": "caution",
+          "access_cost": "caution"
+        }
+      }
+    ]
+  },
+  "cases": [
+    {
+      "caseId": "caseA",
+      "title": "Rising A1C with cardiorenal risk",
+      "patient": {
+        "a1c": 9.1,
+        "targetA1c": 7,
+        "symptomaticHyperglycemia": false,
+        "ascvd": true,
+        "heartFailure": false,
+        "ckdStage": 3,
+        "egfr": 42,
+        "bmi": 32,
+        "hypoglycemiaHighRisk": false,
+        "costSensitive": true,
+        "gastroparesis": false,
+        "recurrentGenitalInfections": false,
+        "fullHistory": {
+          "labs": ["A1C 9.1%", "eGFR 42", "UACR elevated"],
+          "comorbidities": ["ASCVD", "CKD stage 3", "Obesity"],
+          "constraints": ["Cost sensitive"],
+          "priorMeds": ["Metformin partial response"],
+          "contraindications": []
+        }
+      },
+      "expected": {
+        "drivers": ["glycemia", "cardiorenal", "access"],
+        "subfactors": ["a1c_gap", "ascvd", "ckd", "affordability"]
+      }
+    },
+    {
+      "caseId": "caseB",
+      "title": "High hypoglycemia risk and weight concerns",
+      "patient": {
+        "a1c": 8.4,
+        "targetA1c": 7,
+        "symptomaticHyperglycemia": false,
+        "ascvd": false,
+        "heartFailure": false,
+        "ckdStage": 2,
+        "egfr": 68,
+        "bmi": 35,
+        "hypoglycemiaHighRisk": true,
+        "costSensitive": false,
+        "gastroparesis": false,
+        "recurrentGenitalInfections": false,
+        "fullHistory": {
+          "labs": ["A1C 8.4%", "eGFR 68"],
+          "comorbidities": ["Obesity", "No established ASCVD"],
+          "constraints": ["Irregular meals"],
+          "priorMeds": ["Metformin intolerance"],
+          "contraindications": []
+        }
+      },
+      "expected": {
+        "drivers": ["hypoglycemia", "weight", "glycemia"],
+        "subfactors": ["hypo_risk", "weight_loss_goal", "a1c_gap"]
+      }
+    }
+  ]
+}

@@ -1,74 +1,46 @@
 import { describe, expect, it } from "vitest";
-import { compareReasoningNodes } from "../src/logic/comparator";
+import configData from "../src/data/therascape.config.json";
 import {
-  clampEffects,
-  computeCaseScore,
-  computeDomainIntensities,
-  derivePatientBaseline
-} from "../src/logic/scoring";
-import type { DrugData, PatientProfile } from "../src/logic/types";
+  computeGroupStatuses,
+  computeSubfactorStatuses,
+  getExplanation
+} from "../src/logic/reasoningEngine";
+import { computeReasoningScore } from "../src/logic/scoring";
+import type { TheraScapeConfig } from "../src/logic/types";
 
-describe("scoring logic", () => {
-  it("derives baseline from patient profile", () => {
-    const patient: PatientProfile = {
-      a1c: 9.4,
-      comorbidities: ["ASCVD"],
-      egfr: 42,
-      hf: false,
-      ascvd: true,
-      bmi: 34,
-      hypoglycemiaRisk: "medium",
-      costSensitivity: "high"
-    };
+const config = configData as TheraScapeConfig;
 
-    const baseline = derivePatientBaseline(patient);
+describe("reasoning model", () => {
+  it("computes group and subfactor status for a selected class", () => {
+    const caseA = config.cases[0];
 
-    expect(baseline.cardiovascularRisk).toBe(2);
-    expect(baseline.renalFunction).toBe(2);
-    expect(baseline.a1cGap).toBe(3);
+    const groups = computeGroupStatuses(config, caseA.patient, "sglt2");
+    const subfactors = computeSubfactorStatuses(config, caseA.patient, "sglt2", "cardiorenal");
+
+    expect(groups.some((item) => item.groupId === "cardiorenal")).toBe(true);
+    expect(subfactors.some((item) => item.subfactorId === "ckd")).toBe(true);
   });
 
-  it("adds drug effects and clamps domain intensity", () => {
-    const baseline = {
-      cardiovascularRisk: 3,
-      renalFunction: 3,
-      weightBmi: 3,
-      hypoglycemiaRisk: 3,
-      costAccess: 3,
-      a1cGap: 3
-    };
+  it("returns explanation with hints", () => {
+    const caseB = config.cases[1];
+    const explanation = getExplanation(config, "hypo_risk", "su", caseB.patient);
 
-    const drugs: DrugData[] = [
-      {
-        drugId: "x",
-        name: "X",
-        class: "C",
-        notes: "",
-        effects: {
-          cardiovascularRisk: -2,
-          renalFunction: -2,
-          weightBmi: -1,
-          hypoglycemiaRisk: 1,
-          costAccess: 2,
-          a1cGap: -3
-        }
-      }
-    ];
-
-    const intensity = computeDomainIntensities(baseline, drugs);
-    const clamped = clampEffects({ ...intensity, a1cGap: 12 });
-
-    expect(intensity.cardiovascularRisk).toBe(1);
-    expect(intensity.costAccess).toBe(5);
-    expect(clamped.a1cGap).toBe(6);
+    expect(explanation?.title).toBe("Hypoglycemia risk");
+    expect(explanation?.hints.length).toBeGreaterThan(1);
   });
 
-  it("scores nodes and meds using weighted totals", () => {
-    const comparison = compareReasoningNodes(["A", "B", "X"], ["A", "B", "C"]);
-    const score = computeCaseScore(comparison, ["m1", "m2"], ["m1", "m3"]);
+  it("scores selected drivers and subfactors", () => {
+    const score = computeReasoningScore(
+      ["glycemia", "weight"],
+      ["a1c_gap", "weight_loss_goal", "extra"],
+      ["glycemia", "weight", "hypoglycemia"],
+      ["a1c_gap", "weight_loss_goal"]
+    );
 
-    expect(score.nodeScore).toBe(67);
-    expect(score.medScore).toBe(50);
-    expect(score.totalScore).toBe(60);
+    expect(score.groupScore).toBe(67);
+    expect(score.subfactorScore).toBe(100);
+    expect(score.totalScore).toBe(82);
+    expect(score.missingGroups).toContain("hypoglycemia");
+    expect(score.extraSubfactors).toContain("extra");
   });
 });

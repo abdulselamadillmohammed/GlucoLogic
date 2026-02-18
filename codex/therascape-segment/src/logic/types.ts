@@ -1,78 +1,140 @@
-export const DOMAIN_ORDER = [
-  "cardiovascularRisk",
-  "renalFunction",
-  "weightBmi",
-  "hypoglycemiaRisk",
-  "costAccess",
-  "a1cGap"
-] as const;
+export type StatusColor = "neutral" | "green" | "yellow" | "red";
+export type Rating = "avoid" | "caution" | "neutral" | "benefit" | "strong_benefit";
 
-export type DomainKey = (typeof DOMAIN_ORDER)[number];
-
-export type DomainEffects = Record<DomainKey, number>;
-
-export const DOMAIN_LABELS: Record<DomainKey, string> = {
-  cardiovascularRisk: "Cardiovascular Risk",
-  renalFunction: "Renal Function",
-  weightBmi: "Weight/BMI",
-  hypoglycemiaRisk: "Hypoglycemia Risk",
-  costAccess: "Cost/Access",
-  a1cGap: "A1C Gap"
-};
-
-export type RiskLevel = "low" | "medium" | "high";
-
-export type PatientProfile = {
-  a1c: number;
-  comorbidities: string[];
-  egfr: number;
-  hf: boolean;
-  ascvd: boolean;
-  bmi: number;
-  hypoglycemiaRisk: RiskLevel;
-  costSensitivity: RiskLevel;
-};
-
-export type CaseStep = {
+export type ExplainTemplate = {
   title: string;
-  content: string;
+  whyItMatters: string;
+  suggestionPrompt: string;
+  hints: string[];
 };
 
-export type CaseData = {
+export type SubfactorConfig = {
+  subfactorId: string;
+  label: string;
+  explainTemplate: ExplainTemplate;
+};
+
+export type GroupConfig = {
+  groupId: string;
+  label: string;
+  icon: string;
+  subfactors: SubfactorConfig[];
+};
+
+export type DrugOption = {
+  drugId: string;
+  label: string;
+};
+
+export type DrugClass = {
+  classId: string;
+  label: string;
+  drugs: DrugOption[];
+};
+
+export type Profile = Record<string, Rating>;
+
+export type TriggerPatientRule = {
+  egfrLt?: number;
+  recurrentGenitalInfections?: boolean;
+  gastroparesis?: boolean;
+  heartFailure?: boolean;
+};
+
+export type ImpactFlag = {
+  id: string;
+  trigger: { patient: TriggerPatientRule };
+  severity: StatusColor;
+  subfactorId: string;
+  message: string;
+  teachingNote: string;
+};
+
+export type ClassProfile = {
+  classId: string;
+  profile: Profile;
+  flags?: ImpactFlag[];
+};
+
+export type FullHistory = {
+  labs: string[];
+  comorbidities: string[];
+  constraints: string[];
+  priorMeds: string[];
+  contraindications: string[];
+};
+
+export type Patient = {
+  a1c: number;
+  targetA1c: number;
+  symptomaticHyperglycemia?: boolean;
+  ascvd: boolean;
+  heartFailure: boolean;
+  ckdStage: number;
+  egfr: number;
+  bmi: number;
+  hypoglycemiaHighRisk: boolean;
+  costSensitive: boolean;
+  gastroparesis: boolean;
+  recurrentGenitalInfections: boolean;
+  fullHistory: FullHistory;
+};
+
+export type CaseEntry = {
   caseId: string;
   title: string;
-  steps: CaseStep[];
-  patient: PatientProfile;
-  reasoningNodeOptions: string[];
-  expectedReasoningNodes: string[];
-  recommendedMeds: string[];
-  exclusions?: string[];
-};
-
-export type DrugData = {
-  drugId: string;
-  name: string;
-  class: string;
-  effects: DomainEffects;
-  notes: string;
-};
-
-export type NodeComparison = {
-  matchedNodes: string[];
-  missingNodes: string[];
-  extraNodes: string[];
-};
-
-export type ScoreResult = {
-  nodeScore: number;
-  medScore: number;
-  totalScore: number;
-};
-
-export type FeedbackResult = NodeComparison &
-  ScoreResult & {
-    confidence: number;
-    calibration: string;
-    selectedMeds: string[];
-    recommendedMeds: string[];
+  patient: Patient;
+  expected: {
+    drivers: string[];
+    subfactors: string[];
   };
+};
+
+export type TheraScapeConfig = {
+  meta: {
+    appModule: string;
+    version: string;
+    sourceNotes: Array<{ id: string; summary: string; citations: string[] }>;
+  };
+  uiTaxonomy: {
+    groups: GroupConfig[];
+  };
+  drugLibrary: {
+    classes: DrugClass[];
+  };
+  impactGrid: {
+    parameters: string[];
+    ratings: Rating[];
+    classProfiles: ClassProfile[];
+  };
+  cases: CaseEntry[];
+};
+
+export type GroupStatus = {
+  groupId: string;
+  status: StatusColor;
+};
+
+export type SubfactorStatus = {
+  subfactorId: string;
+  label: string;
+  status: StatusColor;
+};
+
+export type ExplanationData = {
+  title: string;
+  whyItMatters: string;
+  suggestionPrompt: string;
+  hints: string[];
+  note?: string;
+};
+
+export type ReasoningScore = {
+  groupScore: number;
+  subfactorScore: number;
+  totalScore: number;
+  missingGroups: string[];
+  missingSubfactors: string[];
+  extraGroups: string[];
+  extraSubfactors: string[];
+};
