@@ -27,15 +27,24 @@ import {
   DRUG_EFFECT_OVERRIDES,
   type DownstreamStatusMap
 } from "./logic/drugEffects";
-import { computeReasoningScore } from "./logic/scoring";
+import { getCoachChatReply } from "./logic/aiEvaluator";
+import { compareReasoningSelection } from "./logic/comparator";
 import {
   computeGroupStatuses,
   computeSubfactorStatuses,
   getExplanation
 } from "./logic/reasoningEngine";
-import type { ReasoningScore, StatusColor, TheraScapeConfig } from "./logic/types";
+import type {
+  CaseEntry,
+  ChatMessage,
+  ReasoningComparatorResult,
+  ReasoningScore,
+  StatusColor,
+  TheraScapeConfig
+} from "./logic/types";
 
 const appConfig = configData as TheraScapeConfig;
+const STORAGE_KEY = "therascape-progress-v1";
 
 function shuffle<T>(items: T[]) {
   const copy = [...items];
@@ -44,6 +53,65 @@ function shuffle<T>(items: T[]) {
     [copy[index], copy[swapIndex]] = [copy[swapIndex], copy[index]];
   }
   return copy;
+}
+
+function createChatMessage(role: ChatMessage["role"], text: string): ChatMessage {
+  return {
+    id: `${role}-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`,
+    role,
+    text
+  };
+}
+
+function getChatIntro(caseTitle: string) {
+  return `Reasoning coach ready for "${caseTitle}". Ask a question to get scored feedback.`;
+}
+
+function buildFeedbackChatReply(
+  question: string,
+  comparison: ReasoningComparatorResult | null,
+  selectedGroups: string[],
+  selectedSubfactors: string[]
+): string {
+  if (!comparison) {
+    const lowerNoScore = question.toLowerCase();
+    const groupCount = selectedGroups.length;
+    const subfactorCount = selectedSubfactors.length;
+
+    if (
+      lowerNoScore.includes("start") ||
+      lowerNoScore.includes("how") ||
+      lowerNoScore.includes("begin")
+    ) {
+      return `Start here: 1) Click ring domains to mark drivers (${groupCount} selected). 2) Click subfactor bubbles to mark details (${subfactorCount} selected). 3) Add at least 1-2 meds, then send any chat message for scored coaching.`;
+    }
+
+    return `I can help before scoring too. Right now you have ${groupCount} groups and ${subfactorCount} subfactors selected. Select at least 1 of each, then send a message for targeted feedback.`;
+  }
+
+  const lower = question.toLowerCase();
+  const missing = [...comparison.score.missingGroups, ...comparison.score.missingSubfactors];
+  const extras = [...comparison.score.extraGroups, ...comparison.score.extraSubfactors];
+  if (lower.includes("missing") || lower.includes("improve") || lower.includes("add")) {
+    return `Focus on missing nodes first: ${missing.join(", ") || "none"}. Then remove extras: ${
+      extras.join(", ") || "none"
+    }.`;
+  }
+
+  if (lower.includes("confidence") || lower.includes("calibration")) {
+    return `Calibration is ${comparison.calibrationLevel.replace(
+      "-",
+      " "
+    )} with a gap of ${comparison.calibrationGap}%.`;
+  }
+
+  if (lower.includes("score") || lower.includes("grade")) {
+    return `Current score: total ${comparison.score.totalScore}%, groups ${comparison.score.groupScore}%, subfactors ${comparison.score.subfactorScore}%.`;
+  }
+
+  return `Current result is ${comparison.score.totalScore}% with ${
+    missing.length
+  } missing nodes. Ask me "what should I add?" for a direct next step list.`;
 }
 
 function App() {
@@ -64,7 +132,15 @@ function App() {
   const [showHistory, setShowHistory] = useState(false);
   const [showJournal, setShowJournal] = useState(false);
   const [reasoningNote, setReasoningNote] = useState("");
+  const [confidence, setConfidence] = useState(70);
   const [score, setScore] = useState<ReasoningScore | null>(null);
+  const [comparison, setComparison] = useState<ReasoningComparatorResult | null>(null);
+  const [hasHydrated, setHasHydrated] = useState(false);
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>(() => [
+    createChatMessage("assistant", getChatIntro(appConfig.cases[0]?.title ?? "this case"))
+  ]);
+  const [chatInput, setChatInput] = useState("");
+  const [isChatting, setIsChatting] = useState(false);
 
   const [draggingDrugId, setDraggingDrugId] = useState<string | null>(null);
   const [pulseNonce, setPulseNonce] = useState(0);
@@ -178,6 +254,13 @@ function App() {
 
   const focusMode = Boolean(selectedDrugClass);
 
+  const buildCaseOrderFromIds = useCallback((caseIds: string[]) => {
+    const byId = new Map(appConfig.cases.map((item) => [item.caseId, item] as const));
+    const inOrder = caseIds.map((id) => byId.get(id)).filter((item): item is CaseEntry => Boolean(item));
+    const leftovers = appConfig.cases.filter((item) => !caseIds.includes(item.caseId));
+    return inOrder.length > 0 ? [...inOrder, ...leftovers] : appConfig.cases;
+  }, []);
+
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -189,7 +272,104 @@ function App() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
-  const handleReset = () => {
+  useEffect(() => {
+    try {
+      const raw = window.localStorage.getItem(STORAGE_KEY);
+      if (!raw) {
+        setHasHydrated(true);
+        return;
+      }
+
+      const parsed = JSON.parse(raw) as {
+        caseOrderIds?: string[];
+        activeCaseId?: string;
+        selectedDrugClass?: string | null;
+        selectedDrugs?: string[];
+        activeGroupId?: string | null;
+        activeSubfactorId?: string | null;
+        selectedGroups?: string[];
+        selectedSubfactors?: string[];
+        reasoningNote?: string;
+        confidence?: number;
+        chatMessages?: ChatMessage[];
+        chatInput?: string;
+      };
+
+      if (parsed.caseOrderIds?.length) {
+        const restoredOrder = buildCaseOrderFromIds(parsed.caseOrderIds);
+        setCaseOrder(restoredOrder);
+        setActiveCaseId(parsed.activeCaseId ?? restoredOrder[0]?.caseId ?? "");
+      } else if (parsed.activeCaseId) {
+        setActiveCaseId(parsed.activeCaseId);
+      }
+
+      setSelectedDrugClass(parsed.selectedDrugClass ?? null);
+      setSelectedDrugs(parsed.selectedDrugs ?? []);
+      setActiveGroupId(parsed.activeGroupId ?? null);
+      setActiveSubfactorId(parsed.activeSubfactorId ?? null);
+      setSelectedGroups(parsed.selectedGroups ?? []);
+      setSelectedSubfactors(parsed.selectedSubfactors ?? []);
+      setReasoningNote(parsed.reasoningNote ?? "");
+      setConfidence(parsed.confidence ?? 70);
+      setChatMessages(
+        parsed.chatMessages?.length
+          ? parsed.chatMessages
+          : [
+              createChatMessage(
+                "assistant",
+                getChatIntro(
+                  appConfig.cases.find((caseEntry) => caseEntry.caseId === parsed.activeCaseId)?.title ??
+                    "this case"
+                )
+              )
+            ]
+      );
+      setChatInput(parsed.chatInput ?? "");
+    } catch {
+      // Keep defaults if persisted state is invalid JSON.
+    } finally {
+      setHasHydrated(true);
+    }
+  }, [buildCaseOrderFromIds]);
+
+  useEffect(() => {
+    if (!hasHydrated) {
+      return;
+    }
+
+    const payload = {
+      caseOrderIds: caseOrder.map((item) => item.caseId),
+      activeCaseId,
+      selectedDrugClass,
+      selectedDrugs,
+      activeGroupId,
+      activeSubfactorId,
+      selectedGroups,
+      selectedSubfactors,
+      reasoningNote,
+      confidence,
+      chatMessages,
+      chatInput
+    };
+
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+  }, [
+    activeCaseId,
+    activeGroupId,
+    activeSubfactorId,
+    caseOrder,
+    confidence,
+    hasHydrated,
+    reasoningNote,
+    selectedDrugClass,
+    selectedDrugs,
+    selectedGroups,
+    selectedSubfactors,
+    chatInput,
+    chatMessages
+  ]);
+
+  const handleReset = (nextCaseTitle?: string) => {
     setSelectedDrugClass(null);
     setSelectedDrugs([]);
     setDownstreamStatus({});
@@ -199,21 +379,30 @@ function App() {
     setSelectedSubfactors([]);
     setShowJournal(false);
     setReasoningNote("");
+    setConfidence(70);
     setScore(null);
+    setComparison(null);
     setShowHistory(false);
+    setChatMessages([
+      createChatMessage("assistant", getChatIntro(nextCaseTitle ?? activeCase?.title ?? "this case"))
+    ]);
+    setChatInput("");
     setPulseNonce(0);
   };
 
   const handleCaseChange = (caseId: string) => {
+    const nextCase =
+      caseOrder.find((caseEntry) => caseEntry.caseId === caseId) ??
+      appConfig.cases.find((caseEntry) => caseEntry.caseId === caseId);
     setActiveCaseId(caseId);
-    handleReset();
+    handleReset(nextCase?.title);
   };
 
   const handleRandomizeCases = () => {
     const randomized = shuffle(caseOrder);
     setCaseOrder(randomized);
     setActiveCaseId(randomized[0]?.caseId ?? "");
-    handleReset();
+    handleReset(randomized[0]?.title);
   };
 
   const handleAddDrug = (drugId: string) => {
@@ -310,19 +499,75 @@ function App() {
     recognition.start();
   };
 
-  const handleEvaluate = () => {
+  const handleEvaluateReasoning = useCallback(() => {
     if (!activeCase) {
+      return null;
+    }
+
+    const localComparison = compareReasoningSelection({
+      selectedGroups,
+      selectedSubfactors,
+      expectedGroups: activeCase.expected.drivers,
+      expectedSubfactors: activeCase.expected.subfactors,
+      confidence
+    });
+
+    setComparison(localComparison);
+    setScore(localComparison.score);
+    return localComparison;
+  }, [activeCase, confidence, selectedGroups, selectedSubfactors]);
+
+  const handleChatSend = async () => {
+    const question = chatInput.trim();
+    if (!question || !activeCase || isChatting) {
       return;
     }
 
-    setScore(
-      computeReasoningScore(
+    const localComparison = handleEvaluateReasoning();
+    if (!localComparison) {
+      return;
+    }
+
+    const userMessage = createChatMessage("user", question);
+    setChatInput("");
+    setChatMessages((current) => [...current, userMessage]);
+    setIsChatting(true);
+
+    try {
+      const comparisonSummary = `Total ${localComparison.score.totalScore}%; missing ${
+        [...localComparison.score.missingGroups, ...localComparison.score.missingSubfactors].join(", ") ||
+        "none"
+      }; calibration ${localComparison.calibrationLevel.replace("-", " ")}.`;
+
+      const aiReply = await getCoachChatReply({
+        caseTitle: activeCase.title,
+        userMessage: question,
         selectedGroups,
         selectedSubfactors,
-        activeCase.expected.drivers,
-        activeCase.expected.subfactors
-      )
-    );
+        selectedMeds: selectedDrugEntries.map((entry) => entry.label),
+        reasoningNote,
+        confidence,
+        comparisonSummary,
+        chatHistory: [...chatMessages, userMessage].map((message) => ({
+          role: message.role,
+          text: message.text
+        }))
+      });
+
+      const assistantText =
+        aiReply.startsWith("Backend unavailable") || aiReply.startsWith("Skipped:")
+          ? `${aiReply} ${buildFeedbackChatReply(
+              question,
+              localComparison,
+              selectedGroups,
+              selectedSubfactors
+            )}`
+          : aiReply;
+
+      setChatMessages((current) => [...current, createChatMessage("assistant", assistantText)]);
+    } finally {
+      setIsChatting(false);
+    }
   };
 
   if (!activeCase) {
@@ -350,8 +595,7 @@ function App() {
       <div className={`app-shell ${focusMode ? "focus-mode" : ""} ${showJournal ? "modal-open" : ""}`}>
         <header className="hero">
           <div>
-            <h1>{appConfig.meta.appModule}</h1>
-            <p>Complication-centric therapeutic reasoning workspace</p>
+            <h1>Complication-centric therapeutic reasoning workspace</h1>
           </div>
           <button
             type="button"
@@ -473,8 +717,14 @@ function App() {
                   noteText={reasoningNote}
                   onNoteTextChange={setReasoningNote}
                   onSpeechToText={handleSpeechToText}
-                  onEvaluate={handleEvaluate}
+                  onEvaluate={handleEvaluateReasoning}
                   score={score}
+                  comparison={comparison}
+                  chatMessages={chatMessages}
+                  chatInput={chatInput}
+                  onChatInputChange={setChatInput}
+                  onChatSend={handleChatSend}
+                  chatSending={isChatting}
                 />
               </div>
             </div>
@@ -488,6 +738,7 @@ function App() {
         />
 
         <JournalModal open={showJournal} explanation={explanation} onClose={() => setShowJournal(false)} />
+
       </div>
 
       <DragOverlay dropAnimation={null}>

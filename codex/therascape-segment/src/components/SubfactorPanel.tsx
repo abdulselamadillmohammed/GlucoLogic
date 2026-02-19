@@ -39,8 +39,10 @@ export function SubfactorPanel({
               key={subfactor.subfactorId}
               type="button"
               className={`subfactor-bubble ${subfactor.status} ${isActive ? "active" : ""} ${isSelected ? "selected" : ""}`}
-              onClick={() => onSubfactorClick(subfactor.subfactorId)}
-              onDoubleClick={() => onSubfactorToggle(subfactor.subfactorId)}
+              onClick={() => {
+                onSubfactorClick(subfactor.subfactorId);
+                onSubfactorToggle(subfactor.subfactorId);
+              }}
             >
               <span>{subfactor.label}</span>
             </button>
@@ -48,7 +50,7 @@ export function SubfactorPanel({
         })}
       </div>
       <p className="subfactor-help">
-        Click for explanation, double-click to mark as selected subfactor.
+        Click a subfactor to view explanation and include it in scoring.
       </p>
     </section>
   );

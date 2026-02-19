@@ -83,6 +83,8 @@ export type Patient = {
 export type CaseEntry = {
   caseId: string;
   title: string;
+  difficulty?: "Beginner" | "Intermediate" | "Advanced";
+  estMinutes?: number;
   patient: Patient;
   expected: {
     drivers: string[];
@@ -137,4 +139,21 @@ export type ReasoningScore = {
   missingSubfactors: string[];
   extraGroups: string[];
   extraSubfactors: string[];
+};
+
+export type CalibrationLevel = "well-calibrated" | "overconfident" | "underconfident";
+
+export type ReasoningComparatorResult = {
+  score: ReasoningScore;
+  completeness: number;
+  confidence: number;
+  calibrationGap: number;
+  calibrationLevel: CalibrationLevel;
+  ruleTraces: string[];
+};
+
+export type ChatMessage = {
+  id: string;
+  role: "assistant" | "user";
+  text: string;
 };

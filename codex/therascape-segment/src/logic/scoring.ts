@@ -40,3 +40,20 @@ export function computeReasoningScore(
     extraSubfactors: subfactorComparison.extra
   };
 }
+
+export function computeReasoningCompleteness(
+  selectedGroups: string[],
+  selectedSubfactors: string[],
+  expectedGroups: string[],
+  expectedSubfactors: string[]
+): number {
+  const expectedTotal = expectedGroups.length + expectedSubfactors.length;
+  if (expectedTotal === 0) {
+    return 0;
+  }
+
+  const matchedGroups = selectedGroups.filter((item) => expectedGroups.includes(item)).length;
+  const matchedSubfactors = selectedSubfactors.filter((item) => expectedSubfactors.includes(item)).length;
+
+  return Math.round(((matchedGroups + matchedSubfactors) / expectedTotal) * 100);
+}

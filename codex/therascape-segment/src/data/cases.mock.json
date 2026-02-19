@@ -67,5 +67,104 @@
     ],
     "recommendedMeds": ["dpp4", "metformin"],
     "exclusions": ["insulin"]
+  },
+  {
+    "caseId": "case-3",
+    "title": "Case C - Heart failure plus renal decline",
+    "steps": [
+      { "title": "Step 1", "content": "A1C 8.8 with persistent fasting elevations" },
+      { "title": "Step 2", "content": "Heart failure history and eGFR trending down" },
+      { "title": "Step 3", "content": "Cost-sensitive plan needed for adherence" }
+    ],
+    "patient": {
+      "a1c": 8.8,
+      "comorbidities": ["HF", "CKD"],
+      "egfr": 51,
+      "hf": true,
+      "ascvd": false,
+      "bmi": 31,
+      "hypoglycemiaRisk": "medium",
+      "costSensitivity": "high"
+    },
+    "reasoningNodeOptions": [
+      "A1C Gap Reduction",
+      "Cardiovascular Risk Priority",
+      "Renal Preservation",
+      "Weight/BMI Consideration",
+      "Hypoglycemia Avoidance",
+      "Cost/Access Feasibility"
+    ],
+    "expectedReasoningNodes": [
+      "A1C Gap Reduction",
+      "Cardiovascular Risk Priority",
+      "Renal Preservation",
+      "Cost/Access Feasibility"
+    ],
+    "recommendedMeds": ["sglt2", "metformin"],
+    "exclusions": ["tzd"]
+  },
+  {
+    "caseId": "case-4",
+    "title": "Case D - Large A1C gap with rapid-control need",
+    "steps": [
+      { "title": "Step 1", "content": "A1C 10.2 with symptomatic hyperglycemia" },
+      { "title": "Step 2", "content": "No established ASCVD/HF and preserved eGFR" },
+      { "title": "Step 3", "content": "Primary objective is prompt glucose reduction" }
+    ],
+    "patient": {
+      "a1c": 10.2,
+      "comorbidities": ["Symptomatic hyperglycemia"],
+      "egfr": 76,
+      "hf": false,
+      "ascvd": false,
+      "bmi": 28,
+      "hypoglycemiaRisk": "medium",
+      "costSensitivity": "medium"
+    },
+    "reasoningNodeOptions": [
+      "A1C Gap Reduction",
+      "Cardiovascular Risk Priority",
+      "Renal Preservation",
+      "Weight/BMI Consideration",
+      "Hypoglycemia Avoidance",
+      "Cost/Access Feasibility"
+    ],
+    "expectedReasoningNodes": ["A1C Gap Reduction", "Hypoglycemia Avoidance"],
+    "recommendedMeds": ["insulin", "metformin"],
+    "exclusions": []
+  },
+  {
+    "caseId": "case-5",
+    "title": "Case E - Obesity priority with GI tolerability concern",
+    "steps": [
+      { "title": "Step 1", "content": "A1C 8.1 above goal with obesity as major concern" },
+      { "title": "Step 2", "content": "High hypoglycemia concern due to irregular intake" },
+      { "title": "Step 3", "content": "History of GI intolerance limits some options" }
+    ],
+    "patient": {
+      "a1c": 8.1,
+      "comorbidities": ["Obesity", "Prior GI intolerance"],
+      "egfr": 71,
+      "hf": false,
+      "ascvd": false,
+      "bmi": 38,
+      "hypoglycemiaRisk": "high",
+      "costSensitivity": "medium"
+    },
+    "reasoningNodeOptions": [
+      "A1C Gap Reduction",
+      "Cardiovascular Risk Priority",
+      "Renal Preservation",
+      "Weight/BMI Consideration",
+      "Hypoglycemia Avoidance",
+      "Cost/Access Feasibility"
+    ],
+    "expectedReasoningNodes": [
+      "A1C Gap Reduction",
+      "Weight/BMI Consideration",
+      "Hypoglycemia Avoidance"
+    ],
+    "recommendedMeds": ["dpp4", "sglt2"],
+    "exclusions": ["glp1"]
   }
 ]

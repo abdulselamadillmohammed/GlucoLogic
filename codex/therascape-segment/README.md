@@ -8,7 +8,7 @@ GlucoLogic is a standalone React + TypeScript + Vite module for complication-cen
 - Subfactor bubble panel (Level 2): click a group to drill into subfactors.
 - Explanation panel (Level 3): click a subfactor for teaching explanation, prompt, and progressive hints.
 - Full patient card drawer: click patient center card to open complete history.
-- Reasoning submission: double-click groups/subfactors to mark your chosen drivers, then evaluate.
+- Combined reasoning coach: each chatbot message triggers scoring + coaching in one flow.
 
 ## Data + Engine
 - Config source: `src/data/therascape.config.json`
@@ -17,6 +17,18 @@ GlucoLogic is a standalone React + TypeScript + Vite module for complication-cen
   - `computeSubfactorStatuses(patient, selectedClass, groupId)`
   - `getExplanation(subfactorId, selectedClass)`
 - Scoring validates selected groups and subfactors against expected case drivers.
+- Comparator includes:
+  - Live reasoning completeness
+  - Confidence calibration
+  - Rule-trace feedback ("Why this feedback?")
+
+## Gemini + FastAPI Chat Setup
+- Chatbot calls a local FastAPI backend endpoint (`/reasoning-chat/`).
+- Backend then calls Gemini from Python (`google-generativeai`).
+- Frontend env (`codex/therascape-segment/.env`):
+  - `VITE_ENABLE_GEMINI_CHAT=true`
+  - `VITE_FASTAPI_URL=http://127.0.0.1:8000`
+- Backend setup and run instructions are in `codex/therascape-segment/backend/README.md`.
 
 ## Theme
 Brand palette applied globally:

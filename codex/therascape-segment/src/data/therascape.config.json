@@ -484,6 +484,8 @@
     {
       "caseId": "caseA",
       "title": "Rising A1C with cardiorenal risk",
+      "difficulty": "Intermediate",
+      "estMinutes": 8,
       "patient": {
         "a1c": 9.1,
         "targetA1c": 7,
@@ -513,6 +515,8 @@
     {
       "caseId": "caseB",
       "title": "High hypoglycemia risk and weight concerns",
+      "difficulty": "Beginner",
+      "estMinutes": 6,
       "patient": {
         "a1c": 8.4,
         "targetA1c": 7,
@@ -537,6 +541,99 @@
       "expected": {
         "drivers": ["hypoglycemia", "weight", "glycemia"],
         "subfactors": ["hypo_risk", "weight_loss_goal", "a1c_gap"]
+      }
+    },
+    {
+      "caseId": "caseC",
+      "title": "Heart failure history with cost pressure",
+      "difficulty": "Advanced",
+      "estMinutes": 10,
+      "patient": {
+        "a1c": 8.8,
+        "targetA1c": 7,
+        "symptomaticHyperglycemia": false,
+        "ascvd": false,
+        "heartFailure": true,
+        "ckdStage": 3,
+        "egfr": 51,
+        "bmi": 31,
+        "hypoglycemiaHighRisk": false,
+        "costSensitive": true,
+        "gastroparesis": false,
+        "recurrentGenitalInfections": false,
+        "fullHistory": {
+          "labs": ["A1C 8.8%", "eGFR 51", "NT-proBNP elevated"],
+          "comorbidities": ["Heart failure", "CKD stage 3"],
+          "constraints": ["Cost sensitive", "Frequent refill gaps"],
+          "priorMeds": ["Metformin", "DPP-4 inhibitor"],
+          "contraindications": []
+        }
+      },
+      "expected": {
+        "drivers": ["cardiorenal", "access", "glycemia"],
+        "subfactors": ["hf", "ckd", "affordability", "a1c_gap"]
+      }
+    },
+    {
+      "caseId": "caseD",
+      "title": "A1C gap with symptomatic hyperglycemia",
+      "difficulty": "Intermediate",
+      "estMinutes": 7,
+      "patient": {
+        "a1c": 10.2,
+        "targetA1c": 7,
+        "symptomaticHyperglycemia": true,
+        "ascvd": false,
+        "heartFailure": false,
+        "ckdStage": 2,
+        "egfr": 76,
+        "bmi": 28,
+        "hypoglycemiaHighRisk": false,
+        "costSensitive": false,
+        "gastroparesis": false,
+        "recurrentGenitalInfections": false,
+        "fullHistory": {
+          "labs": ["A1C 10.2%", "Fasting glucose persistently elevated"],
+          "comorbidities": ["Newly intensified hyperglycemia"],
+          "constraints": ["Needs rapid control for symptom burden"],
+          "priorMeds": ["Metformin low dose"],
+          "contraindications": []
+        }
+      },
+      "expected": {
+        "drivers": ["glycemia", "safety"],
+        "subfactors": ["a1c_gap", "symptomatic_hyperglycemia", "renal_adjustment"]
+      }
+    },
+    {
+      "caseId": "caseE",
+      "title": "GI tolerability concerns with obesity priority",
+      "difficulty": "Advanced",
+      "estMinutes": 9,
+      "patient": {
+        "a1c": 8.1,
+        "targetA1c": 7,
+        "symptomaticHyperglycemia": false,
+        "ascvd": false,
+        "heartFailure": false,
+        "ckdStage": 2,
+        "egfr": 71,
+        "bmi": 38,
+        "hypoglycemiaHighRisk": true,
+        "costSensitive": false,
+        "gastroparesis": true,
+        "recurrentGenitalInfections": false,
+        "fullHistory": {
+          "labs": ["A1C 8.1%", "eGFR 71"],
+          "comorbidities": ["Obesity", "Gastroparesis history"],
+          "constraints": ["Prior nausea on escalation attempts"],
+          "priorMeds": ["Metformin ER"],
+          "contraindications": []
+        }
+      },
+      "expected": {
+        "drivers": ["weight", "hypoglycemia", "safety", "glycemia"],
+        "subfactors": ["weight_loss_goal", "hypo_risk", "gi_tolerability", "a1c_gap"]
       }
     }
   ]

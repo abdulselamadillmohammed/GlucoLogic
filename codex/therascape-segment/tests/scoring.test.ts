@@ -1,11 +1,12 @@
 import { describe, expect, it } from "vitest";
 import configData from "../src/data/therascape.config.json";
+import { compareReasoningSelection } from "../src/logic/comparator";
 import {
   computeGroupStatuses,
   computeSubfactorStatuses,
   getExplanation
 } from "../src/logic/reasoningEngine";
-import { computeReasoningScore } from "../src/logic/scoring";
+import { computeReasoningCompleteness, computeReasoningScore } from "../src/logic/scoring";
 import type { TheraScapeConfig } from "../src/logic/types";
 
 const config = configData as TheraScapeConfig;
@@ -42,5 +43,30 @@ describe("reasoning model", () => {
     expect(score.totalScore).toBe(82);
     expect(score.missingGroups).toContain("hypoglycemia");
     expect(score.extraSubfactors).toContain("extra");
+  });
+
+  it("computes completeness across group and subfactor expectations", () => {
+    const completeness = computeReasoningCompleteness(
+      ["glycemia", "weight"],
+      ["a1c_gap", "extra"],
+      ["glycemia", "weight", "hypoglycemia"],
+      ["a1c_gap", "weight_loss_goal"]
+    );
+
+    expect(completeness).toBe(60);
+  });
+
+  it("builds comparator traces and calibration details", () => {
+    const result = compareReasoningSelection({
+      selectedGroups: ["glycemia"],
+      selectedSubfactors: ["a1c_gap"],
+      expectedGroups: ["glycemia", "access"],
+      expectedSubfactors: ["a1c_gap", "affordability"],
+      confidence: 95
+    });
+
+    expect(result.score.totalScore).toBeGreaterThan(0);
+    expect(result.calibrationLevel).toBe("overconfident");
+    expect(result.ruleTraces.length).toBeGreaterThan(3);
   });
 });

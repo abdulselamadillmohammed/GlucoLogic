@@ -19,6 +19,10 @@ export function CaseStepper({
     return null;
   }
 
+  const activeCase = cases.find((caseItem) => caseItem.caseId === activeCaseId) ?? cases[0];
+  const difficulty = activeCase?.difficulty ?? "Intermediate";
+  const estMinutes = activeCase?.estMinutes ?? 8;
+
   return (
     <section className="case-stepper">
       <div className="controls">
@@ -30,7 +34,7 @@ export function CaseStepper({
         >
           {cases.map((caseItem) => (
             <option key={caseItem.caseId} value={caseItem.caseId}>
-              {caseItem.title}
+              {caseItem.title} [{caseItem.difficulty ?? "Intermediate"} - {caseItem.estMinutes ?? 8} min]
             </option>
           ))}
         </select>
@@ -42,6 +46,9 @@ export function CaseStepper({
           Reset
         </button>
       </div>
+      <p className="case-meta">
+        <strong>Difficulty:</strong> {difficulty} <strong>Estimated time:</strong> {estMinutes} min
+      </p>
       <p>{cases.length} training cases loaded.</p>
     </section>
   );

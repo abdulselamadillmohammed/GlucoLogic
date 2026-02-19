@@ -54,8 +54,10 @@ export function ReasoningRing({
             type="button"
             className={`ring-bubble ${status} ${isActive ? "active" : ""} ${isSelected ? "selected" : ""}`}
             style={{ left: `${position.x}%`, top: `${position.y}%` }}
-            onClick={() => onGroupClick(group.groupId)}
-            onDoubleClick={() => onGroupToggle(group.groupId)}
+            onClick={() => {
+              onGroupClick(group.groupId);
+              onGroupToggle(group.groupId);
+            }}
           >
             <span
               className="ring-liquid"
@@ -74,7 +76,7 @@ export function ReasoningRing({
           </button>
         );
       })}
-      <p className="ring-help">Click a badge to drill down. Status is encoded by color and fill only.</p>
+      <p className="ring-help">Click a badge to drill down and toggle it for scoring.</p>
     </div>
   );
 }
