@@ -1,48 +1,71 @@
-import type { CaseEntry } from "../logic/types";
+import type { CaseConfig } from "../logic/types";
 
-type CaseStepperProps = {
-  cases: CaseEntry[];
+interface CaseStepperProps {
+  cases: CaseConfig[];
   activeCaseId: string;
+  activeStep: number;
   onCaseChange: (caseId: string) => void;
-  onReset: () => void;
+  onStepChange: (step: number) => void;
+  onNext: () => void;
   onRandomizeCases: () => void;
-};
+}
 
 export function CaseStepper({
   cases,
   activeCaseId,
+  activeStep,
   onCaseChange,
-  onReset,
+  onStepChange,
+  onNext,
   onRandomizeCases
 }: CaseStepperProps) {
-  if (cases.length === 0) {
-    return null;
-  }
+  const currentCase = cases.find((entry) => entry.caseId === activeCaseId) ?? cases[0];
+  const totalSteps = currentCase.steps.length;
 
   return (
     <section className="case-stepper">
-      <div className="controls">
-        <label htmlFor="case-select">Case</label>
-        <select
-          id="case-select"
-          value={activeCaseId}
-          onChange={(event) => onCaseChange(event.target.value)}
-        >
-          {cases.map((caseItem) => (
-            <option key={caseItem.caseId} value={caseItem.caseId}>
-              {caseItem.title}
-            </option>
-          ))}
-        </select>
+      <div className="step-head">
+        <h2>{currentCase.title}</h2>
+        <span>
+          Step {activeStep} / {totalSteps}
+        </span>
+      </div>
 
-        <button type="button" onClick={onRandomizeCases}>
-          Randomize order
+      <div className="case-switcher">
+        {cases.map((item) => (
+          <button
+            key={item.caseId}
+            type="button"
+            className={item.caseId === activeCaseId ? "active" : ""}
+            onClick={() => onCaseChange(item.caseId)}
+          >
+            {item.caseId}
+          </button>
+        ))}
+      </div>
+
+      <ol>
+        {currentCase.steps.map((step) => (
+          <li key={step.step}>
+            <button
+              type="button"
+              className={step.step === activeStep ? "active" : ""}
+              onClick={() => onStepChange(step.step)}
+            >
+              {step.label}
+            </button>
+          </li>
+        ))}
+      </ol>
+
+      <div className="step-actions">
+        <button type="button" className="next-btn" onClick={onNext} disabled={activeStep >= totalSteps}>
+          Reveal Next Step
         </button>
-        <button type="button" onClick={onReset}>
-          Reset
+        <button type="button" className="randomize-btn" onClick={onRandomizeCases}>
+          Randomize Cases
         </button>
       </div>
-      <p>{cases.length} training cases loaded.</p>
     </section>
   );
 }

@@ -1,55 +1,59 @@
 import type { GroupConfig, SubfactorStatus } from "../logic/types";
 
-type SubfactorPanelProps = {
+interface SubfactorPanelProps {
   group: GroupConfig | null;
   statuses: SubfactorStatus[];
-  selectedSubfactors: string[];
   activeSubfactorId: string | null;
+  selectedSubfactors: string[];
   onSubfactorClick: (subfactorId: string) => void;
-  onSubfactorToggle: (subfactorId: string) => void;
-};
+  onToggleSubfactor: (subfactorId: string) => void;
+}
+
+function statusClass(status: SubfactorStatus["status"]) {
+  if (status === "green") return "status-green";
+  if (status === "red") return "status-red";
+  return "status-yellow";
+}
 
 export function SubfactorPanel({
   group,
   statuses,
-  selectedSubfactors,
   activeSubfactorId,
+  selectedSubfactors,
   onSubfactorClick,
-  onSubfactorToggle
+  onToggleSubfactor
 }: SubfactorPanelProps) {
   if (!group) {
     return (
       <section className="subfactor-panel empty">
         <h3>Subfactor Bubble Panel</h3>
-        <p>Select a reasoning group to drill down.</p>
+        <p>Select a reasoning group bubble to drill into subfactors.</p>
       </section>
     );
   }
 
   return (
     <section className="subfactor-panel">
-      <h3>{group.label}</h3>
+      <h3>{group.label} Subfactors</h3>
       <div className="subfactor-grid">
-        {statuses.map((subfactor) => {
-          const isSelected = selectedSubfactors.includes(subfactor.subfactorId);
-          const isActive = activeSubfactorId === subfactor.subfactorId;
-
-          return (
-            <button
-              key={subfactor.subfactorId}
-              type="button"
-              className={`subfactor-bubble ${subfactor.status} ${isActive ? "active" : ""} ${isSelected ? "selected" : ""}`}
-              onClick={() => onSubfactorClick(subfactor.subfactorId)}
-              onDoubleClick={() => onSubfactorToggle(subfactor.subfactorId)}
-            >
-              <span>{subfactor.label}</span>
+        {statuses.map((subfactor) => (
+          <article
+            key={subfactor.subfactorId}
+            className={`subfactor-bubble ${statusClass(subfactor.status)} ${activeSubfactorId === subfactor.subfactorId ? "active" : ""}`}
+          >
+            <button type="button" className="subfactor-main" onClick={() => onSubfactorClick(subfactor.subfactorId)}>
+              {subfactor.label}
             </button>
-          );
-        })}
+            <button
+              type="button"
+              className={`ring-tag ${selectedSubfactors.includes(subfactor.subfactorId) ? "selected" : ""}`}
+              onClick={() => onToggleSubfactor(subfactor.subfactorId)}
+            >
+              {selectedSubfactors.includes(subfactor.subfactorId) ? "Selected" : "Mark"}
+            </button>
+          </article>
+        ))}
       </div>
-      <p className="subfactor-help">
-        Click for explanation, double-click to mark as selected subfactor.
-      </p>
     </section>
   );
 }

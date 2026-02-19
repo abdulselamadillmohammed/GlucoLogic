@@ -1,46 +1,49 @@
-# GlucoLogic Segment
+# GlucoLogic TheraScape Segment
 
-GlucoLogic is a standalone React + TypeScript + Vite module for complication-centric medication reasoning in Type 2 diabetes cases.
+Standalone React + TypeScript + Vite segment implementing a complication-centric therapeutic reasoning UI.
 
-## Interaction Model
-- Class-first workflow: drag a medication class icon into the patient center to lock it, then choose a drug icon from that class.
-- Reasoning Group ring (Level 1): Glycemia, Cardiorenal Health, Weight, Hypoglycemia, Access/Cost, Safety/Tolerability.
-- Subfactor bubble panel (Level 2): click a group to drill into subfactors.
-- Explanation panel (Level 3): click a subfactor for teaching explanation, prompt, and progressive hints.
-- Full patient card drawer: click patient center card to open complete history.
-- Reasoning submission: double-click groups/subfactors to mark your chosen drivers, then evaluate.
+## New Interaction Model
+- Level 1: `ReasoningRing` with six clickable reasoning groups around the patient:
+  - Glycemia
+  - Cardiorenal Health
+  - Weight
+  - Hypoglycemia
+  - Access/Cost
+  - Safety/Tolerability
+- Level 2: `SubfactorPanel` drill-down bubble set for the selected group.
+- Level 3: `ExplanationPanel` with summary, guided question prompt, why-this-matters line, and progressive `Hint` ladder.
 
-## Data + Engine
-- Config source: `src/data/therascape.config.json`
-- Engine functions:
-  - `computeGroupStatuses(patient, selectedClass)`
-  - `computeSubfactorStatuses(patient, selectedClass, groupId)`
-  - `getExplanation(subfactorId, selectedClass)`
-- Scoring validates selected groups and subfactors against expected case drivers.
+## Class-first Drug Workflow
+1. Choose a medication class in the left panel.
+2. Drag a class chip into patient center to stage it.
+3. `DrugSelectorModal` opens with drugs in that class.
+4. Select drug and watch ring/subfactor statuses update.
 
-## Theme
-Brand palette applied globally:
-- Blue Marguerite `#6E64C2`
-- Mystic Blue `#5946B1`
-- Cerise Pink `#EC3B82`
-- Teal `#008081`
-- Vintage Mint `#68AF9C`
+## Patient Card + History Drawer
+- Clicking patient center opens `PatientHistoryDrawer` with labs, comorbidities, constraints, prior meds, and contraindications.
 
-Status semantics remain explicit:
-- Green = positive impact
-- Yellow = caution/neutral
-- Red = negative impact
+## Config-driven Engine
+Config source: `src/data/therascape.config.json`
 
-## Setup
+Engine functions:
+- `computeGroupStatuses(config, patient, selectedDrugId)`
+- `computeSubfactorStatuses(config, patient, selectedDrugId, groupId)`
+- `getExplanation(config, subfactorId, selectedDrugId)`
 
+## Scoring
+- Learner marks driver groups/subfactors from bubbles.
+- `compareReasoning(...)` computes missing/extra groups/subfactors, total score, and confidence calibration.
+
+## Run
 ```bash
 cd codex/therascape-segment
 npm install
 npm run dev
 ```
 
-## Scripts
-- `npm run dev` starts Vite dev server
-- `npm run build` type-checks and builds production bundle
-- `npm run test` runs Vitest unit tests
-- `npm run lint` runs ESLint
+## Quality
+```bash
+npm run lint
+npm run test
+npm run build
+```

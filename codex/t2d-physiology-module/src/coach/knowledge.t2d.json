@@ -1,0 +1,926 @@
+{
+  "concepts": [
+    {
+      "id": "normal-pancreas-insulin-pulse",
+      "title": "Pancreatic insulin pulse",
+      "tags": [
+        "normal",
+        "pancreas",
+        "insulin",
+        "beta-cell",
+        "meal"
+      ],
+      "sectionIds": [
+        "normal",
+        "overview"
+      ],
+      "shortExplanation": "After a meal, beta cells increase insulin release so peripheral tissues can clear glucose.",
+      "misconceptions": [
+        "Insulin is always low in Type 2 diabetes from the start.",
+        "Pancreas output is unrelated to meal size."
+      ],
+      "hints": [
+        "Compare meal size with insulin curve height.",
+        "Look for timing: insulin rise follows glucose rise.",
+        "Check whether insulin rise is sufficient for uptake."
+      ],
+      "challenges": [
+        "Increase meal size and keep post-meal peak under control by adjusting activity.",
+        "Find a setting where insulin rises but glucose still normalizes quickly."
+      ],
+      "glossaryDefinition": "Beta-cell insulin pulse is the short-term rise in insulin secretion after glucose intake.",
+      "organIds": [
+        "pancreas"
+      ]
+    },
+    {
+      "id": "normal-liver-suppression",
+      "title": "Hepatic output suppression",
+      "tags": [
+        "normal",
+        "liver",
+        "hepatic",
+        "output",
+        "fasting"
+      ],
+      "sectionIds": [
+        "normal"
+      ],
+      "shortExplanation": "In normal regulation, insulin suppresses excess hepatic glucose output after meals.",
+      "misconceptions": [
+        "Liver output turns off completely after eating.",
+        "Hepatic output only matters at night."
+      ],
+      "hints": [
+        "Track fasting glucose alongside hepatic output index.",
+        "Notice if output stays elevated despite insulin.",
+        "Relate hepatic output to pre-meal glucose levels."
+      ],
+      "challenges": [
+        "Find settings where fasting glucose stays near baseline while meal response remains stable."
+      ],
+      "organIds": [
+        "liver"
+      ]
+    },
+    {
+      "id": "normal-muscle-glut4",
+      "title": "Muscle GLUT4 uptake",
+      "tags": [
+        "normal",
+        "muscle",
+        "glut4",
+        "uptake",
+        "activity"
+      ],
+      "sectionIds": [
+        "normal"
+      ],
+      "shortExplanation": "Muscle uptake increases via GLUT4 translocation, especially when activity is higher.",
+      "misconceptions": [
+        "Activity does not change glucose clearance.",
+        "GLUT4 only matters in adipose tissue."
+      ],
+      "hints": [
+        "Increase activity and inspect peripheral uptake index.",
+        "Look for post-meal peak reduction when uptake rises.",
+        "Compare with low-activity state."
+      ],
+      "challenges": [
+        "Use activity changes to improve glucose recovery without increasing inflammation."
+      ],
+      "organIds": [
+        "muscle"
+      ]
+    },
+    {
+      "id": "normal-adipose-buffer",
+      "title": "Adipose metabolic buffering",
+      "tags": [
+        "normal",
+        "adipose",
+        "ffa",
+        "inflammation",
+        "sensitivity"
+      ],
+      "sectionIds": [
+        "normal",
+        "resistance"
+      ],
+      "shortExplanation": "Adipose tissue influences insulin sensitivity through lipid flux and inflammatory signaling.",
+      "misconceptions": [
+        "Adipose tissue is only passive storage.",
+        "FFA signals do not affect insulin pathways."
+      ],
+      "hints": [
+        "Toggle high FFA and observe sensitivity drop.",
+        "Watch both insulin effectiveness and hepatic output.",
+        "Link inflammation increase to glucose shift."
+      ],
+      "challenges": [
+        "Identify which stressor makes sensitivity fall fastest in your settings."
+      ],
+      "organIds": [
+        "adipose"
+      ]
+    },
+    {
+      "id": "normal-blood-curves",
+      "title": "Glucose-insulin curve coupling",
+      "tags": [
+        "normal",
+        "blood",
+        "curve",
+        "glucose",
+        "insulin"
+      ],
+      "sectionIds": [
+        "normal",
+        "overview"
+      ],
+      "shortExplanation": "Healthy regulation shows coordinated curves: insulin rises and glucose returns toward baseline.",
+      "misconceptions": [
+        "Only glucose curve matters for physiology.",
+        "Insulin and glucose curves are independent."
+      ],
+      "hints": [
+        "Compare peak timing between curves.",
+        "Check if baseline recovery is delayed.",
+        "Use both curves to infer control quality."
+      ],
+      "challenges": [
+        "Create a scenario with modest peak and clean baseline return within the timeline."
+      ],
+      "organIds": [
+        "blood"
+      ]
+    },
+    {
+      "id": "resistance-receptor-weakening",
+      "title": "Insulin receptor weakening",
+      "tags": [
+        "resistance",
+        "insulin",
+        "receptor",
+        "signal",
+        "cell"
+      ],
+      "sectionIds": [
+        "resistance"
+      ],
+      "shortExplanation": "Inflammation and lipid stress weaken receptor signaling, lowering response to insulin.",
+      "misconceptions": [
+        "Resistance means no insulin is present.",
+        "Receptor changes do not affect hepatic output."
+      ],
+      "hints": [
+        "Enable inflammation and compare insulin effectiveness.",
+        "Notice whether glucose rises despite insulin level.",
+        "Check downstream uptake index."
+      ],
+      "challenges": [
+        "Build a state where insulin is moderate but glucose remains high due to poor signaling."
+      ],
+      "organIds": []
+    },
+    {
+      "id": "resistance-glut4-drop",
+      "title": "Reduced GLUT4 translocation",
+      "tags": [
+        "resistance",
+        "glut4",
+        "muscle",
+        "uptake",
+        "cell"
+      ],
+      "sectionIds": [
+        "resistance"
+      ],
+      "shortExplanation": "When signaling weakens, less GLUT4 reaches the membrane and uptake declines.",
+      "misconceptions": [
+        "GLUT4 changes only affect fasting glucose.",
+        "GLUT4 is unrelated to insulin sensitivity."
+      ],
+      "hints": [
+        "Track peripheral uptake after adding stressors.",
+        "Compare post-meal peaks with and without high FFA.",
+        "Observe uptake before and after activity increase."
+      ],
+      "challenges": [
+        "Find the minimum activity needed to partially compensate for a GLUT4-limited state."
+      ],
+      "organIds": [
+        "muscle"
+      ]
+    },
+    {
+      "id": "resistance-hepatic-rise",
+      "title": "Increased hepatic output in resistance",
+      "tags": [
+        "resistance",
+        "liver",
+        "hepatic",
+        "fasting",
+        "output"
+      ],
+      "sectionIds": [
+        "resistance"
+      ],
+      "shortExplanation": "Insulin resistance can raise hepatic output, pushing fasting glucose upward.",
+      "misconceptions": [
+        "High fasting glucose must come only from meals.",
+        "Liver output is unaffected by sensitivity."
+      ],
+      "hints": [
+        "Compare fasting glucose across sensitivity values.",
+        "Observe hepatic index when inflammation is high.",
+        "Link fasting shift to liver output trend."
+      ],
+      "challenges": [
+        "Create a high-fasting scenario without changing meal size."
+      ],
+      "organIds": [
+        "liver"
+      ]
+    },
+    {
+      "id": "resistance-ffa-loop",
+      "title": "FFA-inflammation feedback loop",
+      "tags": [
+        "resistance",
+        "ffa",
+        "inflammation",
+        "adipose",
+        "loop"
+      ],
+      "sectionIds": [
+        "resistance"
+      ],
+      "shortExplanation": "FFA load and inflammatory tone can reinforce resistance and impair glucose control.",
+      "misconceptions": [
+        "FFA load only changes lipid markers.",
+        "Inflammation does not alter insulin pathways."
+      ],
+      "hints": [
+        "Toggle both high FFA and inflammation together.",
+        "Watch insulin effectiveness and glucose-level jump.",
+        "Then remove one stressor and compare."
+      ],
+      "challenges": [
+        "Identify which single stressor contributes more in your current section setup."
+      ],
+      "organIds": [
+        "adipose"
+      ]
+    },
+    {
+      "id": "resistance-early-hyperinsulinemia",
+      "title": "Early compensatory hyperinsulinemia",
+      "tags": [
+        "resistance",
+        "insulin",
+        "compensation",
+        "early",
+        "curve"
+      ],
+      "sectionIds": [
+        "resistance",
+        "beta"
+      ],
+      "shortExplanation": "Early resistance often shows higher insulin output before overt beta-cell decline.",
+      "misconceptions": [
+        "Resistance always starts with low insulin.",
+        "Higher insulin means sensitivity is normal."
+      ],
+      "hints": [
+        "Watch insulin curve first, then glucose curve.",
+        "Look for cases where insulin rises but glucose still elevated.",
+        "Compare with later-stage beta failure states."
+      ],
+      "challenges": [
+        "Generate a state with high insulin but still impaired glucose clearance."
+      ],
+      "organIds": []
+    },
+    {
+      "id": "beta-compensation-phase",
+      "title": "Beta-cell compensation phase",
+      "tags": [
+        "beta",
+        "compensation",
+        "islet",
+        "pancreas",
+        "stage"
+      ],
+      "sectionIds": [
+        "beta"
+      ],
+      "shortExplanation": "Beta cells increase secretion to offset resistance during earlier progression.",
+      "misconceptions": [
+        "Compensation means disease is absent.",
+        "Compensation can continue indefinitely without stress."
+      ],
+      "hints": [
+        "At lower stage values, inspect insulin output relative to glucose.",
+        "Look for temporary maintenance of fasting values.",
+        "Track when this pattern breaks."
+      ],
+      "challenges": [
+        "Find the stage point where compensation starts to fail visibly."
+      ],
+      "organIds": [
+        "pancreas"
+      ]
+    },
+    {
+      "id": "beta-glucotoxic-stress",
+      "title": "Glucotoxic stress on beta cells",
+      "tags": [
+        "beta",
+        "glucotoxicity",
+        "stress",
+        "progression",
+        "failure"
+      ],
+      "sectionIds": [
+        "beta"
+      ],
+      "shortExplanation": "Sustained high glucose contributes to beta-cell stress and reduced function.",
+      "misconceptions": [
+        "Glucotoxicity appears only in severe late disease.",
+        "Beta-cell function is unaffected by sustained peaks."
+      ],
+      "hints": [
+        "Increase stage and observe fasting trend.",
+        "Inspect post-meal peaks over repeated high-load settings.",
+        "Relate persistent peaks to lower beta function."
+      ],
+      "challenges": [
+        "Create prolonged high-peak conditions and describe beta function drift."
+      ],
+      "organIds": []
+    },
+    {
+      "id": "beta-lipotoxic-stress",
+      "title": "Lipotoxic stress",
+      "tags": [
+        "beta",
+        "lipotoxicity",
+        "ffa",
+        "adipose",
+        "failure"
+      ],
+      "sectionIds": [
+        "beta",
+        "resistance"
+      ],
+      "shortExplanation": "Excess lipid exposure can worsen beta-cell performance and insulin signaling.",
+      "misconceptions": [
+        "Lipid stress only affects cardiovascular outcomes.",
+        "FFA does not influence beta-cell decline."
+      ],
+      "hints": [
+        "Combine high FFA with progression stage increase.",
+        "Watch insulin and glucose divergence.",
+        "Compare to low-FFA baseline."
+      ],
+      "challenges": [
+        "Demonstrate a scenario where FFA load accelerates failure trajectory."
+      ],
+      "organIds": [
+        "adipose"
+      ]
+    },
+    {
+      "id": "beta-fasting-rise",
+      "title": "Fasting glucose crossover",
+      "tags": [
+        "beta",
+        "fasting",
+        "progression",
+        "glucose",
+        "stage"
+      ],
+      "sectionIds": [
+        "beta"
+      ],
+      "shortExplanation": "As compensation fails, fasting glucose rises and may cross diabetic thresholds.",
+      "misconceptions": [
+        "Only post-meal glucose changes during progression.",
+        "Fasting glucose remains stable until very late."
+      ],
+      "hints": [
+        "Adjust stage and monitor fasting values first.",
+        "Then inspect post-meal peak.",
+        "Note which crosses threshold earlier in your run."
+      ],
+      "challenges": [
+        "Find the earliest stage where fasting exceeds 126 mg/dL."
+      ],
+      "organIds": []
+    },
+    {
+      "id": "beta-postprandial-spike",
+      "title": "Postprandial spike amplification",
+      "tags": [
+        "beta",
+        "postprandial",
+        "spike",
+        "meal",
+        "insulin"
+      ],
+      "sectionIds": [
+        "beta"
+      ],
+      "shortExplanation": "Reduced beta reserve magnifies post-meal spikes and delays return to baseline.",
+      "misconceptions": [
+        "Post-meal spikes are only meal-size effects.",
+        "Insulin reserve does not alter peak recovery time."
+      ],
+      "hints": [
+        "Keep meal size fixed and move stage slider.",
+        "Compare peak height and late curve tail.",
+        "Check insulin curve flattening."
+      ],
+      "challenges": [
+        "Maintain meal size and show how stage alone changes post-meal behavior."
+      ],
+      "organIds": []
+    },
+    {
+      "id": "comp-heart-risk",
+      "title": "Cardiometabolic risk trajectory",
+      "tags": [
+        "complications",
+        "heart",
+        "vascular",
+        "risk",
+        "chronic"
+      ],
+      "sectionIds": [
+        "complications"
+      ],
+      "shortExplanation": "Chronic dysglycemia and inflammation increase cardiovascular risk burden over time.",
+      "misconceptions": [
+        "Heart risk only changes with blood pressure, not glycemia.",
+        "Short spikes never matter for vascular stress."
+      ],
+      "hints": [
+        "Raise chronic exposure and inspect heart bar.",
+        "Compare with lower inflammation states.",
+        "Link trend to chronic load."
+      ],
+      "challenges": [
+        "Increase exposure until heart risk exceeds 60 while keeping other sliders stable."
+      ],
+      "organIds": [
+        "heart"
+      ]
+    },
+    {
+      "id": "comp-kidney-risk",
+      "title": "Kidney vulnerability",
+      "tags": [
+        "complications",
+        "kidney",
+        "filtration",
+        "risk",
+        "chronic"
+      ],
+      "sectionIds": [
+        "complications"
+      ],
+      "shortExplanation": "Kidney risk rises with chronic glycemic stress and sustained metabolic burden.",
+      "misconceptions": [
+        "Kidney risk follows only short-term meal peaks.",
+        "Kidney exposure is unrelated to fasting shifts."
+      ],
+      "hints": [
+        "Track kidney risk while moving exposure.",
+        "Observe effect of hepatic output on kidney trend.",
+        "Compare kidney vs heart slope."
+      ],
+      "challenges": [
+        "Find conditions where kidney risk climbs faster than heart risk."
+      ],
+      "organIds": [
+        "kidney"
+      ]
+    },
+    {
+      "id": "comp-eye-risk",
+      "title": "Retinal microvascular stress",
+      "tags": [
+        "complications",
+        "eye",
+        "retina",
+        "microvascular",
+        "risk"
+      ],
+      "sectionIds": [
+        "complications"
+      ],
+      "shortExplanation": "Retinal risk can rise with sustained hyperglycemia and microvascular stress.",
+      "misconceptions": [
+        "Eye risk appears only after severe symptoms.",
+        "Retinal risk is independent of chronic glucose load."
+      ],
+      "hints": [
+        "Increase chronic exposure and inspect eye risk.",
+        "Compare eye and nerve progression.",
+        "Note role of inflammation in risk bars."
+      ],
+      "challenges": [
+        "Produce a state where eye risk enters warning range while heart remains lower."
+      ],
+      "organIds": [
+        "eye"
+      ]
+    },
+    {
+      "id": "comp-nerve-risk",
+      "title": "Neuropathy tendency",
+      "tags": [
+        "complications",
+        "nerves",
+        "neuropathy",
+        "risk",
+        "signal"
+      ],
+      "sectionIds": [
+        "complications"
+      ],
+      "shortExplanation": "Nerve risk reflects cumulative metabolic and vascular stress patterns.",
+      "misconceptions": [
+        "Nerve risk is unrelated to glycemic control.",
+        "Neuropathy progression is immediate and binary."
+      ],
+      "hints": [
+        "Watch nerve bar over exposure increases.",
+        "Compare with eye and kidney risk patterns.",
+        "Look for trend rather than one-point value."
+      ],
+      "challenges": [
+        "Create a scenario where nerve risk exceeds 70 and explain which controls drove it."
+      ],
+      "organIds": [
+        "nerves"
+      ]
+    },
+    {
+      "id": "comp-brain-risk",
+      "title": "Neurovascular risk",
+      "tags": [
+        "complications",
+        "brain",
+        "neurovascular",
+        "risk",
+        "chronic"
+      ],
+      "sectionIds": [
+        "complications"
+      ],
+      "shortExplanation": "Neurovascular risk can increase with persistent metabolic stress and inflammation.",
+      "misconceptions": [
+        "Brain risk is completely independent of glucose patterns.",
+        "Only acute events matter, not cumulative load."
+      ],
+      "hints": [
+        "Track brain risk as exposure rises.",
+        "Inspect interaction with inflammation changes.",
+        "Compare brain and heart trajectories."
+      ],
+      "challenges": [
+        "Increase brain risk while minimizing additional meal-size changes."
+      ],
+      "organIds": [
+        "brain"
+      ]
+    },
+    {
+      "id": "glossary-insulin-resistance",
+      "title": "Insulin resistance",
+      "tags": [
+        "glossary",
+        "insulin",
+        "resistance"
+      ],
+      "sectionIds": [
+        "glossary",
+        "resistance"
+      ],
+      "shortExplanation": "Cells respond less effectively to insulin signaling.",
+      "misconceptions": [
+        "Resistance means no insulin exists.",
+        "Resistance has no effect on liver output."
+      ],
+      "hints": [
+        "Compare insulin effectiveness with glucose level.",
+        "Observe receptor-to-GLUT4 pathway changes."
+      ],
+      "challenges": [
+        "Use stressors to push insulin effectiveness below 50% and describe the result."
+      ],
+      "glossaryDefinition": "Reduced biological response to insulin, requiring higher levels for similar glucose control.",
+      "organIds": []
+    },
+    {
+      "id": "glossary-glut4",
+      "title": "GLUT4",
+      "tags": [
+        "glossary",
+        "glut4",
+        "uptake"
+      ],
+      "sectionIds": [
+        "glossary",
+        "normal",
+        "resistance"
+      ],
+      "shortExplanation": "GLUT4 transporters increase glucose entry into muscle and adipose cells.",
+      "misconceptions": [
+        "GLUT4 does not depend on insulin signaling.",
+        "GLUT4 only affects fasting state."
+      ],
+      "hints": [
+        "Inspect uptake index under resistance.",
+        "Check post-meal peak changes."
+      ],
+      "challenges": [
+        "Find a setup that improves GLUT4-mediated uptake via activity."
+      ],
+      "glossaryDefinition": "Insulin-responsive glucose transporter that translocates to the cell membrane.",
+      "organIds": []
+    },
+    {
+      "id": "glossary-hepatic-output",
+      "title": "Hepatic glucose output",
+      "tags": [
+        "glossary",
+        "hepatic",
+        "liver",
+        "output"
+      ],
+      "sectionIds": [
+        "glossary",
+        "normal",
+        "resistance"
+      ],
+      "shortExplanation": "Glucose released by liver, especially relevant in fasting state.",
+      "misconceptions": [
+        "Hepatic output is meal-only.",
+        "Output cannot be altered by insulin effectiveness."
+      ],
+      "hints": [
+        "Watch fasting glucose alongside hepatic index.",
+        "Compare low vs high inflammation."
+      ],
+      "challenges": [
+        "Lower hepatic output index using any two control changes."
+      ],
+      "glossaryDefinition": "Liver-derived glucose production that contributes to circulating glucose levels.",
+      "organIds": [
+        "liver"
+      ]
+    },
+    {
+      "id": "glossary-beta-compensation",
+      "title": "Beta-cell compensation",
+      "tags": [
+        "glossary",
+        "beta-cell",
+        "compensation"
+      ],
+      "sectionIds": [
+        "glossary",
+        "beta"
+      ],
+      "shortExplanation": "Temporary increase in insulin secretion to offset resistance.",
+      "misconceptions": [
+        "Compensation means disease reversal.",
+        "Compensation does not have limits."
+      ],
+      "hints": [
+        "Check early stage insulin behavior.",
+        "Watch transition toward failure."
+      ],
+      "challenges": [
+        "Identify stage where compensation is no longer sufficient."
+      ],
+      "glossaryDefinition": "Early adaptive increase in insulin output in response to resistance.",
+      "organIds": []
+    },
+    {
+      "id": "glossary-glucotoxicity",
+      "title": "Glucotoxicity",
+      "tags": [
+        "glossary",
+        "glucotoxicity",
+        "beta",
+        "stress"
+      ],
+      "sectionIds": [
+        "glossary",
+        "beta"
+      ],
+      "shortExplanation": "Cell dysfunction caused by chronic high glucose exposure.",
+      "misconceptions": [
+        "Only severe immediate spikes cause toxicity.",
+        "Beta-cell function is unaffected by chronic exposure."
+      ],
+      "hints": [
+        "Increase stage and monitor fasting values.",
+        "Compare repeated high-peak scenarios."
+      ],
+      "challenges": [
+        "Demonstrate how persistent peaks can worsen baseline trends."
+      ],
+      "glossaryDefinition": "Adverse cellular effects from prolonged hyperglycemia.",
+      "organIds": []
+    },
+    {
+      "id": "glossary-lipotoxicity",
+      "title": "Lipotoxicity",
+      "tags": [
+        "glossary",
+        "lipotoxicity",
+        "ffa",
+        "stress"
+      ],
+      "sectionIds": [
+        "glossary",
+        "resistance",
+        "beta"
+      ],
+      "shortExplanation": "Cell stress from chronic excess lipid signaling and free fatty acids.",
+      "misconceptions": [
+        "Lipids only affect weight, not signaling.",
+        "FFA load has no beta-cell impact."
+      ],
+      "hints": [
+        "Toggle high FFA and inspect curve shifts.",
+        "Pair high FFA with stage progression."
+      ],
+      "challenges": [
+        "Show a scenario where FFA increases both resistance and progression burden."
+      ],
+      "glossaryDefinition": "Cellular dysfunction induced by excess lipid and free fatty acid exposure.",
+      "organIds": []
+    },
+    {
+      "id": "glossary-postprandial",
+      "title": "Postprandial glucose",
+      "tags": [
+        "glossary",
+        "postprandial",
+        "glucose",
+        "meal"
+      ],
+      "sectionIds": [
+        "glossary",
+        "normal",
+        "beta"
+      ],
+      "shortExplanation": "Glucose level after eating, often used to assess meal response.",
+      "misconceptions": [
+        "Postprandial changes are not clinically relevant.",
+        "Only fasting glucose indicates control."
+      ],
+      "hints": [
+        "Use meal size slider and compare peak.",
+        "Track recovery slope after the peak."
+      ],
+      "challenges": [
+        "Reduce post-meal peak below 180 with control adjustments."
+      ],
+      "glossaryDefinition": "Blood glucose concentration measured after a meal.",
+      "organIds": []
+    },
+    {
+      "id": "glossary-fasting-glucose",
+      "title": "Fasting glucose",
+      "tags": [
+        "glossary",
+        "fasting",
+        "glucose",
+        "liver"
+      ],
+      "sectionIds": [
+        "glossary",
+        "normal",
+        "beta"
+      ],
+      "shortExplanation": "Baseline glucose after a fasting interval, strongly linked to hepatic output.",
+      "misconceptions": [
+        "Fasting glucose depends only on last meal.",
+        "Liver output has no fasting influence."
+      ],
+      "hints": [
+        "Adjust inflammation and sensitivity.",
+        "Watch hepatic output and fasting together."
+      ],
+      "challenges": [
+        "Create a setting where fasting glucose crosses 126 without changing meal size."
+      ],
+      "glossaryDefinition": "Baseline blood glucose level measured after fasting.",
+      "organIds": [
+        "liver"
+      ]
+    },
+    {
+      "id": "glossary-peripheral-uptake",
+      "title": "Peripheral uptake",
+      "tags": [
+        "glossary",
+        "uptake",
+        "muscle",
+        "glucose"
+      ],
+      "sectionIds": [
+        "glossary",
+        "normal",
+        "resistance"
+      ],
+      "shortExplanation": "Glucose clearance into peripheral tissues, especially skeletal muscle.",
+      "misconceptions": [
+        "Peripheral uptake does not affect post-meal peak.",
+        "Uptake cannot improve with activity."
+      ],
+      "hints": [
+        "Increase activity and inspect uptake index.",
+        "Compare post-meal peak reduction."
+      ],
+      "challenges": [
+        "Raise uptake index above 0.6 while keeping inflammation moderate."
+      ],
+      "glossaryDefinition": "Transfer of blood glucose into peripheral tissues for utilization or storage.",
+      "organIds": [
+        "muscle"
+      ]
+    },
+    {
+      "id": "glossary-chronic-exposure",
+      "title": "Chronic hyperglycemia exposure",
+      "tags": [
+        "glossary",
+        "chronic",
+        "exposure",
+        "risk",
+        "complications"
+      ],
+      "sectionIds": [
+        "glossary",
+        "complications"
+      ],
+      "shortExplanation": "Accumulated glycemic burden over time that drives systemic risk progression.",
+      "misconceptions": [
+        "Only current glucose matters for risk.",
+        "Complication risk cannot accumulate gradually."
+      ],
+      "hints": [
+        "Increase exposure slider and observe risk bars.",
+        "Compare organ-specific sensitivity."
+      ],
+      "challenges": [
+        "Raise chronic exposure until two organ risks exceed 60."
+      ],
+      "glossaryDefinition": "Long-duration glycemic burden associated with progressive organ risk.",
+      "organIds": []
+    }
+  ],
+  "rules": {
+    "scopeTagsAllowed": [
+      "normal",
+      "pancreas",
+      "liver",
+      "muscle",
+      "adipose",
+      "blood",
+      "insulin",
+      "glucose",
+      "glut4",
+      "resistance",
+      "beta",
+      "complications",
+      "heart",
+      "kidney",
+      "eye",
+      "nerves",
+      "brain",
+      "glossary",
+      "hepatic",
+      "uptake",
+      "inflammation",
+      "ffa"
+    ],
+    "outOfScopePatterns": [
+      "\\b(type\\s*1|t1d)\\b",
+      "\\bdiagnos(e|is|ing)|am i diabetic|should i worry\\b",
+      "\\bmedication|drug dose|prescription|insulin units|metformin|ozempic|sulfonylurea\\b",
+      "\\bmeal plan|diet plan|calories|supplements|workout plan\\b",
+      "\\bmy lab|my blood sugar|my symptoms|for me personally|personal advice\\b",
+      "\\bcancer|asthma|thyroid|pregnancy|covid|infection treatment\\b"
+    ],
+    "refusalMessage": "Out of scope: I can only help with Type 2 Diabetes physiology concepts inside this module."
+  }
+}

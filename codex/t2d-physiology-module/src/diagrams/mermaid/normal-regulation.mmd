@@ -1,0 +1,7 @@
+flowchart LR
+  Meal[Meal Input] --> BG[Blood Glucose]
+  BG --> Pancreas[Pancreas: Insulin]
+  Pancreas --> Liver[Liver: Suppress Output]
+  Pancreas --> Muscle[Muscle: GLUT4 Uptake]
+  Liver --> BG
+  Muscle --> BG

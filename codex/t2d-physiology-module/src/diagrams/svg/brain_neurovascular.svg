@@ -1,0 +1,10 @@
+<svg width="360" height="200" viewBox="0 0 360 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="16" width="340" height="168" rx="16" fill="#F7FBFF" stroke="#D6E6F5"/>
+  <path d="M96 112C78 112 64 98 64 82C64 66 78 52 96 52C102 40 114 32 128 32C142 32 154 40 160 52H204C210 40 222 32 236 32C250 32 262 40 268 52C286 52 300 66 300 82C300 98 286 112 268 112C262 126 250 136 236 136H128C114 136 102 126 96 112Z" fill="#E9F4FF" stroke="#8AAFD0" stroke-width="2"/>
+  <path d="M122 56V120M150 52V124M178 52V124M206 52V124M234 56V120" stroke="#74C0FC" stroke-width="2" stroke-linecap="round"/>
+  <path d="M96 82H268" stroke="#6BAED6" stroke-width="2" stroke-dasharray="4 4"/>
+  <circle cx="94" cy="154" r="8" fill="#FDBA74"/>
+  <circle cx="116" cy="154" r="8" fill="#FB7185"/>
+  <circle cx="138" cy="154" r="8" fill="#38BDF8"/>
+  <text x="154" y="159" fill="#334155" font-size="12" font-family="Inter, Segoe UI, sans-serif">Neurovascular stress signals</text>
+</svg>

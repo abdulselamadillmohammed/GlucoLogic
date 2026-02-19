@@ -1,137 +1,72 @@
 import { useDraggable } from "@dnd-kit/core";
-import type { DrugClass } from "../logic/types";
-import { CapsuleIcon, ClassIcon } from "./Icons";
+import type { DrugClassConfig } from "../logic/types";
 
-type ClassPaletteProps = {
-  classes: DrugClass[];
-  selectedClassId: string | null;
-  selectedDrugIds: string[];
-  onSelectClass: (classId: string) => void;
-  onExitFocus: () => void;
-  onAddDrug: (drugId: string) => void;
-};
-
-function DraggableDrugChip({
-  drug,
-  selected,
-  onAddDrug
-}: {
-  drug: DrugClass["drugs"][number];
-  selected: boolean;
-  onAddDrug: (drugId: string) => void;
-}) {
-  const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
-    id: `drug:${drug.drugId}`
-  });
-
-  return (
-    <button
-      ref={setNodeRef}
-      type="button"
-      className={`drug-pop-chip ${selected ? "selected" : ""}`}
-      style={{
-        transform: transform
-          ? `translate3d(${transform.x}px, ${transform.y}px, 0) scale(${isDragging ? 1.03 : 1})`
-          : undefined,
-        boxShadow: isDragging ? "0 16px 28px rgb(6 12 28 / 52%)" : undefined,
-        opacity: isDragging ? 0.95 : 1
-      }}
-      onClick={() => onAddDrug(drug.drugId)}
-      {...listeners}
-      {...attributes}
-    >
-      <CapsuleIcon className="pill-icon" />
-      <span>{drug.label}</span>
-    </button>
-  );
+interface ClassPaletteProps {
+  classes: DrugClassConfig[];
+  expandedClassId: string | null;
+  onExpandClass: (classId: string) => void;
 }
 
-function ClassCard({
-  drugClass,
-  active,
-  dimmed,
-  onSelectClass,
-  onExitFocus,
-  selectedDrugIds,
-  onAddDrug
-}: {
-  drugClass: DrugClass;
-  active: boolean;
-  dimmed: boolean;
-  onSelectClass: (classId: string) => void;
-  onExitFocus: () => void;
-  selectedDrugIds: string[];
-  onAddDrug: (drugId: string) => void;
-}) {
-  return (
-    <article className={`class-card ${active ? "active" : ""} ${dimmed ? "dimmed" : ""}`}>
-      <button
-        type="button"
-        className="class-trigger"
-        onClick={() => (active ? onExitFocus() : onSelectClass(drugClass.classId))}
-      >
-        <span className="icon-badge">
-          <ClassIcon classId={drugClass.classId} size={20} />
-        </span>
-        <div>
-          <strong>{drugClass.label}</strong>
-          <small>{active ? "Focus active" : "Click to focus"}</small>
-        </div>
-      </button>
+function classIcon(classId: string) {
+  if (classId === "sglt2") return "shield";
+  if (classId === "glp1") return "spark";
+  if (classId === "insulin") return "drop";
+  if (classId === "su") return "risk";
+  return "core";
+}
 
-      {active ? (
-        <div className="drug-popout" role="list" aria-label={`${drugClass.label} drugs`}>
-          {drugClass.drugs.map((drug, idx) => (
-            <div key={drug.drugId} style={{ animationDelay: `${idx * 45}ms` }}>
-              <DraggableDrugChip
-                drug={drug}
-                selected={selectedDrugIds.includes(drug.drugId)}
-                onAddDrug={onAddDrug}
-              />
-            </div>
-          ))}
-        </div>
-      ) : null}
+function ClassChip({ drugClass, onExpandClass }: { drugClass: DrugClassConfig; onExpandClass: (classId: string) => void }) {
+  const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({ id: `class:${drugClass.classId}` });
+  const style = transform
+    ? {
+        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`
+      }
+    : undefined;
+
+  return (
+    <article className={`class-card ${isDragging ? "dragging" : ""}`}>
+      <button
+        ref={setNodeRef}
+        style={style}
+        type="button"
+        className="class-drag-chip"
+        {...listeners}
+        {...attributes}
+        aria-label={`Drag ${drugClass.label} class`}
+      >
+        <span className={`pill-icon token-${classIcon(drugClass.classId)}`} aria-hidden="true" />
+        <span>{drugClass.label}</span>
+      </button>
+      <button type="button" className="class-expand" onClick={() => onExpandClass(drugClass.classId)}>
+        View drugs
+      </button>
     </article>
   );
 }
 
-export function ClassPalette({
-  classes,
-  selectedClassId,
-  selectedDrugIds,
-  onSelectClass,
-  onExitFocus,
-  onAddDrug
-}: ClassPaletteProps) {
-  return (
-    <section className="palette">
-      <div className="palette-header">
-        <div>
-          <h3>Drug Classes</h3>
-          <p className="subtext">Select a class, then drag drugs into the patient card.</p>
-        </div>
-        {selectedClassId ? (
-          <button type="button" className="ghost-btn" onClick={onExitFocus} aria-label="Exit focus mode">
-            x
-          </button>
-        ) : null}
-      </div>
+export function ClassPalette({ classes, expandedClassId, onExpandClass }: ClassPaletteProps) {
+  const expanded = classes.find((entry) => entry.classId === expandedClassId);
 
-      <div className="class-list-scroll">
+  return (
+    <section className="class-palette">
+      <h3>Medication Classes</h3>
+      <p>Drag a class into the patient center to stage selection.</p>
+      <div className="class-grid">
         {classes.map((drugClass) => (
-          <ClassCard
-            key={drugClass.classId}
-            drugClass={drugClass}
-            active={selectedClassId === drugClass.classId}
-            dimmed={Boolean(selectedClassId && selectedClassId !== drugClass.classId)}
-            onSelectClass={onSelectClass}
-            onExitFocus={onExitFocus}
-            selectedDrugIds={selectedDrugIds}
-            onAddDrug={onAddDrug}
-          />
+          <ClassChip key={drugClass.classId} drugClass={drugClass} onExpandClass={onExpandClass} />
         ))}
       </div>
+
+      {expanded ? (
+        <div className="class-drugs-preview">
+          <strong>{expanded.label}</strong>
+          <ul>
+            {expanded.drugs.map((drug) => (
+              <li key={drug.drugId}>{drug.label}</li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
     </section>
   );
 }

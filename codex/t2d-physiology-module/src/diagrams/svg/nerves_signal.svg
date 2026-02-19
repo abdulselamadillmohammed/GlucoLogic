@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160">
+  <rect width="240" height="160" fill="#f7fbff"/>
+  <path d="M40 80 C72 80,74 56,106 56 C138 56,140 104,172 104 C196 104,202 86,210 86" fill="none" stroke="#3DA9FC" stroke-width="3"/>
+  <circle cx="74" cy="80" r="4" fill="#0FB9B1"/>
+  <circle cx="106" cy="56" r="4" fill="#0FB9B1"/>
+  <circle cx="140" cy="104" r="4" fill="#FF7A70"/>
+  <circle cx="172" cy="104" r="4" fill="#FF7A70"/>
+  <text x="70" y="24" fill="#2E3A8C" font-size="12" font-family="Arial">Signal conduction drop</text>
+</svg>

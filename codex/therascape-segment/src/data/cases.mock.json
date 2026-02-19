@@ -1,71 +1,48 @@
 [
   {
-    "caseId": "case-1",
-    "title": "Case A - Rising A1C with cardiorenal risk",
+    "caseId": "case-001",
+    "title": "Case 1: Early Cardiorenal Signals",
     "steps": [
-      { "title": "Step 1", "content": "A1C 9.1 with persistent hyperglycemia" },
-      { "title": "Step 2", "content": "ASCVD history and reduced eGFR" },
-      { "title": "Step 3", "content": "High cost sensitivity and moderate BMI elevation" }
+      { "step": 1, "label": "Baseline", "revealedFields": ["a1c", "a1cTarget", "bmi"] },
+      { "step": 2, "label": "Comorbidities", "revealedFields": ["comorbidities", "ascvd", "hf"] },
+      { "step": 3, "label": "Kidney + Access", "revealedFields": ["egfr", "costSensitivity", "hypoglycemiaRisk"] }
     ],
     "patient": {
-      "a1c": 9.1,
-      "comorbidities": ["ASCVD", "CKD"],
-      "egfr": 48,
-      "hf": false,
+      "a1c": 8.9,
+      "a1cTarget": 7,
+      "comorbidities": ["Hypertension", "Dyslipidemia"],
+      "egfr": 58,
+      "hf": true,
       "ascvd": true,
       "bmi": 33,
       "hypoglycemiaRisk": "medium",
       "costSensitivity": "high"
     },
-    "reasoningNodeOptions": [
-      "A1C Gap Reduction",
-      "Cardiovascular Risk Priority",
-      "Renal Preservation",
-      "Weight/BMI Consideration",
-      "Hypoglycemia Avoidance",
-      "Cost/Access Feasibility"
-    ],
-    "expectedReasoningNodes": [
-      "A1C Gap Reduction",
-      "Cardiovascular Risk Priority",
-      "Renal Preservation",
-      "Cost/Access Feasibility"
-    ],
-    "recommendedMeds": ["glp1", "sglt2"],
-    "exclusions": ["sulfonylurea"]
+    "expectedReasoningNodes": ["A1C Gap", "Cardiovascular Risk", "Renal Function", "Cost/Access"],
+    "recommendedMeds": ["sglt2_a", "metformin_er"],
+    "exclusions": ["su_glip"]
   },
   {
-    "caseId": "case-2",
-    "title": "Case B - Cost-limited regimen refinement",
+    "caseId": "case-002",
+    "title": "Case 2: Weight and Hypoglycemia Priorities",
     "steps": [
-      { "title": "Step 1", "content": "A1C 8.4 on current dual therapy" },
-      { "title": "Step 2", "content": "No ASCVD, preserved renal function" },
-      { "title": "Step 3", "content": "Strong concern about hypoglycemia and monthly spend" }
+      { "step": 1, "label": "Baseline", "revealedFields": ["a1c", "a1cTarget", "bmi"] },
+      { "step": 2, "label": "Risk Profile", "revealedFields": ["hypoglycemiaRisk", "comorbidities"] },
+      { "step": 3, "label": "Function + Access", "revealedFields": ["egfr", "costSensitivity"] }
     ],
     "patient": {
-      "a1c": 8.4,
-      "comorbidities": ["Dyslipidemia"],
-      "egfr": 84,
+      "a1c": 8.2,
+      "a1cTarget": 6.8,
+      "comorbidities": ["Sleep Apnea"],
+      "egfr": 71,
       "hf": false,
       "ascvd": false,
-      "bmi": 29,
+      "bmi": 38,
       "hypoglycemiaRisk": "high",
-      "costSensitivity": "high"
+      "costSensitivity": "medium"
     },
-    "reasoningNodeOptions": [
-      "A1C Gap Reduction",
-      "Cardiovascular Risk Priority",
-      "Renal Preservation",
-      "Weight/BMI Consideration",
-      "Hypoglycemia Avoidance",
-      "Cost/Access Feasibility"
-    ],
-    "expectedReasoningNodes": [
-      "A1C Gap Reduction",
-      "Hypoglycemia Avoidance",
-      "Cost/Access Feasibility"
-    ],
-    "recommendedMeds": ["dpp4", "metformin"],
-    "exclusions": ["insulin"]
+    "expectedReasoningNodes": ["A1C Gap", "Weight/BMI", "Hypoglycemia Risk"],
+    "recommendedMeds": ["glp1_a", "dpp4_a"],
+    "exclusions": ["su_glip"]
   }
 ]

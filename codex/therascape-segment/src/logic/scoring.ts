@@ -1,21 +1,8 @@
 import type { ReasoningScore } from "./types";
 
-function compareSelections(selected: string[], expected: string[]) {
-  const selectedSet = new Set(selected);
-  const expectedSet = new Set(expected);
-
-  const matched = selected.filter((item) => expectedSet.has(item));
-  const missing = expected.filter((item) => !selectedSet.has(item));
-  const extra = selected.filter((item) => !expectedSet.has(item));
-
-  return { matched, missing, extra };
-}
-
-function toPercent(hit: number, expectedCount: number) {
-  if (expectedCount === 0) {
-    return 0;
-  }
-  return Math.round((hit / expectedCount) * 100);
+function percentage(matches: number, expectedTotal: number): number {
+  if (expectedTotal === 0) return 100;
+  return Math.round((matches / expectedTotal) * 100);
 }
 
 export function computeReasoningScore(
@@ -24,19 +11,28 @@ export function computeReasoningScore(
   expectedGroups: string[],
   expectedSubfactors: string[]
 ): ReasoningScore {
-  const groupComparison = compareSelections(selectedGroups, expectedGroups);
-  const subfactorComparison = compareSelections(selectedSubfactors, expectedSubfactors);
+  const uniqueSelectedGroups = Array.from(new Set(selectedGroups));
+  const uniqueSelectedSubfactors = Array.from(new Set(selectedSubfactors));
 
-  const groupScore = toPercent(groupComparison.matched.length, expectedGroups.length);
-  const subfactorScore = toPercent(subfactorComparison.matched.length, expectedSubfactors.length);
+  const groupMatches = uniqueSelectedGroups.filter((group) => expectedGroups.includes(group)).length;
+  const subfactorMatches = uniqueSelectedSubfactors.filter((subfactor) => expectedSubfactors.includes(subfactor)).length;
+
+  const missingGroups = expectedGroups.filter((group) => !uniqueSelectedGroups.includes(group));
+  const extraGroups = uniqueSelectedGroups.filter((group) => !expectedGroups.includes(group));
+  const missingSubfactors = expectedSubfactors.filter((subfactor) => !uniqueSelectedSubfactors.includes(subfactor));
+  const extraSubfactors = uniqueSelectedSubfactors.filter((subfactor) => !expectedSubfactors.includes(subfactor));
+
+  const groupScore = percentage(groupMatches, expectedGroups.length);
+  const subfactorScore = percentage(subfactorMatches, expectedSubfactors.length);
+  const totalScore = Math.round(groupScore * 0.5 + subfactorScore * 0.5);
 
   return {
     groupScore,
     subfactorScore,
-    totalScore: Math.round(groupScore * 0.55 + subfactorScore * 0.45),
-    missingGroups: groupComparison.missing,
-    missingSubfactors: subfactorComparison.missing,
-    extraGroups: groupComparison.extra,
-    extraSubfactors: subfactorComparison.extra
+    totalScore,
+    missingGroups,
+    extraGroups,
+    missingSubfactors,
+    extraSubfactors
   };
 }

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160">
+  <rect width="240" height="160" fill="#f7fbff"/>
+  <ellipse cx="120" cy="82" rx="56" ry="34" fill="none" stroke="#3DA9FC" stroke-width="3"/>
+  <circle cx="120" cy="82" r="14" fill="none" stroke="#0FB9B1" stroke-width="3"/>
+  <path d="M66 82 C82 68,96 66,106 74" stroke="#6EE7B7" stroke-width="3" fill="none"/>
+  <path d="M174 82 C158 68,144 66,134 74" stroke="#6EE7B7" stroke-width="3" fill="none"/>
+  <text x="74" y="24" fill="#2E3A8C" font-size="12" font-family="Arial">Retinal microvascular stress</text>
+</svg>

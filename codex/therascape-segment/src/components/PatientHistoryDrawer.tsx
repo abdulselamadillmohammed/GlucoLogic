@@ -1,67 +1,43 @@
-import type { FullHistory } from "../logic/types";
+import type { PatientHistory } from "../logic/types";
 
-type PatientHistoryDrawerProps = {
+interface PatientHistoryDrawerProps {
   open: boolean;
-  history: FullHistory;
+  history: PatientHistory;
   onClose: () => void;
-};
+}
 
 export function PatientHistoryDrawer({ open, history, onClose }: PatientHistoryDrawerProps) {
   return (
-    <aside className={`history-drawer ${open ? "open" : ""}`} aria-hidden={!open}>
-      <div className="drawer-head">
-        <h3>Full Patient History</h3>
-        <button type="button" onClick={onClose}>
-          Close
-        </button>
-      </div>
-
-      <section>
-        <h4>Labs</h4>
-        <ul>
-          {history.labs.map((entry) => (
-            <li key={entry}>{entry}</li>
-          ))}
-        </ul>
-      </section>
-
-      <section>
-        <h4>Comorbidities</h4>
-        <ul>
-          {history.comorbidities.map((entry) => (
-            <li key={entry}>{entry}</li>
-          ))}
-        </ul>
-      </section>
-
-      <section>
-        <h4>Constraints</h4>
-        <ul>
-          {history.constraints.map((entry) => (
-            <li key={entry}>{entry}</li>
-          ))}
-        </ul>
-      </section>
-
-      <section>
-        <h4>Prior medications</h4>
-        <ul>
-          {history.priorMeds.map((entry) => (
-            <li key={entry}>{entry}</li>
-          ))}
-        </ul>
-      </section>
-
-      <section>
-        <h4>Contraindications</h4>
-        <ul>
-          {history.contraindications.length > 0 ? (
-            history.contraindications.map((entry) => <li key={entry}>{entry}</li>)
-          ) : (
-            <li>None documented</li>
-          )}
-        </ul>
-      </section>
-    </aside>
+    <>
+      <div className={`drawer-backdrop ${open ? "show" : ""}`} onClick={onClose} />
+      <aside className={`history-drawer ${open ? "open" : ""}`}>
+        <header>
+          <h3>Full Patient History</h3>
+          <button type="button" onClick={onClose}>
+            Close
+          </button>
+        </header>
+        <div className="drawer-section">
+          <h4>Labs</h4>
+          <ul>{history.labs.map((item) => <li key={item}>{item}</li>)}</ul>
+        </div>
+        <div className="drawer-section">
+          <h4>Comorbidities</h4>
+          <ul>{history.comorbidities.map((item) => <li key={item}>{item}</li>)}</ul>
+        </div>
+        <div className="drawer-section">
+          <h4>Constraints</h4>
+          <ul>{history.constraints.map((item) => <li key={item}>{item}</li>)}</ul>
+        </div>
+        <div className="drawer-section">
+          <h4>Prior Meds</h4>
+          <ul>{history.priorMeds.map((item) => <li key={item}>{item}</li>)}</ul>
+        </div>
+        <div className="drawer-section">
+          <h4>Contraindications</h4>
+          <ul>{history.contraindications.map((item) => <li key={item}>{item}</li>)}</ul>
+        </div>
+      </aside>
+    </>
   );
 }

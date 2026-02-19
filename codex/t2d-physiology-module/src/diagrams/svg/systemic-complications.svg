@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 220">
+  <rect width="720" height="220" fill="#070d1b"/>
+  <text x="20" y="32" fill="#8ce9ff" font-size="16">Systemic Complications</text>
+  <circle cx="120" cy="110" r="38" fill="#412032" stroke="#fb7185"/><text x="93" y="115" fill="#ffe4ee" font-size="11">Hyperglycemia</text>
+  <circle cx="330" cy="110" r="42" fill="#23213f" stroke="#a5b4fc"/><text x="300" y="115" fill="#e8ebff" font-size="11">Vascular stress</text>
+  <circle cx="560" cy="75" r="22" fill="#15314a" stroke="#67e8f9"/><text x="548" y="79" fill="#d8f6ff" font-size="10">Heart</text>
+  <circle cx="620" cy="110" r="22" fill="#15314a" stroke="#67e8f9"/><text x="605" y="114" fill="#d8f6ff" font-size="10">Kidney</text>
+  <circle cx="560" cy="145" r="22" fill="#15314a" stroke="#67e8f9"/><text x="549" y="149" fill="#d8f6ff" font-size="10">Eye</text>
+  <circle cx="500" cy="110" r="22" fill="#15314a" stroke="#67e8f9"/><text x="486" y="114" fill="#d8f6ff" font-size="10">Nerves</text>
+</svg>

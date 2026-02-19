@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 220">
+  <rect width="720" height="220" fill="#070d1b"/>
+  <text x="20" y="32" fill="#8ce9ff" font-size="16">Normal Regulation</text>
+  <circle cx="95" cy="120" r="32" fill="#11304b" stroke="#67e8f9"/><text x="73" y="126" fill="#d7f8ff" font-size="11">Meal</text>
+  <circle cx="250" cy="120" r="38" fill="#11304b" stroke="#67e8f9"/><text x="224" y="126" fill="#d7f8ff" font-size="11">Blood</text>
+  <circle cx="395" cy="70" r="36" fill="#11304b" stroke="#67e8f9"/><text x="363" y="76" fill="#d7f8ff" font-size="11">Pancreas</text>
+  <circle cx="560" cy="70" r="34" fill="#11304b" stroke="#67e8f9"/><text x="544" y="76" fill="#d7f8ff" font-size="11">Liver</text>
+  <circle cx="560" cy="165" r="34" fill="#11304b" stroke="#67e8f9"/><text x="538" y="171" fill="#d7f8ff" font-size="11">Muscle</text>
+</svg>

@@ -1,81 +1,80 @@
-import { useState } from "react";
-import type { ExplanationData, ReasoningScore } from "../logic/types";
+import type { ReasoningFeedback } from "../logic/types";
 
-type ExplanationPanelProps = {
-  explanation: ExplanationData | null;
-  noteText: string;
-  onNoteTextChange: (value: string) => void;
-  onSpeechToText: () => void;
-  onEvaluate: () => void;
-  score: ReasoningScore | null;
-};
+interface ExplanationContent {
+  group: string;
+  subfactor: string;
+  summary: string[];
+  prompt: string;
+  whyThisMatters: string;
+  hints: string[];
+}
 
-export function ExplanationPanel({
-  explanation,
-  noteText,
-  onNoteTextChange,
-  onSpeechToText,
-  onEvaluate,
-  score
-}: ExplanationPanelProps) {
-  const [showHints, setShowHints] = useState(false);
+interface ExplanationPanelProps {
+  content: ExplanationContent | null;
+  confidence: number;
+  feedback: ReasoningFeedback | null;
+  onConfidenceChange: (value: number) => void;
+  onSubmit: () => void;
+}
 
+export function ExplanationPanel({ content, confidence, feedback, onConfidenceChange, onSubmit }: ExplanationPanelProps) {
   return (
     <aside className="reasoning-panel">
-      <h3>Reasoning Justification</h3>
-
-      {explanation ? (
+      <h2>Explanation Panel</h2>
+      {content ? (
         <>
-          <h4>{explanation.title}</h4>
-          <p>{explanation.whyItMatters}</p>
-          <p className="prompt">Prompt: {explanation.suggestionPrompt}</p>
-          {explanation.note ? <p className="flag-note">Clinical note: {explanation.note}</p> : null}
+          <p className="eyebrow">
+            {content.group} / {content.subfactor}
+          </p>
+          {content.summary.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
+          <p className="prompt">Reasoning suggestion: {content.prompt}</p>
+          <p className="why">Why this matters: {content.whyThisMatters}</p>
 
-          <button type="button" className="hint-toggle" onClick={() => setShowHints((v) => !v)}>
-            Hint {showHints ? "-" : "+"}
-          </button>
-
-          {showHints ? (
-            <div className="hint-list">
-              {explanation.hints.slice(0, 3).map((hint) => (
-                <p key={hint}>{hint}</p>
+          <details>
+            <summary>Hint</summary>
+            <ol>
+              {content.hints.map((hint) => (
+                <li key={hint}>{hint}</li>
               ))}
-            </div>
-          ) : null}
-
-          <p className="one-liner">Why this matters: {explanation.whyItMatters}</p>
+            </ol>
+          </details>
         </>
       ) : (
-        <p className="subtext">Select a subfactor bubble to view explanation and hints.</p>
+        <p>Select a subfactor bubble to open guided explanation and hint ladder.</p>
       )}
 
-      <label htmlFor="reasoning-note">Your reasoning</label>
-      <textarea
-        id="reasoning-note"
-        value={noteText}
-        onChange={(event) => onNoteTextChange(event.target.value)}
-        rows={6}
-        placeholder="Type your clinical justification here..."
-      />
+      <label className="confidence-wrap">
+        Confidence: <strong>{confidence}%</strong>
+        <input
+          type="range"
+          min={0}
+          max={100}
+          step={1}
+          value={confidence}
+          onChange={(event) => onConfidenceChange(Number(event.target.value))}
+        />
+      </label>
 
-      <button type="button" className="submit-btn" onClick={onSpeechToText}>
-        Add speech-to-text
-      </button>
-      <button type="button" className="submit-btn secondary" onClick={onEvaluate}>
-        Evaluate reasoning
+      <button type="button" className="submit-btn" onClick={onSubmit}>
+        Submit Reasoning
       </button>
 
-      {score ? (
-        <section className="feedback">
-          <h4>Feedback</h4>
-          <p>Total: {score.totalScore}%</p>
-          <p>Groups: {score.groupScore}%</p>
-          <p>Subfactors: {score.subfactorScore}%</p>
-          <p>Missing Groups: {score.missingGroups.join(", ") || "None"}</p>
-          <p>Missing Subfactors: {score.missingSubfactors.join(", ") || "None"}</p>
-          <p>Extra Groups: {score.extraGroups.join(", ") || "None"}</p>
-          <p>Extra Subfactors: {score.extraSubfactors.join(", ") || "None"}</p>
-        </section>
+      {feedback ? (
+        <div className="feedback-box">
+          <p>Total score: {feedback.score.totalScore}%</p>
+          <p>Group score: {feedback.score.groupScore}%</p>
+          <p>Subfactor score: {feedback.score.subfactorScore}%</p>
+          <p>Missing groups: {feedback.score.missingGroups.join(", ") || "None"}</p>
+          <p>Missing subfactors: {feedback.score.missingSubfactors.join(", ") || "None"}</p>
+          <p>Extra groups: {feedback.score.extraGroups.join(", ") || "None"}</p>
+          <p>Extra subfactors: {feedback.score.extraSubfactors.join(", ") || "None"}</p>
+          <p>
+            Calibration: {feedback.calibrationLabel} ({feedback.calibrationDelta > 0 ? "+" : ""}
+            {feedback.calibrationDelta})
+          </p>
+        </div>
       ) : null}
     </aside>
   );

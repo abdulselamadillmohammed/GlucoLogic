@@ -1,172 +1,136 @@
 import type {
-  ClassProfile,
-  ExplanationData,
+  GroupConfig,
   GroupStatus,
-  Patient,
+  PatientProfile,
   StatusColor,
+  SubfactorConfig,
   SubfactorStatus,
   TheraScapeConfig
 } from "./types";
 
-const ratingWeight: Record<string, number> = {
-  avoid: 2,
-  caution: 1,
-  neutral: 0,
-  benefit: -1,
-  strong_benefit: -2
-};
+const BASELINE_LEVEL = {
+  low: 1,
+  medium: 2,
+  high: 3
+} as const;
 
-const groupParameterMap: Record<string, string[]> = {
-  glycemia: ["glucose_efficacy"],
-  cardiorenal: ["ascvd_mace", "hf_chf", "stroke", "ckd"],
-  weight: ["weight", "nafld_mash"],
-  hypoglycemia: ["hypoglycemia"],
-  access: ["access_cost"],
-  safety: ["renal_adjustment", "gi_adverse", "other_considerations"]
-};
-
-const subfactorParameterMap: Record<string, string[]> = {
-  a1c_gap: ["glucose_efficacy"],
-  symptomatic_hyperglycemia: ["glucose_efficacy"],
-  ascvd: ["ascvd_mace", "stroke"],
-  hf: ["hf_chf", "fluid_status"],
-  ckd: ["ckd"],
-  weight_loss_goal: ["weight", "nafld_mash"],
-  hypo_risk: ["hypoglycemia"],
-  affordability: ["access_cost"],
-  renal_adjustment: ["renal_adjustment"],
-  gi_tolerability: ["gi_adverse"],
-  infection_risk: ["other_considerations"],
-  fluid_status: ["hf_chf", "other_considerations"]
-};
-
-function toStatus(score: number): StatusColor {
-  if (score <= -1) {
-    return "green";
-  }
-  if (score >= 1) {
-    return "red";
-  }
-  return "yellow";
+function clamp(value: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, value));
 }
 
-function getClassProfile(config: TheraScapeConfig, selectedClassId: string | null): ClassProfile | null {
-  if (!selectedClassId) {
+function getDrugImpact(config: TheraScapeConfig, selectedDrugId?: string) {
+  if (!selectedDrugId) {
     return null;
   }
-  return config.impactGrid.classProfiles.find((profile) => profile.classId === selectedClassId) ?? null;
+
+  for (const drugClass of config.drugLibrary.classes) {
+    const drug = drugClass.drugs.find((entry) => entry.drugId === selectedDrugId);
+    if (drug) {
+      return {
+        classId: drugClass.classId,
+        classLabel: drugClass.label,
+        drugLabel: drug.label,
+        impact: {
+          ...drugClass.impactGrid,
+          ...drug.impactGrid
+        }
+      };
+    }
+  }
+
+  return null;
 }
 
-function scorePatientBaseline(patient: Patient, groupId: string): number {
-  switch (groupId) {
-    case "glycemia":
-      return patient.a1c - patient.targetA1c >= 1.5 || patient.symptomaticHyperglycemia ? 1 : 0;
-    case "cardiorenal":
-      return patient.ascvd || patient.heartFailure || patient.ckdStage >= 3 ? 1 : 0;
-    case "weight":
-      return patient.bmi >= 30 ? 1 : 0;
-    case "hypoglycemia":
-      return patient.hypoglycemiaHighRisk ? 1 : 0;
-    case "access":
-      return patient.costSensitive ? 1 : 0;
-    case "safety":
-      return patient.egfr < 45 || patient.gastroparesis || patient.recurrentGenitalInfections ? 1 : 0;
+function baselineRisk(patient: PatientProfile, subfactorId: string): number {
+  switch (subfactorId) {
+    case "a1c_gap":
+      return patient.a1c - patient.targetA1c >= 1.5 ? 3 : patient.a1c - patient.targetA1c >= 0.7 ? 2 : 1;
+    case "symptomatic_hyperglycemia":
+      return patient.symptomaticHyperglycemia ? 3 : 1;
+    case "ascvd":
+      return patient.ascvd ? 3 : 1;
+    case "heart_failure":
+      return patient.hf ? 3 : 1;
+    case "ckd":
+      return patient.ckdStage >= 3 ? 3 : 1;
+    case "weight_bmi":
+      return patient.bmi >= 35 ? 3 : patient.bmi >= 30 ? 2 : 1;
+    case "nafld_mash":
+      return patient.nafld ? 3 : 1;
+    case "hypoglycemia_history":
+      return BASELINE_LEVEL[patient.hypoglycemiaRisk];
+    case "access_cost":
+      return BASELINE_LEVEL[patient.costSensitivity];
+    case "gi_intolerance":
+      return patient.giIntolerance ? 3 : 1;
+    case "infection_risk":
+      return patient.infectionRisk ? 3 : 1;
+    case "fluid_volume_risk":
+      return patient.fluidVolumeRisk ? 3 : 1;
+    case "contraindications":
+      return patient.history.contraindications.length > 0 ? 3 : 1;
+    case "renal_adjustment":
+      return patient.egfr < 45 ? 3 : patient.egfr < 60 ? 2 : 1;
     default:
-      return 0;
+      return 1;
   }
 }
 
-function computeImpactScore(parameters: string[], profile: ClassProfile | null): number {
-  if (!profile) {
-    return 0;
-  }
-
-  return parameters.reduce((sum, key) => {
-    const rating = profile.profile[key] ?? "neutral";
-    return sum + (ratingWeight[rating] ?? 0);
-  }, 0);
+function statusFromScore(score: number): StatusColor {
+  if (score <= 1.4) return "green";
+  if (score <= 2.2) return "yellow";
+  return "red";
 }
 
-function applyFlagScore(
-  patient: Patient,
-  profile: ClassProfile | null,
-  targetSubfactorId: string
+function computeSubfactorScore(
+  patient: PatientProfile,
+  subfactor: SubfactorConfig,
+  impact: Record<string, number> | null
 ): number {
-  if (!profile?.flags?.length) {
-    return 0;
-  }
+  const baseline = baselineRisk(patient, subfactor.subfactorId);
+  const impactValue = impact?.[subfactor.parameterKey] ?? 0;
 
-  return profile.flags.reduce((sum, flag) => {
-    if (flag.subfactorId !== targetSubfactorId) {
-      return sum;
-    }
-
-    const trigger = flag.trigger.patient;
-    const isMatch =
-      (trigger.egfrLt !== undefined ? patient.egfr < trigger.egfrLt : true) &&
-      (trigger.recurrentGenitalInfections !== undefined
-        ? patient.recurrentGenitalInfections === trigger.recurrentGenitalInfections
-        : true) &&
-      (trigger.gastroparesis !== undefined
-        ? patient.gastroparesis === trigger.gastroparesis
-        : true) &&
-      (trigger.heartFailure !== undefined
-        ? patient.heartFailure === trigger.heartFailure
-        : true);
-
-    if (!isMatch) {
-      return sum;
-    }
-
-    if (flag.severity === "red") {
-      return sum + 2;
-    }
-    if (flag.severity === "yellow") {
-      return sum + 1;
-    }
-    return sum - 1;
-  }, 0);
-}
-
-export function computeGroupStatuses(
-  config: TheraScapeConfig,
-  patient: Patient,
-  selectedClassId: string | null
-): GroupStatus[] {
-  const profile = getClassProfile(config, selectedClassId);
-
-  return config.uiTaxonomy.groups.map((group) => {
-    const baseline = scorePatientBaseline(patient, group.groupId);
-    const impact = computeImpactScore(groupParameterMap[group.groupId] ?? [], profile);
-    return {
-      groupId: group.groupId,
-      status: toStatus(baseline + impact)
-    };
-  });
+  return clamp(baseline - impactValue * 0.7, 0.5, 3);
 }
 
 export function computeSubfactorStatuses(
   config: TheraScapeConfig,
-  patient: Patient,
-  selectedClassId: string | null,
+  patient: PatientProfile,
+  selectedDrugId: string | undefined,
   groupId: string
 ): SubfactorStatus[] {
-  const profile = getClassProfile(config, selectedClassId);
-  const group = config.uiTaxonomy.groups.find((item) => item.groupId === groupId);
-
+  const group = config.reasoningGroups.find((entry) => entry.groupId === groupId);
   if (!group) {
     return [];
   }
 
-  return group.subfactors.map((subfactor) => {
-    const baseGroupScore = scorePatientBaseline(patient, groupId);
-    const impact = computeImpactScore(subfactorParameterMap[subfactor.subfactorId] ?? [], profile);
-    const flags = applyFlagScore(patient, profile, subfactor.subfactorId);
+  const selected = getDrugImpact(config, selectedDrugId);
 
+  return group.subfactors.map((subfactor) => {
+    const score = computeSubfactorScore(patient, subfactor, selected?.impact ?? null);
     return {
       subfactorId: subfactor.subfactorId,
       label: subfactor.label,
-      status: toStatus(baseGroupScore + impact + flags)
+      score,
+      status: statusFromScore(score)
+    };
+  });
+}
+
+export function computeGroupStatuses(
+  config: TheraScapeConfig,
+  patient: PatientProfile,
+  selectedDrugId?: string
+): GroupStatus[] {
+  return config.reasoningGroups.map((group) => {
+    const subfactors = computeSubfactorStatuses(config, patient, selectedDrugId, group.groupId);
+    const mean = subfactors.reduce((sum, current) => sum + current.score, 0) / Math.max(1, subfactors.length);
+
+    return {
+      groupId: group.groupId,
+      label: group.label,
+      status: statusFromScore(mean),
+      score: mean
     };
   });
 }
@@ -174,48 +138,34 @@ export function computeSubfactorStatuses(
 export function getExplanation(
   config: TheraScapeConfig,
   subfactorId: string,
-  selectedClassId: string | null,
-  patient: Patient
-): ExplanationData | null {
-  for (const group of config.uiTaxonomy.groups) {
-    const found = group.subfactors.find((subfactor) => subfactor.subfactorId === subfactorId);
-    if (!found) {
-      continue;
+  selectedDrugId?: string
+) {
+  for (const group of config.reasoningGroups) {
+    const subfactor = group.subfactors.find((entry) => entry.subfactorId === subfactorId);
+    if (subfactor) {
+      const selected = getDrugImpact(config, selectedDrugId);
+      const selectedLine = selected
+        ? `Current selection: ${selected.drugLabel} from ${selected.classLabel}.`
+        : "No medication is selected yet; reason from baseline risk first.";
+
+      return {
+        group: group.label,
+        subfactor: subfactor.label,
+        summary: [...subfactor.explanation.summary, selectedLine],
+        prompt: subfactor.explanation.prompt,
+        whyThisMatters: subfactor.explanation.whyThisMatters,
+        hints: subfactor.explanation.hints
+      };
     }
-
-    let note: string | undefined;
-    const profile = getClassProfile(config, selectedClassId);
-
-    if (profile?.flags?.length) {
-      const matchedFlag = profile.flags.find((flag) => {
-        if (flag.subfactorId !== subfactorId) {
-          return false;
-        }
-        const trigger = flag.trigger.patient;
-        return (
-          (trigger.egfrLt !== undefined ? patient.egfr < trigger.egfrLt : true) &&
-          (trigger.recurrentGenitalInfections !== undefined
-            ? patient.recurrentGenitalInfections === trigger.recurrentGenitalInfections
-            : true) &&
-          (trigger.gastroparesis !== undefined
-            ? patient.gastroparesis === trigger.gastroparesis
-            : true) &&
-          (trigger.heartFailure !== undefined
-            ? patient.heartFailure === trigger.heartFailure
-            : true)
-        );
-      });
-
-      if (matchedFlag) {
-        note = matchedFlag.message;
-      }
-    }
-
-    return {
-      ...found.explainTemplate,
-      note
-    };
   }
 
   return null;
+}
+
+export function getGroup(config: TheraScapeConfig, groupId: string): GroupConfig | undefined {
+  return config.reasoningGroups.find((entry) => entry.groupId === groupId);
+}
+
+export function getDrugForClass(config: TheraScapeConfig, classId: string) {
+  return config.drugLibrary.classes.find((entry) => entry.classId === classId);
 }

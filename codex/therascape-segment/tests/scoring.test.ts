@@ -1,46 +1,54 @@
 import { describe, expect, it } from "vitest";
 import configData from "../src/data/therascape.config.json";
-import {
-  computeGroupStatuses,
-  computeSubfactorStatuses,
-  getExplanation
-} from "../src/logic/reasoningEngine";
+import { compareReasoning } from "../src/logic/comparator";
+import { computeGroupStatuses, computeSubfactorStatuses, getExplanation } from "../src/logic/reasoningEngine";
 import { computeReasoningScore } from "../src/logic/scoring";
 import type { TheraScapeConfig } from "../src/logic/types";
 
 const config = configData as TheraScapeConfig;
 
-describe("reasoning model", () => {
-  it("computes group and subfactor status for a selected class", () => {
-    const caseA = config.cases[0];
+describe("reasoning engine", () => {
+  it("computes group statuses and subfactor statuses", () => {
+    const caseOne = config.cases[0];
+    const groups = computeGroupStatuses(config, caseOne.patient, "sglt2_emp");
+    const cardiorenal = groups.find((entry) => entry.groupId === "cardiorenal");
 
-    const groups = computeGroupStatuses(config, caseA.patient, "sglt2");
-    const subfactors = computeSubfactorStatuses(config, caseA.patient, "sglt2", "cardiorenal");
+    const subfactors = computeSubfactorStatuses(config, caseOne.patient, "sglt2_emp", "cardiorenal");
+    const ckd = subfactors.find((entry) => entry.subfactorId === "ckd");
 
-    expect(groups.some((item) => item.groupId === "cardiorenal")).toBe(true);
-    expect(subfactors.some((item) => item.subfactorId === "ckd")).toBe(true);
+    expect(cardiorenal).toBeDefined();
+    expect(ckd).toBeDefined();
+    expect(["green", "yellow", "red"]).toContain(ckd?.status);
   });
 
-  it("returns explanation with hints", () => {
-    const caseB = config.cases[1];
-    const explanation = getExplanation(config, "hypo_risk", "su", caseB.patient);
+  it("returns explanation with hint ladder", () => {
+    const explanation = getExplanation(config, "hypoglycemia_history", "dpp4_sita");
 
-    expect(explanation?.title).toBe("Hypoglycemia risk");
+    expect(explanation?.subfactor).toBe("Hypoglycemia risk profile");
     expect(explanation?.hints.length).toBeGreaterThan(1);
   });
+});
 
-  it("scores selected drivers and subfactors", () => {
+describe("scoring", () => {
+  it("scores selected groups and subfactors", () => {
     const score = computeReasoningScore(
-      ["glycemia", "weight"],
-      ["a1c_gap", "weight_loss_goal", "extra"],
-      ["glycemia", "weight", "hypoglycemia"],
-      ["a1c_gap", "weight_loss_goal"]
+      ["glycemia", "cardiorenal"],
+      ["a1c_gap", "heart_failure", "extra_node"],
+      ["glycemia", "cardiorenal", "hypoglycemia"],
+      ["a1c_gap", "heart_failure"]
     );
 
     expect(score.groupScore).toBe(67);
     expect(score.subfactorScore).toBe(100);
-    expect(score.totalScore).toBe(82);
+    expect(score.totalScore).toBe(84);
     expect(score.missingGroups).toContain("hypoglycemia");
-    expect(score.extraSubfactors).toContain("extra");
+    expect(score.extraSubfactors).toContain("extra_node");
+  });
+
+  it("computes calibration label", () => {
+    const feedback = compareReasoning(["glycemia"], ["a1c_gap"], ["glycemia", "weight"], ["a1c_gap"], 95);
+
+    expect(feedback.score.totalScore).toBe(75);
+    expect(feedback.calibrationLabel).toBe("overconfident");
   });
 });

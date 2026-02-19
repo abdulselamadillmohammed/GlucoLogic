@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160">
+  <rect width="240" height="160" fill="#f7fbff"/>
+  <path d="M38 88 C64 46,116 40,152 66 C174 82,188 106,194 122" fill="none" stroke="#3DA9FC" stroke-width="3"/>
+  <ellipse cx="112" cy="82" rx="48" ry="26" fill="none" stroke="#0FB9B1" stroke-width="3"/>
+  <circle cx="92" cy="82" r="3" fill="#0FB9B1"/>
+  <circle cx="104" cy="76" r="3" fill="#0FB9B1"/>
+  <circle cx="118" cy="84" r="3" fill="#0FB9B1"/>
+  <circle cx="131" cy="78" r="3" fill="#0FB9B1"/>
+  <path d="M136 80 L176 64" stroke="#3DA9FC" stroke-width="2"/>
+  <path d="M136 88 L176 90" stroke="#3DA9FC" stroke-width="2"/>
+  <path d="M136 96 L176 118" stroke="#3DA9FC" stroke-width="2"/>
+  <text x="12" y="24" fill="#2E3A8C" font-size="12" font-family="Arial">Beta-cell insulin release</text>
+</svg>

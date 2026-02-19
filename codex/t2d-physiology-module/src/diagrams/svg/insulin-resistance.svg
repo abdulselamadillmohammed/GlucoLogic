@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 220">
+  <rect width="720" height="220" fill="#070d1b"/>
+  <text x="20" y="32" fill="#8ce9ff" font-size="16">Insulin Resistance</text>
+  <rect x="40" y="90" width="180" height="52" rx="12" fill="#3b1c44" stroke="#f472b6"/>
+  <text x="50" y="122" fill="#ffe8f8" font-size="11">Stressors: visceral fat / inflammation</text>
+  <rect x="280" y="90" width="160" height="52" rx="12" fill="#1b2f4b" stroke="#67e8f9"/>
+  <text x="305" y="122" fill="#d8f6ff" font-size="11">Insulin receptor</text>
+  <rect x="500" y="90" width="150" height="52" rx="12" fill="#1b2f4b" stroke="#67e8f9"/>
+  <text x="525" y="122" fill="#d8f6ff" font-size="11">GLUT4 uptake</text>
+</svg>

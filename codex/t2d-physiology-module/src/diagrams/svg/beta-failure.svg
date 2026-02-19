@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 220">
+  <rect width="720" height="220" fill="#070d1b"/>
+  <text x="20" y="32" fill="#8ce9ff" font-size="16">Beta-cell Compensation to Failure</text>
+  <path d="M70 165 C170 70, 260 70, 340 130 C430 190, 540 190, 650 95" fill="none" stroke="#67e8f9" stroke-width="3"/>
+  <text x="60" y="188" fill="#d8f6ff" font-size="11">Early compensation</text>
+  <text x="300" y="150" fill="#ffd8e7" font-size="11">Prediabetes</text>
+  <text x="580" y="87" fill="#ffd8e7" font-size="11">Overt T2D</text>
+</svg>

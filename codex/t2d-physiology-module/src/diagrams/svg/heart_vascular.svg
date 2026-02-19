@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160">
+  <rect width="240" height="160" fill="#f7fbff"/>
+  <path d="M108 122 C52 86,54 44,92 40 C112 38,124 54,124 68 C124 56,136 38,156 40 C192 44,194 86,138 122" fill="none" stroke="#0FB9B1" stroke-width="3"/>
+  <path d="M44 124 L196 124" stroke="#3DA9FC" stroke-width="3"/>
+  <line x1="56" y1="124" x2="56" y2="132" stroke="#3DA9FC"/>
+  <line x1="76" y1="124" x2="76" y2="132" stroke="#3DA9FC"/>
+  <line x1="96" y1="124" x2="96" y2="132" stroke="#3DA9FC"/>
+  <line x1="116" y1="124" x2="116" y2="132" stroke="#3DA9FC"/>
+  <text x="66" y="24" fill="#2E3A8C" font-size="12" font-family="Arial">Vascular risk pathway</text>
+</svg>

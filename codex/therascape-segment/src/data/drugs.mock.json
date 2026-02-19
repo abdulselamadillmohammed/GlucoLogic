@@ -1,86 +1,72 @@
 [
   {
-    "drugId": "glp1",
-    "name": "GLP-1 Mimetic",
-    "class": "Incretin",
-    "effects": {
-      "cardiovascularRisk": -2,
-      "renalFunction": -1,
-      "weightBmi": -3,
-      "hypoglycemiaRisk": -1,
-      "costAccess": 2,
-      "a1cGap": -2
-    },
-    "notes": "Strong weight and A1C impact"
-  },
-  {
-    "drugId": "sglt2",
-    "name": "SGLT2 Agent",
-    "class": "SGLT2",
-    "effects": {
-      "cardiovascularRisk": -2,
-      "renalFunction": -2,
-      "weightBmi": -1,
-      "hypoglycemiaRisk": -1,
-      "costAccess": 1,
-      "a1cGap": -1
-    },
-    "notes": "Cardiorenal tilt"
-  },
-  {
-    "drugId": "dpp4",
-    "name": "DPP-4 Agent",
-    "class": "DPP-4",
-    "effects": {
-      "cardiovascularRisk": 0,
-      "renalFunction": 0,
-      "weightBmi": 0,
-      "hypoglycemiaRisk": -1,
-      "costAccess": 1,
-      "a1cGap": -1
-    },
-    "notes": "Lower hypoglycemia burden"
-  },
-  {
-    "drugId": "metformin",
-    "name": "Metformin",
+    "drugId": "metformin_er",
+    "name": "Metformin ER",
     "class": "Biguanide",
     "effects": {
-      "cardiovascularRisk": -1,
-      "renalFunction": 1,
-      "weightBmi": -1,
-      "hypoglycemiaRisk": -1,
-      "costAccess": -2,
-      "a1cGap": -2
+      "Cardiovascular Risk": -1,
+      "Renal Function": 0,
+      "Weight/BMI": -1,
+      "Hypoglycemia Risk": -1,
+      "Cost/Access": -2,
+      "A1C Gap": -2
     },
-    "notes": "Cost-friendly baseline"
+    "notes": "Balanced first-line style option"
   },
   {
-    "drugId": "sulfonylurea",
-    "name": "Sulfonylurea",
-    "class": "Secretagogue",
+    "drugId": "sglt2_a",
+    "name": "SGLT2 Agent A",
+    "class": "SGLT2",
     "effects": {
-      "cardiovascularRisk": 1,
-      "renalFunction": 1,
-      "weightBmi": 1,
-      "hypoglycemiaRisk": 3,
-      "costAccess": -2,
-      "a1cGap": -2
+      "Cardiovascular Risk": -2,
+      "Renal Function": -2,
+      "Weight/BMI": -1,
+      "Hypoglycemia Risk": -1,
+      "Cost/Access": 2,
+      "A1C Gap": -2
     },
-    "notes": "Inexpensive but hypo risk"
+    "notes": "Strong cardiorenal direction"
   },
   {
-    "drugId": "insulin",
-    "name": "Basal Insulin",
-    "class": "Insulin",
+    "drugId": "glp1_a",
+    "name": "GLP-1 Agent A",
+    "class": "GLP-1",
     "effects": {
-      "cardiovascularRisk": 0,
-      "renalFunction": 0,
-      "weightBmi": 2,
-      "hypoglycemiaRisk": 3,
-      "costAccess": 1,
-      "a1cGap": -3
+      "Cardiovascular Risk": -1,
+      "Renal Function": 0,
+      "Weight/BMI": -3,
+      "Hypoglycemia Risk": -1,
+      "Cost/Access": 3,
+      "A1C Gap": -2
     },
-    "notes": "High A1C effect with tradeoffs"
+    "notes": "Weight-forward profile"
+  },
+  {
+    "drugId": "dpp4_a",
+    "name": "DPP-4 Agent A",
+    "class": "DPP-4",
+    "effects": {
+      "Cardiovascular Risk": 0,
+      "Renal Function": 0,
+      "Weight/BMI": 0,
+      "Hypoglycemia Risk": -1,
+      "Cost/Access": 1,
+      "A1C Gap": -1
+    },
+    "notes": "Neutral profile"
+  },
+  {
+    "drugId": "su_glip",
+    "name": "SU Agent",
+    "class": "Sulfonylurea",
+    "effects": {
+      "Cardiovascular Risk": 1,
+      "Renal Function": 1,
+      "Weight/BMI": 1,
+      "Hypoglycemia Risk": 3,
+      "Cost/Access": -2,
+      "A1C Gap": -2
+    },
+    "notes": "Cost-favorable but hypo tradeoff"
   }
 ]

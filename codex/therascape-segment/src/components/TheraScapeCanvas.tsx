@@ -1,5 +1,9 @@
-import type { PropsWithChildren } from "react";
+import type { ReactNode } from "react";
 
-export function TheraScapeCanvas({ children }: PropsWithChildren) {
-  return <div className="therascape-canvas">{children}</div>;
+interface TheraScapeCanvasProps {
+  children: ReactNode;
+}
+
+export function TheraScapeCanvas({ children }: TheraScapeCanvasProps) {
+  return <section className="therascape-canvas">{children}</section>;
 }

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160">
+  <rect width="240" height="160" fill="#f7fbff"/>
+  <path d="M84 42 C58 42,44 64,44 84 C44 110,64 128,84 128 C104 128,124 112,124 84 C124 62,108 42,84 42 Z" fill="none" stroke="#3DA9FC" stroke-width="3"/>
+  <path d="M156 42 C132 42,116 62,116 84 C116 110,136 128,156 128 C176 128,196 112,196 84 C196 64,182 42,156 42 Z" fill="none" stroke="#0FB9B1" stroke-width="3"/>
+  <line x1="82" y1="56" x2="82" y2="116" stroke="#6EE7B7" stroke-width="2"/>
+  <line x1="154" y1="56" x2="154" y2="116" stroke="#6EE7B7" stroke-width="2"/>
+  <text x="60" y="24" fill="#2E3A8C" font-size="12" font-family="Arial">Filtration and glucose handling</text>
+</svg>

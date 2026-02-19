@@ -1,0 +1,246 @@
+{
+  "meta": {
+    "name": "t2d-physiology-education-pack",
+    "version": "1.0.0",
+    "scope": "Educational physiology simulation only; not clinical advice."
+  },
+  "sliders": {
+    "carbs_g": {
+      "label": "Carbs (g)",
+      "min": 0,
+      "max": 120,
+      "step": 1,
+      "mapping_notes": "Mapped to model carbohydrate load by carbs_g / 120.",
+      "provenance": {
+        "source_name": "Local module educational simplification",
+        "page_or_figure_reference": "TODO: add page reference",
+        "note": "Range selected for classroom exploration and smooth curve response."
+      }
+    },
+    "activity_min": {
+      "label": "Activity (min)",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "mapping_notes": "Mapped to uptake support by activity_min / 60.",
+      "provenance": {
+        "source_name": "Local module educational simplification",
+        "page_or_figure_reference": "TODO: add page reference",
+        "note": "Represents moderate activity minutes in a simple learning window."
+      }
+    }
+  },
+  "model_constants": {
+    "baseline_glucose_mgdl_default": 95,
+    "time_window_hours": 6,
+    "time_step_hours": 0.25,
+    "plausible_ranges": {
+      "glucose_mgdl": {
+        "min": 70,
+        "max": 320
+      },
+      "insulin_arb": {
+        "min": 4,
+        "max": 90
+      },
+      "risk_score": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "normalization_factors": {
+      "carbs_divisor_g": 120,
+      "activity_divisor_min": 60
+    },
+    "provenance": {
+      "source_name": "Local deterministic model assumptions",
+      "page_or_figure_reference": "TODO: add page reference",
+      "note": "Constants tuned for smooth educational behavior and monotonic response."
+    }
+  },
+  "thresholds": {
+    "glucose": {
+      "label": "Glucose",
+      "unit": "mg/dL",
+      "direction": "higherIsWorse",
+      "warn": 140,
+      "bad": 180,
+      "bands": {
+        "fasting_warn": 100,
+        "fasting_bad": 126,
+        "post_meal_warn": 180,
+        "post_meal_bad": 220
+      },
+      "provenance": {
+        "source_name": "Provided source-derived UI threshold placeholders",
+        "page_or_figure_reference": "TODO: add page reference",
+        "note": "Used for educational banding and status chips only."
+      }
+    },
+    "insulin_level": {
+      "label": "Insulin level",
+      "unit": "arb",
+      "direction": "lowerIsWorse",
+      "warn": 0.45,
+      "bad": 0.3,
+      "provenance": {
+        "source_name": "Local model mapping",
+        "page_or_figure_reference": "TODO: add page reference",
+        "note": "Model-unit thresholds, not lab units."
+      }
+    },
+    "insulin_effectiveness": {
+      "label": "Insulin effectiveness",
+      "unit": "index",
+      "direction": "lowerIsWorse",
+      "warn": 0.65,
+      "bad": 0.45,
+      "provenance": {
+        "source_name": "Local model mapping",
+        "page_or_figure_reference": "TODO: add page reference",
+        "note": "Index threshold for educational interpretation."
+      }
+    },
+    "hepatic_output": {
+      "label": "Hepatic output",
+      "unit": "index",
+      "direction": "higherIsWorse",
+      "warn": 0.5,
+      "bad": 0.65,
+      "provenance": {
+        "source_name": "Local model mapping",
+        "page_or_figure_reference": "TODO: add page reference",
+        "note": "Higher index means less suppression."
+      }
+    },
+    "peripheral_uptake": {
+      "label": "Peripheral uptake",
+      "unit": "index",
+      "direction": "lowerIsWorse",
+      "warn": 0.6,
+      "bad": 0.45,
+      "provenance": {
+        "source_name": "Local model mapping",
+        "page_or_figure_reference": "TODO: add page reference",
+        "note": "Lower index indicates weaker uptake."
+      }
+    },
+    "risk_score": {
+      "label": "Risk score",
+      "unit": "index",
+      "direction": "higherIsWorse",
+      "warn": 0.35,
+      "bad": 0.65,
+      "ranges": {
+        "low_max": 0.34,
+        "moderate_max": 0.64,
+        "high_max": 1
+      },
+      "provenance": {
+        "source_name": "Provided source-derived UI threshold placeholders",
+        "page_or_figure_reference": "TODO: add page reference",
+        "note": "For didactic organ risk coding."
+      }
+    },
+    "insulin_sensitivity": {
+      "label": "Insulin sensitivity",
+      "unit": "index",
+      "direction": "lowerIsWorse",
+      "warn": 0.7,
+      "bad": 0.5,
+      "provenance": {
+        "source_name": "Local model mapping",
+        "page_or_figure_reference": "TODO: add page reference",
+        "note": "Index threshold for scenario control status."
+      }
+    },
+    "beta_cell_function": {
+      "label": "Beta-cell function",
+      "unit": "index",
+      "direction": "lowerIsWorse",
+      "warn": 0.7,
+      "bad": 0.45,
+      "provenance": {
+        "source_name": "Local model mapping",
+        "page_or_figure_reference": "TODO: add page reference",
+        "note": "Index threshold for scenario control status."
+      }
+    },
+    "inflammation": {
+      "label": "Inflammation",
+      "unit": "index",
+      "direction": "higherIsWorse",
+      "warn": 0.45,
+      "bad": 0.65,
+      "provenance": {
+        "source_name": "Local model mapping",
+        "page_or_figure_reference": "TODO: add page reference",
+        "note": "Index threshold for scenario control status."
+      }
+    },
+    "insulin_response": {
+      "strong_min": 0.75,
+      "moderate_min": 0.5,
+      "provenance": {
+        "source_name": "Local model mapping",
+        "page_or_figure_reference": "TODO: add page reference",
+        "note": "Classifies response by beta-cell function."
+      }
+    }
+  },
+  "definitions": {
+    "insulin_sensitivity": {
+      "text": "Insulin sensitivity reflects how strongly tissues respond to insulin signaling. Lower values require more insulin to produce similar glucose lowering.",
+      "provenance": {
+        "source_name": "Provided source concept summary",
+        "page_or_figure_reference": "TODO: add page reference",
+        "note": "Educational definition used in tooltips."
+      }
+    },
+    "beta_cell_function": {
+      "text": "Beta-cell function represents the pancreas' ability to secrete insulin over time. Declining function weakens peak response and slows glucose recovery.",
+      "provenance": {
+        "source_name": "Provided source concept summary",
+        "page_or_figure_reference": "TODO: add page reference",
+        "note": "Educational definition used in chart callouts."
+      }
+    },
+    "hepatic_glucose_output": {
+      "text": "Hepatic glucose output is liver-derived glucose entering circulation. If suppression is weak, fasting and pre-meal glucose remain elevated.",
+      "provenance": {
+        "source_name": "Provided source concept summary",
+        "page_or_figure_reference": "TODO: add page reference",
+        "note": "Displayed in live status reasoning."
+      }
+    },
+    "peripheral_uptake": {
+      "text": "Peripheral uptake approximates glucose removal by muscle and other tissues. More activity and stronger signaling increase this pathway.",
+      "provenance": {
+        "source_name": "Provided source concept summary",
+        "page_or_figure_reference": "TODO: add page reference",
+        "note": "Displayed in live status reasoning."
+      }
+    }
+  },
+  "explanations": {
+    "what_this_graph_shows": {
+      "normal": "This graph shows how meal carbohydrate load raises glucose, how insulin responds, and how quickly glucose returns toward baseline. Use it to compare peak height, response timing, and recovery slope.",
+      "resistance": "This graph shows the mismatch between rising glucose and less effective insulin action when resistance increases. Watch for a higher peak and slower return toward baseline.",
+      "beta": "This graph shows how declining beta-cell capacity weakens insulin response and lengthens glucose recovery. Compare peak timing and whether baseline is regained within the window.",
+      "complications": "This graph shows persistent glycemic burden over time, which feeds downstream risk scores. Use it as the signal source behind organ risk trajectories.",
+      "provenance": {
+        "source_name": "Local educational synthesis",
+        "page_or_figure_reference": "TODO: add page reference",
+        "note": "Section-level explainer text."
+      }
+    },
+    "why_glucose_changed_template": {
+      "text": "Glucose changed because carbohydrate load was {carbs_g}g, activity was {activity_min} min, insulin sensitivity was {insulin_sensitivity_pct}%, and beta-cell function was {beta_cell_function_pct}%. Higher carbs raises the peak, while stronger uptake and insulin response lower the peak and shorten recovery.",
+      "provenance": {
+        "source_name": "Local deterministic model explanation template",
+        "page_or_figure_reference": "TODO: add page reference",
+        "note": "Used for chart reasoning panel."
+      }
+    }
+  }
+}
