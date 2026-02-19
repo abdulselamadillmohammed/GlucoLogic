@@ -8,10 +8,10 @@ import type { CaseEntry, CasesDataset, DrugEntry, DrugsDataset, Effect, Subfacto
 import { CaseSelectorBar } from "./CaseSelectorBar";
 import { DrugClassesPanel } from "./DrugClassesPanel";
 import { GlucoCoachChat } from "./GlucoCoachChat";
-import { HistoryModal } from "./HistoryModal";
+import { NotebookPopover } from "./NotebookPopover";
 import { PatientCard } from "./PatientCard";
+import { PatientHistoryModal } from "./PatientHistoryModal";
 import { ReasoningCoach } from "./ReasoningCoach";
-import { BubbleInfoModal } from "./BubbleInfoModal";
 import { SubfactorBubbleRing } from "./SubfactorBubbleRing";
 import { SubfactorPanel } from "./SubfactorPanel";
 
@@ -21,7 +21,7 @@ const STORAGE_KEY = "therascape-workshop-state";
 
 interface WorkshopState {
   selectedCaseId: string;
-  selectedClassId: string;
+  selectedClassId: string | null;
   selectedDrugIds: string[];
   selectedSubfactor: Subfactor | null;
   reasoningText: string;
@@ -53,7 +53,7 @@ export function WorkshopLayout() {
   const [state, setState] = useState<WorkshopState>(() =>
     readStorage<WorkshopState>(STORAGE_KEY, {
       selectedCaseId: cases[0].caseId,
-      selectedClassId: drugs.classes[0].classId,
+      selectedClassId: null,
       selectedDrugIds: [],
       selectedSubfactor: null,
       reasoningText: "",
@@ -62,13 +62,16 @@ export function WorkshopLayout() {
   );
   const [showHistory, setShowHistory] = useState(false);
   const [infoSubfactor, setInfoSubfactor] = useState<Subfactor | null>(null);
+  const [animationTick, setAnimationTick] = useState(0);
   const allowedText = useMemo(() => flattenAllowedText(drugs, cases), []);
 
   const orderedCases = state.randomizedCaseOrder
     .map((caseId) => cases.find((entry) => entry.caseId === caseId))
     .filter((entry): entry is CaseEntry => Boolean(entry));
   const selectedCase = orderedCases.find((entry) => entry.caseId === state.selectedCaseId) ?? orderedCases[0];
-  const selectedClass = drugs.classes.find((cls) => cls.classId === state.selectedClassId) ?? drugs.classes[0];
+  const selectedClass = state.selectedClassId
+    ? drugs.classes.find((cls) => cls.classId === state.selectedClassId) ?? null
+    : null;
   const orderedClassIds = ["metformin", "sglt2", "glp1", "gip_glp1", "dpp4", "sulfonylureas", "tzd", "insulin"];
   const visibleClasses = orderedClassIds
     .map((classId) => drugs.classes.find((cls) => cls.classId === classId))
@@ -110,6 +113,10 @@ export function WorkshopLayout() {
     writeStorage(STORAGE_KEY, state);
   }, [state]);
 
+  useEffect(() => {
+    setAnimationTick((value) => value + 1);
+  }, [currentDrug?.drugId]);
+
   const onAdministerDrug = (drugId: string) => {
     setState((prev) => ({
       ...prev,
@@ -139,7 +146,6 @@ export function WorkshopLayout() {
     }));
   };
 
-  // datasetGuard hook point
   ensureDatasetClaim(selectedCase.title, allowedText, "workshop.caseTitle");
 
   return (
@@ -156,24 +162,39 @@ export function WorkshopLayout() {
         <div className="workshop-grid">
           <DrugClassesPanel
             classes={visibleClasses}
-            selectedClassId={selectedClass.classId}
-            onSelectClass={(classId) => setState((prev) => ({ ...prev, selectedClassId: classId }))}
+            selectedClassId={state.selectedClassId}
+            onSelectClass={(classId) =>
+              setState((prev) => ({
+                ...prev,
+                selectedClassId: prev.selectedClassId === classId ? null : classId
+              }))
+            }
             onAdministerDrug={onAdministerDrug}
           />
+
           <section className="glass panel-center">
             <SubfactorBubbleRing
               effects={bubbleEffects}
               selectedSubfactor={state.selectedSubfactor}
+              animationTick={animationTick}
+              centerContent={
+                <PatientCard
+                  caseEntry={selectedCase}
+                  selectedDrugs={selectedDrugs}
+                  onRemoveDrug={(drugId) =>
+                    setState((prev) => ({
+                      ...prev,
+                      selectedDrugIds: prev.selectedDrugIds.filter((id) => id !== drugId)
+                    }))
+                  }
+                  onOpenHistory={() => setShowHistory(true)}
+                />
+              }
               onSelectSubfactor={(subfactor) => setState((prev) => ({ ...prev, selectedSubfactor: subfactor }))}
               onOpenInfo={setInfoSubfactor}
             />
-            <PatientCard
-              caseEntry={selectedCase}
-              selectedDrugs={selectedDrugs}
-              onRemoveDrug={(drugId) => setState((prev) => ({ ...prev, selectedDrugIds: prev.selectedDrugIds.filter((id) => id !== drugId) }))}
-              onOpenHistory={() => setShowHistory(true)}
-            />
           </section>
+
           <section className="panel-right">
             <ReasoningCoach
               selectedSubfactor={state.selectedSubfactor}
@@ -199,9 +220,9 @@ export function WorkshopLayout() {
         sourceIndex={drugs.sourcesIndex}
       />
 
-      {showHistory ? <HistoryModal caseEntry={selectedCase} onClose={() => setShowHistory(false)} /> : null}
+      {showHistory ? <PatientHistoryModal caseEntry={selectedCase} onClose={() => setShowHistory(false)} /> : null}
       {infoSubfactor ? (
-        <BubbleInfoModal
+        <NotebookPopover
           subfactor={infoSubfactor}
           selectedDrug={currentDrug}
           selectedClass={selectedClass}
@@ -213,7 +234,7 @@ export function WorkshopLayout() {
         <h3>Sources</h3>
         <details>
           <summary>Show class and drug sources</summary>
-          {selectedClass.drugs.map((drug) => (
+          {(selectedClass?.drugs ?? []).map((drug) => (
             <article key={drug.drugId}>
               <strong>{drug.genericName}</strong>
               <ul>

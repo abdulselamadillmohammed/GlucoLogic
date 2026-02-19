@@ -1,0 +1,51 @@
+{
+  "hypoglycemia": {
+    "definition": "Hypoglycemia means blood glucose is below a healthy range for the person.",
+    "sources": [
+      {
+        "name": "NIDDK",
+        "ref": "https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/low-blood-glucose-hypoglycemia"
+      },
+      {
+        "name": "Mayo Clinic",
+        "ref": "https://www.mayoclinic.org/diseases-conditions/hypoglycemia/symptoms-causes/syc-20373685"
+      }
+    ]
+  },
+  "glycemia": {
+    "definition": "Glycemia refers to glucose in the blood, also called blood sugar.",
+    "sources": [
+      {
+        "name": "National Cancer Institute Dictionary",
+        "ref": "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/glycemia"
+      }
+    ]
+  },
+  "cardiorenal_health": {
+    "definition": "Cardiorenal syndrome describes heart or kidney problems that can worsen function in the other organ system.",
+    "sources": [
+      {
+        "name": "NCBI Bookshelf StatPearls",
+        "ref": "https://www.ncbi.nlm.nih.gov/books/NBK542305/"
+      }
+    ]
+  },
+  "safety_tolerability": {
+    "definition": "Drug tolerability is the extent to which adverse effects can be tolerated by a patient.",
+    "sources": [
+      {
+        "name": "PubMed",
+        "ref": "https://pubmed.ncbi.nlm.nih.gov/1744840/"
+      }
+    ]
+  },
+  "weight": {
+    "type": "general_ui_label",
+    "sources": []
+  },
+  "access_cost": {
+    "definition": "Access/cost represents practical affordability and coverage constraints that affect whether therapy can be obtained.",
+    "type": "general_ui_label",
+    "sources": []
+  }
+}

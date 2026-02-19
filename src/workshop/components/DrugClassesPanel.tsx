@@ -14,7 +14,7 @@ const CLASS_ORDER: Array<{ classId: string; className: string }> = [
 
 interface Props {
   classes: DrugClass[];
-  selectedClassId: string;
+  selectedClassId: string | null;
   onSelectClass: (classId: string) => void;
   onAdministerDrug: (drugId: string) => void;
 }
@@ -58,8 +58,9 @@ export function DrugClassesPanel({ classes, selectedClassId, onSelectClass, onAd
                   <strong>{className}</strong>
                   <small>{active ? "Focus active" : "Click to focus"}</small>
                 </span>
+                <span className={`class-chevron ${active ? "open" : ""}`}>v</span>
               </button>
-              {active ? (
+              <div className={`drug-list-wrap ${active ? "open" : ""}`}>
                 <div className="drug-list">
                   {drugClass?.drugs.length ? (
                     drugClass.drugs.map((drug) => (
@@ -69,7 +70,7 @@ export function DrugClassesPanel({ classes, selectedClassId, onSelectClass, onAd
                     <p className="empty-drugs">Not stated in dataset.</p>
                   )}
                 </div>
-              ) : null}
+              </div>
             </div>
           );
         })}
