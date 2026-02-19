@@ -1,0 +1,1927 @@
+{
+  "generatedAt": "2026-02-19T18:39:46.001Z",
+  "note": "Auto-generated from local PDFs with conservative fallback. Any missing field is set to 'Not stated in dataset' until manually patched.",
+  "classes": [
+    {
+      "classId": "biguanide",
+      "className": "Biguanide",
+      "classSummary": {
+        "glucoseLoweringEfficacy": "Not stated in dataset",
+        "hypoglycemiaRisk": "Not stated in dataset",
+        "weightEffect": "Not stated in dataset",
+        "cvEffects": "Not stated in dataset",
+        "kidneyEffects": "Not stated in dataset",
+        "mashEffects": "Not stated in dataset",
+        "keyConsiderations": [
+          "Not stated in dataset"
+        ]
+      },
+      "classSummarySources": [
+        {
+          "pdf_file": "dc26s009.pdf",
+          "page_number": null,
+          "table_or_section": "Heuristic text match; TODO: add exact section"
+        }
+      ],
+      "drugs": [
+        {
+          "genericName": "Metformin",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "Heuristic text match; TODO: add exact section"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "classId": "sulfonylureas_2nd_gen",
+      "className": "Sulfonylureas (2nd gen)",
+      "classSummary": {
+        "glucoseLoweringEfficacy": "Not stated in dataset",
+        "hypoglycemiaRisk": "Not stated in dataset",
+        "weightEffect": "Not stated in dataset",
+        "cvEffects": "Not stated in dataset",
+        "kidneyEffects": "Not stated in dataset",
+        "mashEffects": "Not stated in dataset",
+        "keyConsiderations": [
+          "Not stated in dataset"
+        ]
+      },
+      "classSummarySources": [
+        {
+          "pdf_file": "dc26s009.pdf",
+          "page_number": null,
+          "table_or_section": "TODO: add table/section reference"
+        },
+        {
+          "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+          "page_number": null,
+          "table_or_section": "TODO: add table/section reference"
+        }
+      ],
+      "drugs": [
+        {
+          "genericName": "Glimepiride",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Glipizide (IR)",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Glipizide (XL/ER)",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Glyburide",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Glyburide (micronized)",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "classId": "thiazolidinedione",
+      "className": "Thiazolidinedione",
+      "classSummary": {
+        "glucoseLoweringEfficacy": "Not stated in dataset",
+        "hypoglycemiaRisk": "Not stated in dataset",
+        "weightEffect": "Not stated in dataset",
+        "cvEffects": "Not stated in dataset",
+        "kidneyEffects": "Not stated in dataset",
+        "mashEffects": "Not stated in dataset",
+        "keyConsiderations": [
+          "Not stated in dataset"
+        ]
+      },
+      "classSummarySources": [
+        {
+          "pdf_file": "dc26s009.pdf",
+          "page_number": null,
+          "table_or_section": "Heuristic text match; TODO: add exact section"
+        }
+      ],
+      "drugs": [
+        {
+          "genericName": "Pioglitazone",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "classId": "alpha_glucosidase_inhibitors",
+      "className": "Alpha-glucosidase inhibitors",
+      "classSummary": {
+        "glucoseLoweringEfficacy": "Not stated in dataset",
+        "hypoglycemiaRisk": "Not stated in dataset",
+        "weightEffect": "Not stated in dataset",
+        "cvEffects": "Not stated in dataset",
+        "kidneyEffects": "Not stated in dataset",
+        "mashEffects": "Not stated in dataset",
+        "keyConsiderations": [
+          "Not stated in dataset"
+        ]
+      },
+      "classSummarySources": [
+        {
+          "pdf_file": "dc26s009.pdf",
+          "page_number": null,
+          "table_or_section": "TODO: add table/section reference"
+        },
+        {
+          "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+          "page_number": null,
+          "table_or_section": "TODO: add table/section reference"
+        }
+      ],
+      "drugs": [
+        {
+          "genericName": "Acarbose",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Miglitol",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "classId": "meglitinides",
+      "className": "Meglitinides",
+      "classSummary": {
+        "glucoseLoweringEfficacy": "Not stated in dataset",
+        "hypoglycemiaRisk": "Not stated in dataset",
+        "weightEffect": "Not stated in dataset",
+        "cvEffects": "Not stated in dataset",
+        "kidneyEffects": "Not stated in dataset",
+        "mashEffects": "Not stated in dataset",
+        "keyConsiderations": [
+          "Not stated in dataset"
+        ]
+      },
+      "classSummarySources": [
+        {
+          "pdf_file": "dc26s009.pdf",
+          "page_number": null,
+          "table_or_section": "Heuristic text match; TODO: add exact section"
+        }
+      ],
+      "drugs": [
+        {
+          "genericName": "Nateglinide",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Repaglinide",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "classId": "dpp4_inhibitors",
+      "className": "DPP-4 inhibitors",
+      "classSummary": {
+        "glucoseLoweringEfficacy": "Not stated in dataset",
+        "hypoglycemiaRisk": "Not stated in dataset",
+        "weightEffect": "Not stated in dataset",
+        "cvEffects": "Not stated in dataset",
+        "kidneyEffects": "Not stated in dataset",
+        "mashEffects": "Not stated in dataset",
+        "keyConsiderations": [
+          "Not stated in dataset"
+        ]
+      },
+      "classSummarySources": [
+        {
+          "pdf_file": "dc26s009.pdf",
+          "page_number": null,
+          "table_or_section": "TODO: add table/section reference"
+        },
+        {
+          "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+          "page_number": null,
+          "table_or_section": "TODO: add table/section reference"
+        }
+      ],
+      "drugs": [
+        {
+          "genericName": "Alogliptin",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s016.pdf",
+              "page_number": null,
+              "table_or_section": "Heuristic text match; TODO: add exact section"
+            }
+          ]
+        },
+        {
+          "genericName": "Linagliptin",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Saxagliptin",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s016.pdf",
+              "page_number": null,
+              "table_or_section": "Heuristic text match; TODO: add exact section"
+            }
+          ]
+        },
+        {
+          "genericName": "Sitagliptin",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "classId": "sglt2_inhibitors",
+      "className": "SGLT2 inhibitors",
+      "classSummary": {
+        "glucoseLoweringEfficacy": "Not stated in dataset",
+        "hypoglycemiaRisk": "Not stated in dataset",
+        "weightEffect": "Not stated in dataset",
+        "cvEffects": "Not stated in dataset",
+        "kidneyEffects": "Not stated in dataset",
+        "mashEffects": "Not stated in dataset",
+        "keyConsiderations": [
+          "Not stated in dataset"
+        ]
+      },
+      "classSummarySources": [
+        {
+          "pdf_file": "dc26s009.pdf",
+          "page_number": null,
+          "table_or_section": "Heuristic text match; TODO: add exact section"
+        },
+        {
+          "pdf_file": "dc26s016.pdf",
+          "page_number": null,
+          "table_or_section": "Heuristic text match; TODO: add exact section"
+        },
+        {
+          "pdf_file": "PIIS0828282X2200335X.pdf",
+          "page_number": null,
+          "table_or_section": "Heuristic text match; TODO: add exact section"
+        }
+      ],
+      "drugs": [
+        {
+          "genericName": "Bexagliflozin",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Canagliflozin",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Dapagliflozin",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Empagliflozin",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Ertugliflozin",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "classId": "glp1_receptor_agonists",
+      "className": "GLP-1 receptor agonists",
+      "classSummary": {
+        "glucoseLoweringEfficacy": "Not stated in dataset",
+        "hypoglycemiaRisk": "Not stated in dataset",
+        "weightEffect": "Not stated in dataset",
+        "cvEffects": "Not stated in dataset",
+        "kidneyEffects": "Not stated in dataset",
+        "mashEffects": "Not stated in dataset",
+        "keyConsiderations": [
+          "Not stated in dataset"
+        ]
+      },
+      "classSummarySources": [
+        {
+          "pdf_file": "PIIS0828282X2200335X.pdf",
+          "page_number": null,
+          "table_or_section": "Heuristic text match; TODO: add exact section"
+        }
+      ],
+      "drugs": [
+        {
+          "genericName": "Dulaglutide",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Liraglutide",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Semaglutide (SQ)",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Semaglutide (oral)",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Exenatide (once weekly)",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Lixisenatide",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "Heuristic text match; TODO: add exact section"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "classId": "dual_gip_glp1_receptor_agonist",
+      "className": "Dual GIP/GLP-1 receptor agonist",
+      "classSummary": {
+        "glucoseLoweringEfficacy": "Not stated in dataset",
+        "hypoglycemiaRisk": "Not stated in dataset",
+        "weightEffect": "Not stated in dataset",
+        "cvEffects": "Not stated in dataset",
+        "kidneyEffects": "Not stated in dataset",
+        "mashEffects": "Not stated in dataset",
+        "keyConsiderations": [
+          "Not stated in dataset"
+        ]
+      },
+      "classSummarySources": [
+        {
+          "pdf_file": "dc26s009.pdf",
+          "page_number": null,
+          "table_or_section": "TODO: add table/section reference"
+        },
+        {
+          "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+          "page_number": null,
+          "table_or_section": "TODO: add table/section reference"
+        }
+      ],
+      "drugs": [
+        {
+          "genericName": "Tirzepatide",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "Heuristic text match; TODO: add exact section"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "classId": "bile_acid_sequestrant",
+      "className": "Bile acid sequestrant",
+      "classSummary": {
+        "glucoseLoweringEfficacy": "Not stated in dataset",
+        "hypoglycemiaRisk": "Not stated in dataset",
+        "weightEffect": "Not stated in dataset",
+        "cvEffects": "Not stated in dataset",
+        "kidneyEffects": "Not stated in dataset",
+        "mashEffects": "Not stated in dataset",
+        "keyConsiderations": [
+          "Not stated in dataset"
+        ]
+      },
+      "classSummarySources": [
+        {
+          "pdf_file": "dc26s009.pdf",
+          "page_number": null,
+          "table_or_section": "Heuristic text match; TODO: add exact section"
+        }
+      ],
+      "drugs": [
+        {
+          "genericName": "Colesevelam",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "classId": "dopamine2_agonist",
+      "className": "Dopamine-2 agonist",
+      "classSummary": {
+        "glucoseLoweringEfficacy": "Not stated in dataset",
+        "hypoglycemiaRisk": "Not stated in dataset",
+        "weightEffect": "Not stated in dataset",
+        "cvEffects": "Not stated in dataset",
+        "kidneyEffects": "Not stated in dataset",
+        "mashEffects": "Not stated in dataset",
+        "keyConsiderations": [
+          "Not stated in dataset"
+        ]
+      },
+      "classSummarySources": [
+        {
+          "pdf_file": "dc26s009.pdf",
+          "page_number": null,
+          "table_or_section": "TODO: add table/section reference"
+        },
+        {
+          "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+          "page_number": null,
+          "table_or_section": "TODO: add table/section reference"
+        }
+      ],
+      "drugs": [
+        {
+          "genericName": "Bromocriptine",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "classId": "insulin_human",
+      "className": "Insulin (human)",
+      "classSummary": {
+        "glucoseLoweringEfficacy": "Not stated in dataset",
+        "hypoglycemiaRisk": "Not stated in dataset",
+        "weightEffect": "Not stated in dataset",
+        "cvEffects": "Not stated in dataset",
+        "kidneyEffects": "Not stated in dataset",
+        "mashEffects": "Not stated in dataset",
+        "keyConsiderations": [
+          "Not stated in dataset"
+        ]
+      },
+      "classSummarySources": [
+        {
+          "pdf_file": "dc26s009.pdf",
+          "page_number": null,
+          "table_or_section": "TODO: add table/section reference"
+        },
+        {
+          "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+          "page_number": null,
+          "table_or_section": "TODO: add table/section reference"
+        }
+      ],
+      "drugs": [
+        {
+          "genericName": "Human regular",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Human NPH",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Premixed NPH/regular 70/30",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Concentrated U-500 human regular",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Inhaled insulin",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "classId": "insulin_analogs_and_products",
+      "className": "Insulin (analogs and listed products)",
+      "classSummary": {
+        "glucoseLoweringEfficacy": "Not stated in dataset",
+        "hypoglycemiaRisk": "Not stated in dataset",
+        "weightEffect": "Not stated in dataset",
+        "cvEffects": "Not stated in dataset",
+        "kidneyEffects": "Not stated in dataset",
+        "mashEffects": "Not stated in dataset",
+        "keyConsiderations": [
+          "Not stated in dataset"
+        ]
+      },
+      "classSummarySources": [
+        {
+          "pdf_file": "dc26s009.pdf",
+          "page_number": null,
+          "table_or_section": "TODO: add table/section reference"
+        },
+        {
+          "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+          "page_number": null,
+          "table_or_section": "TODO: add table/section reference"
+        }
+      ],
+      "drugs": [
+        {
+          "genericName": "Aspart",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Aspart (biosimilars)",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Aspart (faster acting product)",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Glulisine",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Lispro (U-100)",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Lispro (U-200)",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Lispro-aabc",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Lispro follow-on product",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Degludec (U-100)",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Degludec (U-200)",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Glargine (U-100)",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Glargine (U-300)",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Glargine biosimilar/follow-on products",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Premixed Aspart 70/30",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Premixed Lispro 50/50",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Premixed Lispro 75/25",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "classId": "fixed_combo_products",
+      "className": "Fixed combo products",
+      "classSummary": {
+        "glucoseLoweringEfficacy": "Not stated in dataset",
+        "hypoglycemiaRisk": "Not stated in dataset",
+        "weightEffect": "Not stated in dataset",
+        "cvEffects": "Not stated in dataset",
+        "kidneyEffects": "Not stated in dataset",
+        "mashEffects": "Not stated in dataset",
+        "keyConsiderations": [
+          "Not stated in dataset"
+        ]
+      },
+      "classSummarySources": [
+        {
+          "pdf_file": "dc26s009.pdf",
+          "page_number": null,
+          "table_or_section": "TODO: add table/section reference"
+        },
+        {
+          "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+          "page_number": null,
+          "table_or_section": "TODO: add table/section reference"
+        }
+      ],
+      "drugs": [
+        {
+          "genericName": "Degludec/Liraglutide",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        },
+        {
+          "genericName": "Glargine/Lixisenatide",
+          "route": "Not stated in dataset",
+          "keyEffects": {
+            "mace": "Not stated in dataset",
+            "hf": "Not stated in dataset",
+            "ckd": "Not stated in dataset"
+          },
+          "adverseEffects": [
+            "Not stated in dataset"
+          ],
+          "dosingNotes": [
+            "Not stated in dataset"
+          ],
+          "contraCautions": [
+            "Not stated in dataset"
+          ],
+          "sources": [
+            {
+              "pdf_file": "dc26s009.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            },
+            {
+              "pdf_file": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf",
+              "page_number": null,
+              "table_or_section": "TODO: add table/section reference"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
