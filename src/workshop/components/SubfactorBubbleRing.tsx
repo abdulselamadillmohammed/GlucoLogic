@@ -14,12 +14,12 @@ interface Props {
 }
 
 const ANGLES: Record<Subfactor, number> = {
-  glycemia: 0,
-  cardiorenal: 60,
-  weight: 120,
-  hypoglycemia: 180,
-  access_cost: 240,
-  safety_tolerability: 300
+  glycemia: -90,
+  cardiorenal: -30,
+  weight: 30,
+  hypoglycemia: 90,
+  access_cost: 150,
+  safety_tolerability: -150
 };
 
 export function SubfactorBubbleRing({
