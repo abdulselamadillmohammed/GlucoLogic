@@ -6,6 +6,7 @@ interface Props {
   effects: Record<Subfactor, Effect>;
   selectedSubfactor: Subfactor | null;
   onSelectSubfactor: (subfactor: Subfactor) => void;
+  onOpenInfo: (subfactor: Subfactor) => void;
 }
 
 const positions: Record<Subfactor, string> = {
@@ -17,7 +18,7 @@ const positions: Record<Subfactor, string> = {
   access_cost: "bubble-bottom-left"
 };
 
-export function SubfactorBubbleRing({ effects, selectedSubfactor, onSelectSubfactor }: Props) {
+export function SubfactorBubbleRing({ effects, selectedSubfactor, onSelectSubfactor, onOpenInfo }: Props) {
   return (
     <div className="bubble-ring">
       {(Object.keys(SUBFACTOR_LABELS) as Subfactor[]).map((subfactor) => {
@@ -29,7 +30,10 @@ export function SubfactorBubbleRing({ effects, selectedSubfactor, onSelectSubfac
             type="button"
             className={`bubble ${positions[subfactor]} ${selected ? "selected" : ""} ${fill.pulse ? "pulse-outline" : ""}`}
             title={effects[subfactor] === "not_stated" ? "Not stated in dataset" : undefined}
-            onClick={() => onSelectSubfactor(subfactor)}
+            onClick={() => {
+              onSelectSubfactor(subfactor);
+              onOpenInfo(subfactor);
+            }}
           >
             <span
               className="bubble-fill"

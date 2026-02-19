@@ -10,6 +10,7 @@ interface Props {
 
 export function PatientCard({ caseEntry, selectedDrugs, onRemoveDrug, onOpenHistory }: Props) {
   const { setNodeRef, isOver } = useDroppable({ id: "patient-drop" });
+
   return (
     <div className="patient-shell">
       <h3>{caseEntry.title}</h3>
@@ -21,7 +22,7 @@ export function PatientCard({ caseEntry, selectedDrugs, onRemoveDrug, onOpenHist
         <div className="selected-chips">
           {selectedDrugs.map((drug) => (
             <button key={drug.drugId} type="button" className="selected-chip" onClick={() => onRemoveDrug(drug.drugId)}>
-              {drug.genericName} ×
+              {drug.genericName} x
             </button>
           ))}
         </div>

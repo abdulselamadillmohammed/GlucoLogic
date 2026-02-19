@@ -1,5 +1,9 @@
 import { WorkshopLayout } from "../workshop/components/WorkshopLayout";
 
 export function WorkshopPage() {
-  return <WorkshopLayout />;
+  return (
+    <div className="workshopRoot">
+      <WorkshopLayout />
+    </div>
+  );
 }

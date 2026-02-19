@@ -1,15 +1,15 @@
 import { useDraggable } from "@dnd-kit/core";
 import type { DrugClass, DrugEntry } from "../logic/types";
 
-const orderedNames = [
-  "Metformin",
-  "SGLT2 inhibitors",
-  "GLP-1 RA",
-  "Dual GIP/GLP-1 RA",
-  "DPP-4 inhibitors",
-  "Sulfonylureas",
-  "TZD",
-  "Insulin"
+const CLASS_ORDER: Array<{ classId: string; className: string }> = [
+  { classId: "metformin", className: "Metformin" },
+  { classId: "sglt2", className: "SGLT2 inhibitors" },
+  { classId: "glp1", className: "GLP-1 RA" },
+  { classId: "gip_glp1", className: "Dual GIP/GLP-1 RA" },
+  { classId: "dpp4", className: "DPP-4 inhibitors" },
+  { classId: "sulfonylureas", className: "Sulfonylureas" },
+  { classId: "tzd", className: "TZD" },
+  { classId: "insulin", className: "Insulin" }
 ];
 
 interface Props {
@@ -22,6 +22,7 @@ interface Props {
 function DraggableDrug({ drug, onAdministerDrug }: { drug: DrugEntry; onAdministerDrug: (drugId: string) => void }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({ id: `drug-${drug.drugId}` });
   const style = transform ? { transform: `translate3d(${transform.x}px,${transform.y}px,0)` } : undefined;
+
   return (
     <button
       ref={setNodeRef}
@@ -33,34 +34,40 @@ function DraggableDrug({ drug, onAdministerDrug }: { drug: DrugEntry; onAdminist
       {...attributes}
     >
       <span className="pill-icon" />
-      {drug.genericName}
+      <span className="drug-chip-text">{drug.genericName}</span>
     </button>
   );
 }
 
 export function DrugClassesPanel({ classes, selectedClassId, onSelectClass, onAdministerDrug }: Props) {
-  const sorted = [...classes].sort((a, b) => orderedNames.indexOf(a.className) - orderedNames.indexOf(b.className));
+  const classById = new Map(classes.map((drugClass) => [drugClass.classId, drugClass]));
+
   return (
     <aside className="glass panel-left">
       <h2>Drug Classes</h2>
       <p>Select a class, then drag drugs into the patient card.</p>
       <div className="class-list">
-        {sorted.map((drugClass) => {
-          const active = drugClass.classId === selectedClassId;
+        {CLASS_ORDER.map(({ classId, className }) => {
+          const drugClass = classById.get(classId);
+          const active = classId === selectedClassId;
           return (
-            <div key={drugClass.classId} className={`class-card ${active ? "active" : ""}`}>
-              <button type="button" className="class-btn" onClick={() => onSelectClass(drugClass.classId)}>
-                <span className="icon-circle">◌</span>
-                <span>
-                  <strong>{drugClass.className}</strong>
+            <div key={classId} className={`class-card ${active ? "active" : ""}`}>
+              <button type="button" className="class-btn" onClick={() => onSelectClass(classId)}>
+                <span className="icon-circle">o</span>
+                <span className="class-btn-text">
+                  <strong>{className}</strong>
                   <small>{active ? "Focus active" : "Click to focus"}</small>
                 </span>
               </button>
               {active ? (
                 <div className="drug-list">
-                  {drugClass.drugs.map((drug) => (
-                    <DraggableDrug key={drug.drugId} drug={drug} onAdministerDrug={onAdministerDrug} />
-                  ))}
+                  {drugClass?.drugs.length ? (
+                    drugClass.drugs.map((drug) => (
+                      <DraggableDrug key={drug.drugId} drug={drug} onAdministerDrug={onAdministerDrug} />
+                    ))
+                  ) : (
+                    <p className="empty-drugs">Not stated in dataset.</p>
+                  )}
                 </div>
               ) : null}
             </div>

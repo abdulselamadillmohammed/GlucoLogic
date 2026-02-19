@@ -16,7 +16,6 @@ interface SpeechRecognition extends EventTarget {
   onresult: ((event: SpeechRecognitionEvent) => void) | null;
   onend: (() => void) | null;
   start: () => void;
-  stop: () => void;
 }
 
 interface SpeechRecognitionEvent {
@@ -34,11 +33,12 @@ export function ReasoningCoach({ selectedSubfactor, reasoningText, onReasoningTe
   const [listening, setListening] = useState(false);
   const [unsupported, setUnsupported] = useState(false);
 
-  const hint = useMemo(() => {
-    if (!selectedSubfactor) return "Select a subfactor bubble to view explanation and hints.";
-    const target = caseEntry.learningTargets.find((item) => item.subfactor === selectedSubfactor);
-    return target?.goal ?? "Not stated in dataset";
-  }, [caseEntry, selectedSubfactor]);
+  const focusedTarget = useMemo(() => {
+    if (!selectedSubfactor) return null;
+    return caseEntry.learningTargets.find((item) => item.subfactor === selectedSubfactor) ?? null;
+  }, [caseEntry.learningTargets, selectedSubfactor]);
+
+  const datasetNote = selectedSubfactor && !focusedTarget ? "Not stated in dataset." : null;
 
   const startSpeech = () => {
     const Ctor = window.SpeechRecognition ?? window.webkitSpeechRecognition;
@@ -46,6 +46,7 @@ export function ReasoningCoach({ selectedSubfactor, reasoningText, onReasoningTe
       setUnsupported(true);
       return;
     }
+
     setUnsupported(false);
     const recognizer = new Ctor();
     recognizer.lang = "en-US";
@@ -53,19 +54,40 @@ export function ReasoningCoach({ selectedSubfactor, reasoningText, onReasoningTe
     recognizer.interimResults = false;
     recognizer.onresult = (event: SpeechRecognitionEvent) => {
       const transcript = event.results[0][0]?.transcript ?? "";
-      onReasoningText(`${reasoningText}${reasoningText ? " " : ""}${transcript}`.trim());
+      const merged = `${reasoningText}${reasoningText ? " " : ""}${transcript}`.trim();
+      onReasoningText(merged);
     };
     recognizer.onend = () => setListening(false);
+
     setListening(true);
     recognizer.start();
   };
 
   return (
     <section className="glass coach-card">
-      <h3>Reasoning Coach</h3>
-      <p>{hint}</p>
-      {selectedSubfactor ? <small>Focused subfactor: {SUBFACTOR_LABELS[selectedSubfactor]}</small> : null}
-      <label>
+      <header className="panel-header coach-header">
+        <h3>Reasoning Coach</h3>
+        <p>Select a subfactor bubble to view explanation and hints.</p>
+      </header>
+
+      <div className="coach-meta">
+        <p>
+          <span className="meta-label">Focused subfactor:</span>{" "}
+          {selectedSubfactor ? SUBFACTOR_LABELS[selectedSubfactor] : "None selected"}
+        </p>
+        {focusedTarget ? (
+          <p>
+            <span className="meta-label">Hint:</span> {focusedTarget.goal}
+          </p>
+        ) : null}
+        {datasetNote ? (
+          <p>
+            <span className="meta-label">Dataset notes:</span> {datasetNote}
+          </p>
+        ) : null}
+      </div>
+
+      <label className="field-label">
         <span>Your reasoning</span>
         <textarea
           value={reasoningText}
@@ -73,10 +95,14 @@ export function ReasoningCoach({ selectedSubfactor, reasoningText, onReasoningTe
           placeholder="Type your clinical justification here..."
         />
       </label>
-      <button type="button" className={listening ? "listening" : ""} onClick={startSpeech} disabled={unsupported}>
-        Add speech-to-text
-      </button>
-      {unsupported ? <small>Speech recognition is not supported in this browser.</small> : null}
+
+      <div className="speech-row">
+        <button type="button" className={`speech-btn ${listening ? "listening" : ""}`} onClick={startSpeech} disabled={unsupported}>
+          <span className="mic-dot" />
+          {listening ? "Listening..." : "Speech to text"}
+        </button>
+        {unsupported ? <small>Speech recognition is not supported in this browser.</small> : null}
+      </div>
     </section>
   );
 }

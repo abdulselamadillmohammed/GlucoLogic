@@ -11,6 +11,7 @@ import { GlucoCoachChat } from "./GlucoCoachChat";
 import { HistoryModal } from "./HistoryModal";
 import { PatientCard } from "./PatientCard";
 import { ReasoningCoach } from "./ReasoningCoach";
+import { BubbleInfoModal } from "./BubbleInfoModal";
 import { SubfactorBubbleRing } from "./SubfactorBubbleRing";
 import { SubfactorPanel } from "./SubfactorPanel";
 
@@ -60,6 +61,7 @@ export function WorkshopLayout() {
     })
   );
   const [showHistory, setShowHistory] = useState(false);
+  const [infoSubfactor, setInfoSubfactor] = useState<Subfactor | null>(null);
   const allowedText = useMemo(() => flattenAllowedText(drugs, cases), []);
 
   const orderedCases = state.randomizedCaseOrder
@@ -67,6 +69,10 @@ export function WorkshopLayout() {
     .filter((entry): entry is CaseEntry => Boolean(entry));
   const selectedCase = orderedCases.find((entry) => entry.caseId === state.selectedCaseId) ?? orderedCases[0];
   const selectedClass = drugs.classes.find((cls) => cls.classId === state.selectedClassId) ?? drugs.classes[0];
+  const orderedClassIds = ["metformin", "sglt2", "glp1", "gip_glp1", "dpp4", "sulfonylureas", "tzd", "insulin"];
+  const visibleClasses = orderedClassIds
+    .map((classId) => drugs.classes.find((cls) => cls.classId === classId))
+    .filter((cls): cls is NonNullable<typeof cls> => Boolean(cls));
 
   const drugById = useMemo(() => {
     const map = new Map<string, DrugEntry>();
@@ -149,7 +155,7 @@ export function WorkshopLayout() {
       <DndContext onDragEnd={onDragEnd}>
         <div className="workshop-grid">
           <DrugClassesPanel
-            classes={drugs.classes.filter((cls) => selectedCase.allowedDrugClassIds.includes(cls.classId))}
+            classes={visibleClasses}
             selectedClassId={selectedClass.classId}
             onSelectClass={(classId) => setState((prev) => ({ ...prev, selectedClassId: classId }))}
             onAdministerDrug={onAdministerDrug}
@@ -159,6 +165,7 @@ export function WorkshopLayout() {
               effects={bubbleEffects}
               selectedSubfactor={state.selectedSubfactor}
               onSelectSubfactor={(subfactor) => setState((prev) => ({ ...prev, selectedSubfactor: subfactor }))}
+              onOpenInfo={setInfoSubfactor}
             />
             <PatientCard
               caseEntry={selectedCase}
@@ -193,6 +200,15 @@ export function WorkshopLayout() {
       />
 
       {showHistory ? <HistoryModal caseEntry={selectedCase} onClose={() => setShowHistory(false)} /> : null}
+      {infoSubfactor ? (
+        <BubbleInfoModal
+          subfactor={infoSubfactor}
+          selectedDrug={currentDrug}
+          selectedClass={selectedClass}
+          sourceIndex={drugs.sourcesIndex}
+          onClose={() => setInfoSubfactor(null)}
+        />
+      ) : null}
       <section className="glass source-panel">
         <h3>Sources</h3>
         <details>
