@@ -1,0 +1,17 @@
+{
+  "notes": "Manual overrides for PDF extraction gaps. Every override must include source refs.",
+  "overrides": [
+    {
+      "target": "class.sglt2.classSummary.cardiorenal",
+      "value": { "effect": "positive", "evidence": [{ "sourceId": "s4" }] }
+    },
+    {
+      "target": "class.glp1.classSummary.weight",
+      "value": { "effect": "positive", "evidence": [{ "sourceId": "s5" }] }
+    },
+    {
+      "target": "class.metformin.drugs.0.effects.safety_tolerability",
+      "value": { "effect": "negative", "sources": [{ "sourceId": "s2" }] }
+    }
+  ]
+}

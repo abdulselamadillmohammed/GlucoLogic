@@ -1,0 +1,241 @@
+{
+  "cases": [
+    {
+      "caseId": "case_01",
+      "title": "GI tolerability concerns with obesity priority",
+      "difficulty": "Advanced",
+      "estimatedMinutes": 9,
+      "prompt": {
+        "chief": "Medication update for persistent hyperglycemia with obesity focus.",
+        "summaryBullets": [
+          "Prioritizes weight-related outcomes and glycemic lowering.",
+          "Reports GI sensitivity during prior treatment escalation."
+        ],
+        "vitalsLabs": { "a1c": "8.1%", "egfr": "71", "bmi": "38", "bp": "not_stated", "lipids": "not_stated" }
+      },
+      "fullHistory": {
+        "history": ["T2DM duration not_stated in dataset", "Prior GI intolerance details not_stated in dataset"],
+        "meds": ["metformin"],
+        "comorbidities": ["obesity"],
+        "constraints": ["Tolerability priority", "Avoid unsupported claims"]
+      },
+      "learningTargets": [
+        { "subfactor": "glycemia", "goal": "Improve glycemia while escalating therapy.", "sources": [{ "sourceId": "s8" }] },
+        { "subfactor": "weight", "goal": "Prefer options with favorable weight framing in dataset.", "sources": [{ "sourceId": "s8" }] },
+        { "subfactor": "safety_tolerability", "goal": "Address GI tolerability concerns.", "sources": [{ "sourceId": "s2" }] }
+      ],
+      "allowedDrugClassIds": ["metformin", "sglt2", "glp1", "gip_glp1", "dpp4"],
+      "sources": [{ "sourceId": "s8" }]
+    },
+    {
+      "caseId": "case_02",
+      "title": "Cardiorenal preservation with moderate glycemia gap",
+      "difficulty": "Intermediate",
+      "estimatedMinutes": 8,
+      "prompt": {
+        "chief": "Select next class with cardiorenal emphasis.",
+        "summaryBullets": ["Renal and cardiovascular status is central to choice."],
+        "vitalsLabs": { "a1c": "8.0%", "egfr": "56", "bmi": "33", "bp": "not_stated", "lipids": "not_stated" }
+      },
+      "fullHistory": {
+        "history": ["Comorbidity narrative abbreviated to dataset scope"],
+        "meds": ["metformin"],
+        "comorbidities": ["cardiorenal concern"],
+        "constraints": ["Keep to documented class effects"]
+      },
+      "learningTargets": [
+        { "subfactor": "cardiorenal", "goal": "Select class with positive cardiorenal framing.", "sources": [{ "sourceId": "s4" }] },
+        { "subfactor": "glycemia", "goal": "Close A1C gap.", "sources": [{ "sourceId": "s1" }] }
+      ],
+      "allowedDrugClassIds": ["metformin", "sglt2", "glp1", "dpp4", "insulin"],
+      "sources": [{ "sourceId": "s4" }]
+    },
+    {
+      "caseId": "case_03",
+      "title": "Hypoglycemia avoidance in treatment intensification",
+      "difficulty": "Intermediate",
+      "estimatedMinutes": 7,
+      "prompt": {
+        "chief": "Need safer intensification with low hypoglycemia concern in dataset framing.",
+        "summaryBullets": ["Patient values low hypoglycemia burden.", "Weight effect remains secondary target."],
+        "vitalsLabs": { "a1c": "8.4%", "egfr": "not_stated", "bmi": "31", "bp": "not_stated", "lipids": "not_stated" }
+      },
+      "fullHistory": {
+        "history": ["Prior low glucose episode details not_stated in dataset"],
+        "meds": ["not_stated"],
+        "comorbidities": ["not_stated"],
+        "constraints": ["Avoid classes with negative hypoglycemia effect when possible"]
+      },
+      "learningTargets": [
+        { "subfactor": "hypoglycemia", "goal": "Prefer classes with positive or neutral hypoglycemia profile.", "sources": [{ "sourceId": "s3" }] },
+        { "subfactor": "glycemia", "goal": "Maintain efficacy while reducing hypoglycemia concern.", "sources": [{ "sourceId": "s3" }] }
+      ],
+      "allowedDrugClassIds": ["metformin", "sglt2", "glp1", "dpp4", "tzd"],
+      "sources": [{ "sourceId": "s3" }]
+    },
+    {
+      "caseId": "case_04",
+      "title": "Access-sensitive class selection",
+      "difficulty": "Easy",
+      "estimatedMinutes": 6,
+      "prompt": {
+        "chief": "Medication affordability/access is a dominant concern.",
+        "summaryBullets": ["Consider access/cost implications documented in dataset."],
+        "vitalsLabs": { "a1c": "7.9%", "egfr": "not_stated", "bmi": "29", "bp": "not_stated", "lipids": "not_stated" }
+      },
+      "fullHistory": {
+        "history": ["Coverage limits reported"],
+        "meds": ["not_stated"],
+        "comorbidities": ["not_stated"],
+        "constraints": ["Access-first decision"]
+      },
+      "learningTargets": [
+        { "subfactor": "access_cost", "goal": "Choose options with favorable access/cost framing.", "sources": [{ "sourceId": "s6" }] },
+        { "subfactor": "glycemia", "goal": "Preserve glycemic efficacy.", "sources": [{ "sourceId": "s1" }] }
+      ],
+      "allowedDrugClassIds": ["metformin", "sulfonylureas", "tzd", "insulin"],
+      "sources": [{ "sourceId": "s6" }]
+    },
+    {
+      "caseId": "case_05",
+      "title": "Weight-priority escalation with injectable openness",
+      "difficulty": "Intermediate",
+      "estimatedMinutes": 8,
+      "prompt": {
+        "chief": "Escalation with explicit weight priority.",
+        "summaryBullets": ["Willing to use injectable options if aligned with goals."],
+        "vitalsLabs": { "a1c": "8.6%", "egfr": "68", "bmi": "41", "bp": "not_stated", "lipids": "not_stated" }
+      },
+      "fullHistory": {
+        "history": ["Prior oral-only approach"],
+        "meds": ["metformin"],
+        "comorbidities": ["obesity"],
+        "constraints": ["Weight-first target per case framing"]
+      },
+      "learningTargets": [
+        { "subfactor": "weight", "goal": "Prioritize positive weight effect.", "sources": [{ "sourceId": "s5" }] },
+        { "subfactor": "glycemia", "goal": "Close substantial A1C gap.", "sources": [{ "sourceId": "s1" }] }
+      ],
+      "allowedDrugClassIds": ["glp1", "gip_glp1", "sglt2", "metformin"],
+      "sources": [{ "sourceId": "s5" }]
+    },
+    {
+      "caseId": "case_06",
+      "title": "Insulin pathway discussion after oral sequence",
+      "difficulty": "Advanced",
+      "estimatedMinutes": 10,
+      "prompt": {
+        "chief": "Discuss transition to insulin-centered strategy.",
+        "summaryBullets": ["Need direct conversation about insulin class tradeoffs."],
+        "vitalsLabs": { "a1c": "9.2%", "egfr": "not_stated", "bmi": "34", "bp": "not_stated", "lipids": "not_stated" }
+      },
+      "fullHistory": {
+        "history": ["Escalating hyperglycemia despite prior oral agents"],
+        "meds": ["metformin", "sitagliptin"],
+        "comorbidities": ["not_stated"],
+        "constraints": ["Discuss insulin resistance vs insulin distinctly"]
+      },
+      "learningTargets": [
+        { "subfactor": "glycemia", "goal": "Rapid glycemic correction goal.", "sources": [{ "sourceId": "s10" }] },
+        { "subfactor": "hypoglycemia", "goal": "Balance expected hypoglycemia concern.", "sources": [{ "sourceId": "s3" }] },
+        { "subfactor": "weight", "goal": "Account for weight impact tradeoff.", "sources": [{ "sourceId": "s3" }] }
+      ],
+      "allowedDrugClassIds": ["insulin", "metformin", "glp1", "sglt2"],
+      "sources": [{ "sourceId": "s10" }]
+    },
+    {
+      "caseId": "case_07",
+      "title": "Mixed safety concerns with moderate cardiorenal risk",
+      "difficulty": "Intermediate",
+      "estimatedMinutes": 8,
+      "prompt": {
+        "chief": "Pick a strategy balancing safety and cardiorenal priorities.",
+        "summaryBullets": ["Safety concerns are active.", "Cardiorenal benefit still requested."],
+        "vitalsLabs": { "a1c": "8.3%", "egfr": "62", "bmi": "36", "bp": "not_stated", "lipids": "not_stated" }
+      },
+      "fullHistory": {
+        "history": ["Prior intolerance detail not_stated in dataset"],
+        "meds": ["not_stated"],
+        "comorbidities": ["cardiorenal concern"],
+        "constraints": ["Avoid unsupported safety claims"]
+      },
+      "learningTargets": [
+        { "subfactor": "safety_tolerability", "goal": "Reduce tolerability burden.", "sources": [{ "sourceId": "s2" }] },
+        { "subfactor": "cardiorenal", "goal": "Preserve cardiorenal-aligned class effects.", "sources": [{ "sourceId": "s4" }] }
+      ],
+      "allowedDrugClassIds": ["sglt2", "glp1", "dpp4", "metformin"],
+      "sources": [{ "sourceId": "s2" }]
+    },
+    {
+      "caseId": "case_08",
+      "title": "Oral-only preference with access and hypoglycemia constraints",
+      "difficulty": "Easy",
+      "estimatedMinutes": 6,
+      "prompt": {
+        "chief": "Patient requests oral-only approach where possible.",
+        "summaryBullets": ["Access and hypoglycemia both discussed in planning."],
+        "vitalsLabs": { "a1c": "7.8%", "egfr": "not_stated", "bmi": "30", "bp": "not_stated", "lipids": "not_stated" }
+      },
+      "fullHistory": {
+        "history": ["Prefers to avoid injectables"],
+        "meds": ["metformin"],
+        "comorbidities": ["not_stated"],
+        "constraints": ["Oral-only preference"]
+      },
+      "learningTargets": [
+        { "subfactor": "access_cost", "goal": "Consider access-sensitive oral classes.", "sources": [{ "sourceId": "s6" }] },
+        { "subfactor": "hypoglycemia", "goal": "Avoid classes with negative hypoglycemia profile.", "sources": [{ "sourceId": "s3" }] }
+      ],
+      "allowedDrugClassIds": ["metformin", "sglt2", "dpp4", "sulfonylureas", "tzd"],
+      "sources": [{ "sourceId": "s6" }]
+    },
+    {
+      "caseId": "case_09",
+      "title": "Dual-priority obesity and cardiorenal framing",
+      "difficulty": "Advanced",
+      "estimatedMinutes": 9,
+      "prompt": {
+        "chief": "Need class strategy that addresses weight and cardiorenal priorities.",
+        "summaryBullets": ["Case requires explicit tradeoff articulation and citations."],
+        "vitalsLabs": { "a1c": "8.7%", "egfr": "59", "bmi": "40", "bp": "not_stated", "lipids": "not_stated" }
+      },
+      "fullHistory": {
+        "history": ["Complication-focused reasoning requested"],
+        "meds": ["metformin"],
+        "comorbidities": ["obesity", "cardiorenal concern"],
+        "constraints": ["Support each claim with source-linked effect"]
+      },
+      "learningTargets": [
+        { "subfactor": "weight", "goal": "Prioritize positive weight profile.", "sources": [{ "sourceId": "s5" }] },
+        { "subfactor": "cardiorenal", "goal": "Prefer positive cardiorenal profile.", "sources": [{ "sourceId": "s4" }] },
+        { "subfactor": "glycemia", "goal": "Maintain glycemic improvement.", "sources": [{ "sourceId": "s1" }] }
+      ],
+      "allowedDrugClassIds": ["sglt2", "glp1", "gip_glp1", "metformin"],
+      "sources": [{ "sourceId": "s4" }]
+    },
+    {
+      "caseId": "case_10",
+      "title": "High A1C gap with broad class review",
+      "difficulty": "Advanced",
+      "estimatedMinutes": 10,
+      "prompt": {
+        "chief": "Review broad class options for large A1C gap.",
+        "summaryBullets": ["Requires ranked reasoning across multiple subfactors."],
+        "vitalsLabs": { "a1c": "9.5%", "egfr": "not_stated", "bmi": "35", "bp": "not_stated", "lipids": "not_stated" }
+      },
+      "fullHistory": {
+        "history": ["Prior sequence details not_stated in dataset"],
+        "meds": ["not_stated"],
+        "comorbidities": ["not_stated"],
+        "constraints": ["Use only dataset-supported reasoning"]
+      },
+      "learningTargets": [
+        { "subfactor": "glycemia", "goal": "Close major glycemia gap.", "sources": [{ "sourceId": "s1" }] },
+        { "subfactor": "safety_tolerability", "goal": "State tolerability tradeoffs.", "sources": [{ "sourceId": "s2" }] },
+        { "subfactor": "access_cost", "goal": "Address access constraints.", "sources": [{ "sourceId": "s6" }] }
+      ],
+      "allowedDrugClassIds": ["metformin", "sglt2", "glp1", "gip_glp1", "dpp4", "sulfonylureas", "tzd", "insulin"],
+      "sources": [{ "sourceId": "s1" }]
+    }
+  ]
+}

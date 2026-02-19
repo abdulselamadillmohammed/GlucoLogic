@@ -1,0 +1,304 @@
+{
+  "classes": [
+    {
+      "classId": "metformin",
+      "className": "Metformin",
+      "classSummary": {
+        "glycemia": { "effect": "positive", "evidence": [{ "sourceId": "s1" }] },
+        "weight": { "effect": "neutral", "evidence": [{ "sourceId": "s1" }] },
+        "hypoglycemia": { "effect": "positive", "evidence": [{ "sourceId": "s1" }] },
+        "cardiorenal": { "effect": "not_stated", "evidence": [{ "sourceId": "s1" }] },
+        "safety_tolerability": { "effect": "negative", "evidence": [{ "sourceId": "s2" }] },
+        "access_cost": { "effect": "positive", "evidence": [{ "sourceId": "s6" }] }
+      },
+      "drugs": [
+        {
+          "drugId": "metformin",
+          "genericName": "metformin",
+          "route": "oral",
+          "keyNotes": [{ "text": "Foundational oral option in dataset tables.", "sources": [{ "sourceId": "s1" }] }],
+          "effects": {
+            "glycemia": { "effect": "positive", "sources": [{ "sourceId": "s1" }] },
+            "weight": { "effect": "neutral", "sources": [{ "sourceId": "s1" }] },
+            "hypoglycemia": { "effect": "positive", "sources": [{ "sourceId": "s1" }] },
+            "cardiorenal": { "effect": "not_stated", "sources": [{ "sourceId": "s1" }] },
+            "safety_tolerability": { "effect": "negative", "sources": [{ "sourceId": "s2" }] },
+            "access_cost": { "effect": "positive", "sources": [{ "sourceId": "s6" }] }
+          },
+          "adverseEffects": [{ "text": "GI tolerability concerns are described in dataset references.", "sources": [{ "sourceId": "s2" }] }],
+          "cautions": [{ "text": "Not stated in dataset", "sources": [{ "sourceId": "s1" }] }]
+        }
+      ]
+    },
+    {
+      "classId": "sglt2",
+      "className": "SGLT2 inhibitors",
+      "classSummary": {
+        "glycemia": { "effect": "positive", "evidence": [{ "sourceId": "s1" }] },
+        "weight": { "effect": "positive", "evidence": [{ "sourceId": "s3" }] },
+        "hypoglycemia": { "effect": "positive", "evidence": [{ "sourceId": "s3" }] },
+        "cardiorenal": { "effect": "positive", "evidence": [{ "sourceId": "s4" }] },
+        "safety_tolerability": { "effect": "neutral", "evidence": [{ "sourceId": "s3" }] },
+        "access_cost": { "effect": "negative", "evidence": [{ "sourceId": "s6" }] }
+      },
+      "drugs": [
+        {
+          "drugId": "empagliflozin",
+          "genericName": "empagliflozin",
+          "route": "oral",
+          "keyNotes": [{ "text": "Class option listed in pharmacologic tables.", "sources": [{ "sourceId": "s3" }] }],
+          "effects": {
+            "glycemia": { "effect": "positive", "sources": [{ "sourceId": "s3" }] },
+            "weight": { "effect": "positive", "sources": [{ "sourceId": "s3" }] },
+            "hypoglycemia": { "effect": "positive", "sources": [{ "sourceId": "s3" }] },
+            "cardiorenal": { "effect": "positive", "sources": [{ "sourceId": "s4" }] },
+            "safety_tolerability": { "effect": "neutral", "sources": [{ "sourceId": "s3" }] },
+            "access_cost": { "effect": "negative", "sources": [{ "sourceId": "s6" }] }
+          },
+          "adverseEffects": [{ "text": "Not stated in dataset", "sources": [{ "sourceId": "s3" }] }],
+          "cautions": [{ "text": "Not stated in dataset", "sources": [{ "sourceId": "s3" }] }]
+        },
+        {
+          "drugId": "dapagliflozin",
+          "genericName": "dapagliflozin",
+          "route": "oral",
+          "keyNotes": [{ "text": "Class option listed in pharmacologic tables.", "sources": [{ "sourceId": "s3" }] }],
+          "effects": {
+            "glycemia": { "effect": "positive", "sources": [{ "sourceId": "s3" }] },
+            "weight": { "effect": "positive", "sources": [{ "sourceId": "s3" }] },
+            "hypoglycemia": { "effect": "positive", "sources": [{ "sourceId": "s3" }] },
+            "cardiorenal": { "effect": "positive", "sources": [{ "sourceId": "s4" }] },
+            "safety_tolerability": { "effect": "neutral", "sources": [{ "sourceId": "s3" }] },
+            "access_cost": { "effect": "negative", "sources": [{ "sourceId": "s6" }] }
+          },
+          "adverseEffects": [{ "text": "Not stated in dataset", "sources": [{ "sourceId": "s3" }] }],
+          "cautions": [{ "text": "Not stated in dataset", "sources": [{ "sourceId": "s3" }] }]
+        },
+        {
+          "drugId": "canagliflozin",
+          "genericName": "canagliflozin",
+          "route": "oral",
+          "keyNotes": [{ "text": "Class option listed in pharmacologic tables.", "sources": [{ "sourceId": "s3" }] }],
+          "effects": {
+            "glycemia": { "effect": "positive", "sources": [{ "sourceId": "s3" }] },
+            "weight": { "effect": "positive", "sources": [{ "sourceId": "s3" }] },
+            "hypoglycemia": { "effect": "positive", "sources": [{ "sourceId": "s3" }] },
+            "cardiorenal": { "effect": "positive", "sources": [{ "sourceId": "s4" }] },
+            "safety_tolerability": { "effect": "neutral", "sources": [{ "sourceId": "s3" }] },
+            "access_cost": { "effect": "negative", "sources": [{ "sourceId": "s6" }] }
+          },
+          "adverseEffects": [{ "text": "Not stated in dataset", "sources": [{ "sourceId": "s3" }] }],
+          "cautions": [{ "text": "Not stated in dataset", "sources": [{ "sourceId": "s3" }] }]
+        }
+      ]
+    },
+    {
+      "classId": "glp1",
+      "className": "GLP-1 RA",
+      "classSummary": {
+        "glycemia": { "effect": "positive", "evidence": [{ "sourceId": "s1" }] },
+        "weight": { "effect": "positive", "evidence": [{ "sourceId": "s5" }] },
+        "hypoglycemia": { "effect": "positive", "evidence": [{ "sourceId": "s1" }] },
+        "cardiorenal": { "effect": "positive", "evidence": [{ "sourceId": "s4" }] },
+        "safety_tolerability": { "effect": "negative", "evidence": [{ "sourceId": "s2" }] },
+        "access_cost": { "effect": "negative", "evidence": [{ "sourceId": "s6" }] }
+      },
+      "drugs": [
+        {
+          "drugId": "semaglutide",
+          "genericName": "semaglutide",
+          "route": "injection/oral",
+          "keyNotes": [{ "text": "GLP-1 receptor agonist option listed in dataset.", "sources": [{ "sourceId": "s1" }] }],
+          "effects": {
+            "glycemia": { "effect": "positive", "sources": [{ "sourceId": "s1" }] },
+            "weight": { "effect": "positive", "sources": [{ "sourceId": "s5" }] },
+            "hypoglycemia": { "effect": "positive", "sources": [{ "sourceId": "s1" }] },
+            "cardiorenal": { "effect": "positive", "sources": [{ "sourceId": "s4" }] },
+            "safety_tolerability": { "effect": "negative", "sources": [{ "sourceId": "s2" }] },
+            "access_cost": { "effect": "negative", "sources": [{ "sourceId": "s6" }] }
+          },
+          "adverseEffects": [{ "text": "GI effects are referenced in dataset class comparisons.", "sources": [{ "sourceId": "s2" }] }],
+          "cautions": [{ "text": "Not stated in dataset", "sources": [{ "sourceId": "s1" }] }]
+        },
+        {
+          "drugId": "liraglutide",
+          "genericName": "liraglutide",
+          "route": "injection",
+          "keyNotes": [{ "text": "GLP-1 receptor agonist option listed in dataset.", "sources": [{ "sourceId": "s1" }] }],
+          "effects": {
+            "glycemia": { "effect": "positive", "sources": [{ "sourceId": "s1" }] },
+            "weight": { "effect": "positive", "sources": [{ "sourceId": "s5" }] },
+            "hypoglycemia": { "effect": "positive", "sources": [{ "sourceId": "s1" }] },
+            "cardiorenal": { "effect": "positive", "sources": [{ "sourceId": "s4" }] },
+            "safety_tolerability": { "effect": "negative", "sources": [{ "sourceId": "s2" }] },
+            "access_cost": { "effect": "negative", "sources": [{ "sourceId": "s6" }] }
+          },
+          "adverseEffects": [{ "text": "Not stated in dataset", "sources": [{ "sourceId": "s1" }] }],
+          "cautions": [{ "text": "Not stated in dataset", "sources": [{ "sourceId": "s1" }] }]
+        }
+      ]
+    },
+    {
+      "classId": "gip_glp1",
+      "className": "Dual GIP/GLP-1 RA",
+      "classSummary": {
+        "glycemia": { "effect": "positive", "evidence": [{ "sourceId": "s5" }] },
+        "weight": { "effect": "positive", "evidence": [{ "sourceId": "s5" }] },
+        "hypoglycemia": { "effect": "positive", "evidence": [{ "sourceId": "s5" }] },
+        "cardiorenal": { "effect": "not_stated", "evidence": [{ "sourceId": "s5" }] },
+        "safety_tolerability": { "effect": "negative", "evidence": [{ "sourceId": "s2" }] },
+        "access_cost": { "effect": "negative", "evidence": [{ "sourceId": "s6" }] }
+      },
+      "drugs": [
+        {
+          "drugId": "tirzepatide",
+          "genericName": "tirzepatide",
+          "route": "injection",
+          "keyNotes": [{ "text": "Dual GIP/GLP-1 receptor agonist class entry in dataset.", "sources": [{ "sourceId": "s5" }] }],
+          "effects": {
+            "glycemia": { "effect": "positive", "sources": [{ "sourceId": "s5" }] },
+            "weight": { "effect": "positive", "sources": [{ "sourceId": "s5" }] },
+            "hypoglycemia": { "effect": "positive", "sources": [{ "sourceId": "s5" }] },
+            "cardiorenal": { "effect": "not_stated", "sources": [{ "sourceId": "s5" }] },
+            "safety_tolerability": { "effect": "negative", "sources": [{ "sourceId": "s2" }] },
+            "access_cost": { "effect": "negative", "sources": [{ "sourceId": "s6" }] }
+          },
+          "adverseEffects": [{ "text": "Not stated in dataset", "sources": [{ "sourceId": "s5" }] }],
+          "cautions": [{ "text": "Not stated in dataset", "sources": [{ "sourceId": "s5" }] }]
+        }
+      ]
+    },
+    {
+      "classId": "dpp4",
+      "className": "DPP-4 inhibitors",
+      "classSummary": {
+        "glycemia": { "effect": "positive", "evidence": [{ "sourceId": "s1" }] },
+        "weight": { "effect": "neutral", "evidence": [{ "sourceId": "s3" }] },
+        "hypoglycemia": { "effect": "positive", "evidence": [{ "sourceId": "s3" }] },
+        "cardiorenal": { "effect": "neutral", "evidence": [{ "sourceId": "s4" }] },
+        "safety_tolerability": { "effect": "neutral", "evidence": [{ "sourceId": "s3" }] },
+        "access_cost": { "effect": "negative", "evidence": [{ "sourceId": "s6" }] }
+      },
+      "drugs": [
+        {
+          "drugId": "sitagliptin",
+          "genericName": "sitagliptin",
+          "route": "oral",
+          "keyNotes": [{ "text": "DPP-4 inhibitor class option listed in dataset.", "sources": [{ "sourceId": "s3" }] }],
+          "effects": {
+            "glycemia": { "effect": "positive", "sources": [{ "sourceId": "s3" }] },
+            "weight": { "effect": "neutral", "sources": [{ "sourceId": "s3" }] },
+            "hypoglycemia": { "effect": "positive", "sources": [{ "sourceId": "s3" }] },
+            "cardiorenal": { "effect": "neutral", "sources": [{ "sourceId": "s4" }] },
+            "safety_tolerability": { "effect": "neutral", "sources": [{ "sourceId": "s3" }] },
+            "access_cost": { "effect": "negative", "sources": [{ "sourceId": "s6" }] }
+          },
+          "adverseEffects": [{ "text": "Not stated in dataset", "sources": [{ "sourceId": "s3" }] }],
+          "cautions": [{ "text": "Not stated in dataset", "sources": [{ "sourceId": "s3" }] }]
+        }
+      ]
+    },
+    {
+      "classId": "sulfonylureas",
+      "className": "Sulfonylureas",
+      "classSummary": {
+        "glycemia": { "effect": "positive", "evidence": [{ "sourceId": "s1" }] },
+        "weight": { "effect": "negative", "evidence": [{ "sourceId": "s3" }] },
+        "hypoglycemia": { "effect": "negative", "evidence": [{ "sourceId": "s3" }] },
+        "cardiorenal": { "effect": "not_stated", "evidence": [{ "sourceId": "s3" }] },
+        "safety_tolerability": { "effect": "negative", "evidence": [{ "sourceId": "s3" }] },
+        "access_cost": { "effect": "positive", "evidence": [{ "sourceId": "s6" }] }
+      },
+      "drugs": [
+        {
+          "drugId": "glimepiride",
+          "genericName": "glimepiride",
+          "route": "oral",
+          "keyNotes": [{ "text": "Sulfonylurea option listed in dataset.", "sources": [{ "sourceId": "s3" }] }],
+          "effects": {
+            "glycemia": { "effect": "positive", "sources": [{ "sourceId": "s3" }] },
+            "weight": { "effect": "negative", "sources": [{ "sourceId": "s3" }] },
+            "hypoglycemia": { "effect": "negative", "sources": [{ "sourceId": "s3" }] },
+            "cardiorenal": { "effect": "not_stated", "sources": [{ "sourceId": "s3" }] },
+            "safety_tolerability": { "effect": "negative", "sources": [{ "sourceId": "s3" }] },
+            "access_cost": { "effect": "positive", "sources": [{ "sourceId": "s6" }] }
+          },
+          "adverseEffects": [{ "text": "Not stated in dataset", "sources": [{ "sourceId": "s3" }] }],
+          "cautions": [{ "text": "Not stated in dataset", "sources": [{ "sourceId": "s3" }] }]
+        }
+      ]
+    },
+    {
+      "classId": "tzd",
+      "className": "TZD",
+      "classSummary": {
+        "glycemia": { "effect": "positive", "evidence": [{ "sourceId": "s1" }] },
+        "weight": { "effect": "negative", "evidence": [{ "sourceId": "s3" }] },
+        "hypoglycemia": { "effect": "neutral", "evidence": [{ "sourceId": "s3" }] },
+        "cardiorenal": { "effect": "negative", "evidence": [{ "sourceId": "s4" }] },
+        "safety_tolerability": { "effect": "negative", "evidence": [{ "sourceId": "s3" }] },
+        "access_cost": { "effect": "positive", "evidence": [{ "sourceId": "s6" }] }
+      },
+      "drugs": [
+        {
+          "drugId": "pioglitazone",
+          "genericName": "pioglitazone",
+          "route": "oral",
+          "keyNotes": [{ "text": "TZD option listed in dataset.", "sources": [{ "sourceId": "s3" }] }],
+          "effects": {
+            "glycemia": { "effect": "positive", "sources": [{ "sourceId": "s3" }] },
+            "weight": { "effect": "negative", "sources": [{ "sourceId": "s3" }] },
+            "hypoglycemia": { "effect": "neutral", "sources": [{ "sourceId": "s3" }] },
+            "cardiorenal": { "effect": "negative", "sources": [{ "sourceId": "s4" }] },
+            "safety_tolerability": { "effect": "negative", "sources": [{ "sourceId": "s3" }] },
+            "access_cost": { "effect": "positive", "sources": [{ "sourceId": "s6" }] }
+          },
+          "adverseEffects": [{ "text": "Not stated in dataset", "sources": [{ "sourceId": "s3" }] }],
+          "cautions": [{ "text": "Not stated in dataset", "sources": [{ "sourceId": "s3" }] }]
+        }
+      ]
+    },
+    {
+      "classId": "insulin",
+      "className": "Insulin",
+      "classSummary": {
+        "glycemia": { "effect": "positive", "evidence": [{ "sourceId": "s1" }] },
+        "weight": { "effect": "negative", "evidence": [{ "sourceId": "s3" }] },
+        "hypoglycemia": { "effect": "negative", "evidence": [{ "sourceId": "s3" }] },
+        "cardiorenal": { "effect": "not_stated", "evidence": [{ "sourceId": "s1" }] },
+        "safety_tolerability": { "effect": "negative", "evidence": [{ "sourceId": "s3" }] },
+        "access_cost": { "effect": "neutral", "evidence": [{ "sourceId": "s6" }] }
+      },
+      "drugs": [
+        {
+          "drugId": "basal_insulin",
+          "genericName": "basal insulin",
+          "route": "injection",
+          "keyNotes": [{ "text": "Insulin category appears in dataset medication tables.", "sources": [{ "sourceId": "s1" }] }],
+          "effects": {
+            "glycemia": { "effect": "positive", "sources": [{ "sourceId": "s1" }] },
+            "weight": { "effect": "negative", "sources": [{ "sourceId": "s3" }] },
+            "hypoglycemia": { "effect": "negative", "sources": [{ "sourceId": "s3" }] },
+            "cardiorenal": { "effect": "not_stated", "sources": [{ "sourceId": "s1" }] },
+            "safety_tolerability": { "effect": "negative", "sources": [{ "sourceId": "s3" }] },
+            "access_cost": { "effect": "neutral", "sources": [{ "sourceId": "s6" }] }
+          },
+          "adverseEffects": [{ "text": "Not stated in dataset", "sources": [{ "sourceId": "s1" }] }],
+          "cautions": [{ "text": "Not stated in dataset", "sources": [{ "sourceId": "s1" }] }]
+        }
+      ]
+    }
+  ],
+  "sourcesIndex": [
+    { "sourceId": "s1", "pdf": "dc26s009.pdf", "page": 9, "where": "Pharmacologic Approaches to Glycemic Treatment section" },
+    { "sourceId": "s2", "pdf": "dc26s009.pdf", "page": 18, "where": "Adverse effect considerations table" },
+    { "sourceId": "s3", "pdf": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf", "page": 6, "where": "Class comparison summary table" },
+    { "sourceId": "s4", "pdf": "Pharmacologic Glycemic Management of Type 2 Diabetes in Adults—2024 Update.pdf", "page": 8, "where": "Cardiorenal outcomes subsection" },
+    { "sourceId": "s5", "pdf": "PIIS1530891X23000344.pdf", "page": 4, "where": "Incretin pathway and dual agonist discussion" },
+    { "sourceId": "s6", "pdf": "PIIS0828282X2200335X.pdf", "page": 3, "where": "Access and treatment practical constraints section" },
+    { "sourceId": "s7", "pdf": "dc26s016.pdf", "page": 7, "where": "Comorbidity-centered treatment intent section" },
+    { "sourceId": "s8", "pdf": "dc26s016.pdf", "page": 10, "where": "Case framing examples table" },
+    { "sourceId": "s9", "pdf": "SHNackathon 2026_Instructions_updated.docx.pdf", "page": 1, "where": "Workshop challenge framing" },
+    { "sourceId": "s10", "pdf": "dc26s009.pdf", "page": 22, "where": "Insulin and injectable pathway section" }
+  ]
+}

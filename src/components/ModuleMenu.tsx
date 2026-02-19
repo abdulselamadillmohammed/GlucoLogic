@@ -3,7 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 
 const LINKS = [
   { to: "/learn/t2d", label: "Physiology Module" },
-  { to: "/learn/pharmacology/map", label: "Pharmacology Module" }
+  { to: "/learn/pharmacology/map", label: "Pharmacology Module" },
+  { to: "/workshop", label: "The WorkShop" }
 ];
 
 export function ModuleMenu() {
